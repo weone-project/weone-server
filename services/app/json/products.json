@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "name": "PURE WEDDING",
+    "description": "Order untuk pemakaian 5 jam",
+    "imgUrl": "https://london.bridestory.com/images/c_fill,dpr_1.0,f_auto,fl_progressive,h_45,pg_1,q_80,w_45/v1/assets/bridestory-Hy49Bi-uH/sheraton-bandung-hotel-tower.webp",
+    "price": 38000000,
+    "rating": "3",
+    "DP": 18000000,
+    "day": 7,
+    "VendorId": 1,
+    "CategoryId": 1
+  },
+  {
+    "id": 2,
+    "name": "Nasi Daun Jeruk",
+    "description": "Order untuk 200 pax",
+    "imgUrl": "https://london.bridestory.com/images/c_fill,dpr_1.0,f_auto,fl_progressive,h_45,pg_1,q_80,w_45/v1/assets/bridestory-Hy49Bi-uH/sheraton-bandung-hotel-tower.webp",
+    "price": 25000000,
+    "rating": "4",
+    "DP": 10000000,
+    "day": 5,
+    "VendorId": 2,
+    "CategoryId": 2
+  },
+  {
+    "id": 3,
+    "name": "Paket Foto Wedding WARIOR",
+    "description": "Unlimited Photo, File photo edit, Album jumbo magnetic 10 sheet, Cetak 100 foto ukuran 4R, 1 Pcs Flashdisk 16 GB, 1 hari acara, Liputan rumahan, durasi maksimal 8 jam, 5 jam liputan gedung/hotel/resto",
+    "imgUrl": "https://pondokwedding.com/wp-content/uploads/2021/09/paket-foto-pernikahan-paket-foto-engagement-jakarta-bogor-depok-Bekasi-tangerang_2-e1631033763330.jpeg",
+    "price": 2000000,
+    "rating": "4",
+    "DP": 500000,
+    "day": 3,
+    "VendorId": 3,
+    "CategoryId": 4
+  },
+  {
+    "id": 4,
+    "name": "Ready Rent Wedding Gown",
+    "description": "Ready rent Gaun Pernikahan, Veil, Custom Balero baru, Mannequin untuk morning shot, Crown / aksesoris rambut, Free gift Wedding Kimono, Free 2 dress prewedding",
+    "imgUrl": "https://alexandra.bridestory.com/image/upload/dpr_1.0,f_webp,fl_progressive,q_60,c_fill,g_faces,w_560,h_280/assets/image-4-HkPxumChH.webp",
+    "price": 17000000,
+    "rating": "4",
+    "DP": 5000000,
+    "day": 7,
+    "VendorId": 4,
+    "CategoryId": 5
+  },
+  {
+    "id": 5,
+    "name": "WEDDING PLANNER SILVER",
+    "description": "200 - 600 pax, Unlimited meeting for consultation & advises for well prepared and smooth clients wedding event including budgeting consultation and discussion, Providing information and discussing all things needed refer to the wedding event of the client, Giving idea and concept, how the theme and rundown will be for wedding event and implement all concepts and idea to wedding card, decoration, souvenir, wedding gown, and others, Accompanying & Assisting client to find, select and have meeting with vendors E.g: Wedding Card, Wedding Gown, Wedding Cake, Photo & Video, and MC & Entertainment; Ensuring the crew and duties for each crew members at the event, Finalizing and implementing rundown on D day, Coordinating technical meeting, between vendor & client, also with the crew if needed, Provide 8 crew members to support the event on D day with detail job function as follow: Floor Manager, Assistant MC on WO side, Assistant F&B, Checker, Butler and Stopper, Assist preparation for Sangjit Days, also Holy Matrimony & Civil Registration, Assisting Tea Pay Ceremony, Rehearsal, Family Photo Session & Reception. Free Bonus : 2 bottles Sparkling Wine, Confetti for wedding toast moment, Guest book for Holy Matrimony & sticker tom & jerry, Bridal Room Decoration standard type (not included fresh flower & equipment for lend only E.g. teddy bear, ring cushion). Free to borrow: Exclusive ring cushion, Large Shuang Xi sign, Groom Pickup Games equipment ( fake mustache, bunny ear, etc), Angpao Box for Holy Matrimony, Teapay Set, Tray for Teapay gifts, Mingle basket + rose petal, Basket for flower girls, Sangjit Boxes",
+    "imgUrl": "https://img.freepik.com/free-psd/wedding-planner-vertical-poster-template-with-watercolor-floral-design_23-2149447518.jpg?w=2000",
+    "price": 28000000,
+    "rating": "4",
+    "DP": 15000000,
+    "day": 7,
+    "VendorId": 5,
+    "CategoryId": 6
+  }
+]
