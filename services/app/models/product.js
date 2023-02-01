@@ -52,6 +52,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     estimatedDay: {
       type: DataTypes.INTEGER,
+      max: 7,
     },
     rating: {
       type: DataTypes.INTEGER,

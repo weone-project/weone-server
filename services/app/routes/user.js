@@ -1,9 +1,8 @@
-// const UserController = require('../controllers/UserController')
-// const authentication = require('../middlewares/authentication')
-// const router = require('express').Router()
+const UserController = require('../controllers/UserController.js')
+const router = require('express').Router()
 
 
-// router.post('/login', UserController.login)
-// router.post('/register', UserController.register)
+// Your route here
 
-// module.exports = router
+
+module.exports = router
