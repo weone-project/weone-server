@@ -7,6 +7,7 @@ router.get('/', VendorController.getAllVendor)
 router.post('/register', VendorController.registerVendor)
 router.post('/login', VendorController.loginVendor)
 router.put('/:id', VendorController.updateVendor)
+router.delete('/:id', VendorController.deleteVendor)
 
 
 module.exports = router

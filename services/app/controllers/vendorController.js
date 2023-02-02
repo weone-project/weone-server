@@ -51,11 +51,19 @@ class VendorController {
     static async updateVendor(req, res, next) {
         try {
             const { id } = req.params
+            console.log(id, '<--- ini id');
             const findVendor = await Vendor.findByPk(id)
             if (!findVendor) throw { name: 'Data not found' }
             
             const { name, phoneNumber, address, vendorImgUrl } = req.body
-            const updatedVendor = await Vendor.update({ name, phoneNumber, address, vendorImgUrl})
+            const updatedVendor = await Vendor.update({
+                name,
+                phoneNumber,
+                address,
+                vendorImgUrl
+            }, {
+                where: { id }
+            })
             
             res.status(201).json({message: 'Success update profile vendor'})
         } catch (error) {
@@ -75,6 +83,22 @@ class VendorController {
 
         } catch (error) {
             console.log(error, '<---- error getAllVendor - 00');
+            next(error)
+        }
+    }
+
+    static async deleteVendor(req, res, next) {
+        try {
+            const { id } = req.params
+            const findOne = await Vendor.findByPk(id)
+            if (!findOne) {
+                throw { name: 'Data not found' }
+            }
+
+            await Vendor.destroy({ where: { id } })
+            res.status(200).json({ message: `Account ${findOne.name} has been deleted` })
+
+        } catch (error) {
             next(error)
         }
     }

@@ -21,6 +21,13 @@ const vendorTypeDefs = `#GraphQL
         address: String
         vendorImgUrl: String
     }
+
+    input UpdateVendorForm {
+        name: String,
+        phoneNumber: String
+        address: String
+        vendorImgUrl: String
+    }
     
     input LoginVendorForm {
         email: String
@@ -43,7 +50,7 @@ const vendorTypeDefs = `#GraphQL
         createVendor(form: VendorForm): Vendor
         deleteVendor(id: ID): Message
         loginVendor(form: LoginVendorForm): LoginResponse
-        updateVendor(form: VendorForm): Message
+        updateVendor(form: UpdateVendorForm, id: ID): Message
     }
 `
 
@@ -87,7 +94,7 @@ const vendorResolvers = {
             }
         },
 
-        loginVendor: async(_, args) => {
+        loginVendor: async (_, args) => {
             try {
                 const { data } = await axios({
                     method: 'post',
@@ -102,22 +109,36 @@ const vendorResolvers = {
             }
         },
 
-        // update
+        updateVendor: async (_, args) => {
+            try {
+                const { id } = args
+                const { data } = await axios({
+                    method: 'put',
+                    url: `${BASE_URL}/vendors/${id}`,
+                    data: args.form,
+                })
 
-        // deleteVendor: async (_, args) => {
-        //     try {
-        //         const { id } = args
-        //         const { data } = await axios({
-        //             method: 'delete',
-        //             url: BASE_URL + '/vendors/' + id
-        //         })
+                await redis.del('get:vendors');
+                return data;
+            } catch (err) {
+                throw err;
+            }
+        },
 
-        //         return data
-        //     } catch (error) {
-        //         console.log(error, '<--- error deleteVendor orches');
-        //         throw error
-        //     }
-        // },
+        deleteVendor: async (_, args) => {
+            try {
+                const { id } = args
+                const { data } = await axios({
+                    method: 'delete',
+                    url: BASE_URL + '/vendors/' + id
+                })
+
+                return data
+            } catch (error) {
+                console.log(error, '<--- error deleteVendor orches');
+                throw error
+            }
+        },
     }
 }
 

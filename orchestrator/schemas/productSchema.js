@@ -78,7 +78,7 @@ const productResolvers = {
                 await redis.del('get:products');
                 return data;
             } catch (error) {
-                console.log(error, '<--- error create product orches');
+                console.log(error, '<--- error create product orchestra');
                 throw error;
             }
         },
