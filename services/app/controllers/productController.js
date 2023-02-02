@@ -28,11 +28,27 @@ class ProductController {
             })
 
             res.status(201).json({
-                message: 'New product created!'
+                message: `Product ${name} created!`
             })
 
         } catch (error) {
             console.log(error, '<---- error create Product');
+            next(error)
+        }
+    }
+
+    static async deleteProduct(req, res, next) {
+        try {
+            const { id } = req.params
+            const findOne = await Product.findByPk(id)
+            if (!findOne) {
+                throw { name: 'Data not found' }
+            }
+
+            await Product.destroy({ where: { id } })
+            res.status(200).json({ message: `${findOne.name} has been deleted` })
+
+        } catch (error) {
             next(error)
         }
     }

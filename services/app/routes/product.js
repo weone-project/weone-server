@@ -5,8 +5,7 @@ const router = require('express').Router()
 // Your route here
 router.get('/', ProductController.getAllProduct)
 router.post('/', ProductController.createProduct)
-// router.post('/register', VendorController.registerVendor)
-// router.post('/login', VendorController.loginVendor)
+router.delete('/:id', ProductController.deleteProduct)
 
 
 module.exports = router
