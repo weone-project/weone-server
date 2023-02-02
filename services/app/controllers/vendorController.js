@@ -42,6 +42,21 @@ class VendorController {
             next(error)
         }
     }
+
+    static async getAllVendor(req, res, next) {
+        try {
+            // const { access_token } = req.headers
+            // if (!access_token) throw { name: 'Invalid token' }
+
+            const dataVendor = await Vendor.findAll()
+
+            res.status(200).json(dataVendor)
+
+        } catch (error) {
+            console.log(error, '<---- error getAllVendor - 00');
+            next(error)
+        }
+    }
 }
 
 module.exports = VendorController
