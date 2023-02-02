@@ -21,6 +21,13 @@ const vendorTypeDefs = `#GraphQL
         address: String
         vendorImgUrl: String
     }
+
+    input UpdateVendorForm {
+        name: String,
+        phoneNumber: String
+        address: String
+        vendorImgUrl: String
+    }
     
     input LoginVendorForm {
         email: String
@@ -43,7 +50,7 @@ const vendorTypeDefs = `#GraphQL
         createVendor(form: VendorForm): Vendor
         deleteVendor(id: ID): Message
         loginVendor(form: LoginVendorForm): LoginResponse
-        updateVendor(form: VendorForm, id: ID): Message
+        updateVendor(form: UpdateVendorForm, id: ID): Message
     }
 `
 
