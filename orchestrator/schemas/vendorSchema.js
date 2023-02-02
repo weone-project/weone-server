@@ -104,20 +104,20 @@ const vendorResolvers = {
 
         // update
 
-        // deleteVendor: async (_, args) => {
-        //     try {
-        //         const { id } = args
-        //         const { data } = await axios({
-        //             method: 'delete',
-        //             url: BASE_URL + '/vendors/' + id
-        //         })
+        deleteVendor: async (_, args) => {
+            try {
+                const { id } = args
+                const { data } = await axios({
+                    method: 'delete',
+                    url: BASE_URL + '/vendors/' + id
+                })
 
-        //         return data
-        //     } catch (error) {
-        //         console.log(error, '<--- error deleteVendor orches');
-        //         throw error
-        //     }
-        // },
+                return data
+            } catch (error) {
+                console.log(error, '<--- error deleteVendor orches');
+                throw error
+            }
+        },
     }
 }
 
