@@ -37,6 +37,23 @@ class ProductController {
         }
     }
 
+    static async updateProduct(req, res, next) {
+        try {
+            const { name, description, imgUrl, price, estimatedDay,  } = req.body
+            const { id } = req.params
+            const findCategory = await Category.findByPk(id)
+
+            if (!findCategory) throw { name: 'Data not found' }
+            await Category.update({ name }, { where: { id } })
+
+            res.status(200).json({ message: `Success update category to ${name}` })
+
+        } catch (error) {
+            console.log(error, '<---- error update category');
+            next(error)
+        }
+    }
+
     static async deleteProduct(req, res, next) {
         try {
             const { id } = req.params

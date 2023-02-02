@@ -18,7 +18,7 @@ class CategoryController {
             const newCategory = await Category.create({ name })
 
             res.status(201).json({
-                message: `Category ${name} created!`
+                message: `Category ${name} created`
             })
 
         } catch (error) {
