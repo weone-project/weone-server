@@ -27,10 +27,10 @@ class VendorController {
             console.log(email, password, '<----- email');
 
             const findVendor = await Vendor.findOne({ where: { email } })
-            if (!findVendor) throw { name: 'Invalid login' }
+            if (!findVendor) throw { name: 'Invalid email/password' }
 
             const compareUserPassword = comparePassword(password, findVendor.password)
-            if (!compareUserPassword) throw { name: 'Invalid login' }
+            if (!compareUserPassword) throw { name: 'Invalid email/password' }
 
             const payload = { id: findVendor.id }
             const access_token = createToken(payload)
