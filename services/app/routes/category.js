@@ -3,8 +3,9 @@ const router = require('express').Router()
 
 
 // Your route here
-// router.get('/', ProductController.createProduct)
+router.get('/', CategoryController.getAllCategory)
 router.post('/', CategoryController.createCategory)
+router.delete('/:id', CategoryController.deleteCategory)
 
 
 module.exports = router
