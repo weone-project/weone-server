@@ -43,7 +43,7 @@ const vendorTypeDefs = `#GraphQL
         createVendor(form: VendorForm): Vendor
         deleteVendor(id: ID): Message
         loginVendor(form: LoginVendorForm): LoginResponse
-        updateVendor(form: VendorForm): Message
+        updateVendor(form: VendorForm, id: ID): Message
     }
 `
 
@@ -87,7 +87,7 @@ const vendorResolvers = {
             }
         },
 
-        loginVendor: async(_, args) => {
+        loginVendor: async (_, args) => {
             try {
                 const { data } = await axios({
                     method: 'post',
@@ -102,7 +102,21 @@ const vendorResolvers = {
             }
         },
 
-        // update
+        updateVendor: async (_, args) => {
+            try {
+                const { id } = args
+                const { data } = await axios({
+                    method: 'put',
+                    url: `${BASE_URL}/vendors/${id}`,
+                    data: args.form,
+                })
+
+                await redis.del('get:vendors');
+                return data;
+            } catch (err) {
+                throw err;
+            }
+        },
 
         deleteVendor: async (_, args) => {
             try {
