@@ -11,7 +11,6 @@ class CategoryController {
         }
     }
 
-
     static async createCategory(req, res, next) {
         try {
             const { name } = req.body
