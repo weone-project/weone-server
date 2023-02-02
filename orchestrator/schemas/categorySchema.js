@@ -4,29 +4,75 @@ const BASE_URL = 'http://localhost:4002'
 
 const categoryTypeDefs = `#GraphQL
     type Category {
+        id: ID
         name: String
+    }
+
+    input CategoryForm {
+        name: String
+    }
+
+    type Message {
+        message: String
     }
 
     type Query {
         getCategories: [Category]
     }
+
+    type Mutation {
+        createCategory(form: CategoryForm): Message
+        deleteCategory(id:ID): Message
+    }
 `
 const categoryResolvers = {
     Query: {
         getCategories: async () => {
-            console.log('get categories masuk ---');
             try {
+                const { data } = await axios({
+                    method: 'get',
+                    url: `${BASE_URL}/categories`
+                })
+                return data
 
-                return 'asas'
             } catch (error) {
-                console.log(error, '<--- error getMovies resolvers');
+                console.log(error, '<---- error getCategory resolvers');
                 throw error
             }
         },
     },
-    // Mutation: {
+    Mutation: {
+        createCategory: async (_, args) => {
+            try {
+                const { data } = await axios({
+                    method: "post",
+                    url: `${BASE_URL}/categories`,
+                    data: args.form,
+                });
 
-    // }
+                // await redis.del("get:categories");
+                return data;
+            } catch (error) {
+                console.log(error, '<--- error createCategory orches');
+                throw error;
+            }
+        },
+
+        deleteCategory: async (_, args) => {
+            try {
+                const { id } = args
+                const { data } = await axios({
+                    method: 'delete',
+                    url: `${BASE_URL}/categories/${id}`
+                })
+
+                return data
+            } catch (error) {
+                console.log(error, '<--- error deleteCategory orches');
+                throw error
+            }
+        },
+    }
 }
 
 module.exports = { categoryTypeDefs, categoryResolvers }
