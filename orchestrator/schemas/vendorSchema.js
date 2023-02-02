@@ -21,6 +21,19 @@ const vendorTypeDefs = `#GraphQL
         address: String
         vendorImgUrl: String
     }
+    
+    input LoginVendorForm {
+        email: String
+        password: String
+    }
+
+    type LoginResponse {
+        id: ID
+        name: String
+        email: String
+        access_token: String
+        
+    }
 
     type Query {
         getVendors: [Vendor]
@@ -28,6 +41,8 @@ const vendorTypeDefs = `#GraphQL
 
     type Mutation {
         createVendor(form: VendorForm): Vendor
+        deleteVendor(id: ID): Message
+        loginVendor(form: LoginVendorForm): LoginResponse
     }
 `
 
@@ -36,7 +51,7 @@ const vendorResolvers = {
         getVendors: async () => {
             try {
                 const cache = await redis.get('get:vendors')
-                if(cache) {
+                if (cache) {
                     return JSON.parse(cache)
                 } else {
                     const { data } = await axios({
@@ -56,22 +71,50 @@ const vendorResolvers = {
     },
     Mutation: {
         createVendor: async (_, args) => {
-            console.log('masukkk bs', args);
             try {
                 const { data } = await axios({
                     method: "post",
-                    url: `${BASE_URL}/vendors`,
+                    url: `${BASE_URL}/vendors/register`,
                     data: args.form,
                 });
-                console.log(data, '==== INI DATA');
 
-                // await redis.del("get:vendors");
+                await redis.del("get:vendors");
                 return data;
-            } catch (error) {   
+            } catch (error) {
                 console.log(error, '<--- error createVendor orches');
                 throw error;
             }
         },
+
+        loginVendor: async(_, args) => {
+            try {
+                const { data } = await axios({
+                    method: 'post',
+                    url: BASE_URL + '/vendors/login',
+                    data: args.form
+                })
+
+                return data
+            } catch (error) {
+                console.log(error, '<--- error loginVendor schema');
+                throw error
+            }
+        },
+
+        // deleteVendor: async (_, args) => {
+        //     try {
+        //         const { id } = args
+        //         const { data } = await axios({
+        //             method: 'delete',
+        //             url: BASE_URL + '/vendors/' + id
+        //         })
+
+        //         return data
+        //     } catch (error) {
+        //         console.log(error, '<--- error deleteVendor orches');
+        //         throw error
+        //     }
+        // },
     }
 }
 

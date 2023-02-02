@@ -35,7 +35,12 @@ class VendorController {
             const payload = { id: findVendor.id }
             const access_token = createToken(payload)
 
-            res.status(200).json({ access_token })
+            res.status(200).json({
+                id: findVendor.id,
+                name: findVendor.name,
+                email: findVendor.email,
+                access_token,
+            })
 
         } catch (error) {
             console.log(error, '<----- error login vendor');
