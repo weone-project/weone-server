@@ -2,6 +2,16 @@ const { Product } = require('../models')
 
 
 class ProductController {
+    static async getAllProduct(req, res, next) {
+        try {
+            const dataProduct = await Product.findAll()
+            res.status(200).json(dataProduct)
+
+        } catch (error) {
+            next(error)
+        }
+    }
+
     static async createProduct(req, res, next) {
         try {
             const { name, description, imgUrl, price, estimatedDay, rating, dpPrice, VendorId, CategoryId } = req.body
