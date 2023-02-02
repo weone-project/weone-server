@@ -9,14 +9,14 @@ class TestimonyController {
             next(error)
         }
     }
-    static async createTestimony(req,res,next){
+    static async createTestimony(req, res, next) {
         try {
-            let UserId=req.user.id
-            let {newTestimony,productId}=req.body
+            let UserId = req.user.id
+            let { newTestimony, productId } = req.body
             await Testimony.create({
-                UserId:2,ProductId:2,Testimony:newTestimony
+                UserId: 2, ProductId: 2, Testimony: newTestimony
             })
-            res.status(201).json({message:'Testimony created now'})
+            res.status(201).json({ message: 'Testimony created now' })
         } catch (error) {
             next(error)
         }

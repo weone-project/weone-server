@@ -37,6 +37,7 @@ const productTypeDefs = `#GraphQL
 
     type Mutation {
         createProduct(form: ProductForm): Message
+        updateProduct(form: ProductForm, id:ID): Message
         deleteProduct(id: ID): Message
     }
 `
@@ -82,24 +83,24 @@ const productResolvers = {
             }
         },
 
-        // updateProduct: async (_, args) => {
-        //     console.log(args, '<---- args product');
-        //     try {
-        //         const { id } = args
-        //         const { data } = await axios({
-        //             method: 'put',
-        //             url: `${baseUrl}/items/${id}`,
-        //             data: args.form,
-        //         })
+        updateProduct: async (_, args) => {
+            console.log(args, '<---- argsUPDATE');
+            try {
+                const { id } = args
+                const { data } = await axios({
+                    method: 'put',
+                    url: `${BASE_URL}/products/${id}`,
+                    data: args.form,
+                })
 
-        //         console.log(data, '<--- data boy');
+                console.log(data, '<=== siUPDATE');
 
-        //         await redis.del("get:items");
-        //         return data;
-        //     } catch (err) {
-        //         throw err;
-        //     }
-        // },
+                await redis.del('get:products');
+                return data;
+            } catch (err) {
+                throw err;
+            }
+        },
 
         deleteProduct: async (_, args) => {
             try {
