@@ -84,7 +84,6 @@ const productResolvers = {
         },
 
         updateProduct: async (_, args) => {
-            console.log(args, '<---- argsUPDATE');
             try {
                 const { id } = args
                 const { data } = await axios({
@@ -92,8 +91,6 @@ const productResolvers = {
                     url: `${BASE_URL}/products/${id}`,
                     data: args.form,
                 })
-
-                console.log(data, '<=== siUPDATE');
 
                 await redis.del('get:products');
                 return data;
