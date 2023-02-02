@@ -78,6 +78,22 @@ class VendorController {
             next(error)
         }
     }
+
+    static async deleteVendor(req, res, next) {
+        try {
+            const { id } = req.params
+            const findOne = await Vendor.findByPk(id)
+            if (!findOne) {
+                throw { name: 'Data not found' }
+            }
+
+            await Vendor.destroy({ where: { id } })
+            res.status(200).json({ message: `Account ${findOne.name} has been deleted` })
+
+        } catch (error) {
+            next(error)
+        }
+    }
 }
 
 module.exports = VendorController
