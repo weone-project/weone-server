@@ -1,8 +1,10 @@
-const TestimonyController = require('../controllers/testimonyController')
+const TestimonyController =require("../controllers/testimonyController")
 const authentication = require('../middlewares/authentication')
 
 const router = require('express').Router()
 
-router.get('/',authentication,TestimonyController.showTestimonies)
-router.get('/',authentication,TestimonyController.createTestimony)
+router.get('/',TestimonyController.showTestimonies)
+router.post('/',TestimonyController.createTestimony)
+router.delete('/:testimonyId',TestimonyController.deleteTestimony)
+router.put('/:testimonyId',TestimonyController.updateTestimony)
 module.exports=router

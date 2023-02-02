@@ -9,14 +9,46 @@ class TestimonyController {
             next(error)
         }
     }
-    static async createTestimony(req,res,next){
+    static async createTestimony(req, res, next) {
         try {
-            let UserId=req.user.id
-            let {newTestimony,productId}=req.body
+            // let UserId=req.user.id
+            let { testimony, productId } = req.body
             await Testimony.create({
-                UserId:2,ProductId:2,Testimony:newTestimony
+                UserId: 1, ProductId: 1, testimony
             })
-            res.status(201).json({message:'Testimony created now'})
+            res.status(201).json({ message: 'Testimony created now' })
+        } catch (error) {
+            next(error)
+        }
+    }
+    static async deleteTestimony(req, res, next) {
+        try {
+            let { testimonyId } = req.params
+            const findOne = await Testimony.findByPk(testimonyId)
+            if (!findOne) {
+                throw { name: 'Data not found' }
+            }
+            await Testimony.destroy({
+                where: {
+                    id: testimonyId
+                }
+            })
+            res.status(200).json({ message: `Testimony has been deleted` })
+        } catch (error) {
+            next(error)
+        }
+    }
+    static async updateTestimony(req, res, next) {
+        try {
+            // let UserId=req.user.id
+            let { testimonyId } = req.params
+            let { testimony, productId } = req.body
+            await Testimony.update({ testimony }, {
+                where: {
+                  id: testimonyId
+                }
+            })
+            res.status(200).json({ message: 'Testimony has been updated' })
         } catch (error) {
             next(error)
         }

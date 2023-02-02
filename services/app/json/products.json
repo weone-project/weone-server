@@ -6,8 +6,8 @@
     "imgUrl": "https://london.bridestory.com/images/c_fill,dpr_1.0,f_auto,fl_progressive,h_45,pg_1,q_80,w_45/v1/assets/bridestory-Hy49Bi-uH/sheraton-bandung-hotel-tower.webp",
     "price": 38000000,
     "rating": "3",
-    "DP": 18000000,
-    "day": 7,
+    "dpPrice": 18000000,
+    "estimatedDay": 7,
     "VendorId": 1,
     "CategoryId": 1
   },
@@ -18,8 +18,8 @@
     "imgUrl": "https://london.bridestory.com/images/c_fill,dpr_1.0,f_auto,fl_progressive,h_45,pg_1,q_80,w_45/v1/assets/bridestory-Hy49Bi-uH/sheraton-bandung-hotel-tower.webp",
     "price": 25000000,
     "rating": "4",
-    "DP": 10000000,
-    "day": 5,
+    "dpPrice": 10000000,
+    "estimatedDay": 5,
     "VendorId": 2,
     "CategoryId": 2
   },
@@ -30,8 +30,8 @@
     "imgUrl": "https://pondokwedding.com/wp-content/uploads/2021/09/paket-foto-pernikahan-paket-foto-engagement-jakarta-bogor-depok-Bekasi-tangerang_2-e1631033763330.jpeg",
     "price": 2000000,
     "rating": "4",
-    "DP": 500000,
-    "day": 3,
+    "dpPrice": 500000,
+    "estimatedDay": 3,
     "VendorId": 3,
     "CategoryId": 4
   },
@@ -42,8 +42,8 @@
     "imgUrl": "https://alexandra.bridestory.com/image/upload/dpr_1.0,f_webp,fl_progressive,q_60,c_fill,g_faces,w_560,h_280/assets/image-4-HkPxumChH.webp",
     "price": 17000000,
     "rating": "4",
-    "DP": 5000000,
-    "day": 7,
+    "dpPrice": 5000000,
+    "estimatedDay": 7,
     "VendorId": 4,
     "CategoryId": 5
   },
@@ -54,8 +54,8 @@
     "imgUrl": "https://img.freepik.com/free-psd/wedding-planner-vertical-poster-template-with-watercolor-floral-design_23-2149447518.jpg?w=2000",
     "price": 28000000,
     "rating": "4",
-    "DP": 15000000,
-    "day": 7,
+    "dpPrice": 15000000,
+    "estimatedDay": 7,
     "VendorId": 5,
     "CategoryId": 6
   }
