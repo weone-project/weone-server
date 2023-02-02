@@ -6,6 +6,7 @@ const router = require('express').Router()
 router.get('/', VendorController.getAllVendor)
 router.post('/register', VendorController.registerVendor)
 router.post('/login', VendorController.loginVendor)
+router.put('/:id', VendorController.updateVendor)
 
 
 module.exports = router

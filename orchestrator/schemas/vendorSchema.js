@@ -43,6 +43,7 @@ const vendorTypeDefs = `#GraphQL
         createVendor(form: VendorForm): Vendor
         deleteVendor(id: ID): Message
         loginVendor(form: LoginVendorForm): LoginResponse
+        updateVendor(form: VendorForm): Message
     }
 `
 
@@ -100,6 +101,8 @@ const vendorResolvers = {
                 throw error
             }
         },
+
+        update
 
         // deleteVendor: async (_, args) => {
         //     try {

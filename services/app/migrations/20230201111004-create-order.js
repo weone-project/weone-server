@@ -29,7 +29,17 @@ module.exports = {
         onDelete: 'cascade',
         onUpdate: 'cascade'
       },
-      reservationDate: { 
+      VendorId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Vendors',
+          key: 'id'
+        },
+        onDelete: 'cascade',
+        onUpdate: 'cascade'
+      },
+      reservationDate: {
         allowNull: false,
         type: Sequelize.DATE
       },

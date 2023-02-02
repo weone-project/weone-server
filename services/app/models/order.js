@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Order.belongsTo(models.User)
       Order.belongsTo(models.Product)
+      Order.belongsTo(models.Vendor)
     }
   }
   Order.init({
@@ -30,6 +31,14 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notEmpty: { msg: 'Product Id is required' },
         notNull: { msg: 'Product Id is required' }
+      }
+    },
+    VendorId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notEmpty: { msg: 'Vendor Id is required' },
+        notNull: { msg: 'Vendor Id is required' }
       }
     },
     reservationDate: {
