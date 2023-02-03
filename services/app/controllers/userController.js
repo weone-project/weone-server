@@ -54,8 +54,33 @@ class UserController {
 
   static async getAllUsers(req, res, next) {
     try {
-      let allUsers = await User.findAll()
+      let allUsers = await User.findAll({
+        attributes: {
+          exclude: ['password']
+        }
+      })
       res.status(200).json(allUsers)
+    } catch (error) {
+      console.log(error);
+      next(error);
+    }
+  }
+
+  static async getUserById(req, res, next) {
+    try {
+      const { id } = req.params
+
+      let findUser = await User.findByPk(id, {
+        attributes: {
+          exclude: ['password']
+        }
+      })
+
+      if (!findUser) {
+        throw { name: 'Data not found' }
+      }
+
+      res.status(200).json(findUser)
     } catch (error) {
       console.log(error);
       next(error);
