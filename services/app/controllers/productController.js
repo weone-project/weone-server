@@ -15,10 +15,12 @@ class ProductController {
     static async createProduct(req, res, next) {
         try {
             const { name, description, imgUrl, price, estimatedDay, rating, dpPrice, VendorId, CategoryId } = req.body
+            let stringifyImgUrl = JSON.stringify(imgUrl)
+            
             const newProduct = await Product.create({
                 name,
                 description,
-                imgUrl,
+                imgUrl, //: stringifyImgUrl,
                 price,
                 estimatedDay,
                 rating: 1,
