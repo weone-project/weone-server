@@ -39,11 +39,11 @@ const vendorTypeDefs = `#GraphQL
         name: String
         email: String
         access_token: String
-        
     }
 
     type Query {
         getVendors: [Vendor]
+        getVendorsById(id: ID): Vendor 
     }
 
     type Mutation {
@@ -72,7 +72,22 @@ const vendorResolvers = {
                     return data
                 }
             } catch (error) {
-                console.log(error, '<---- error getVendors schema');
+                // console.log(error, '<---- error getVendors schema');
+                throw error
+            }
+        },
+
+        getVendorsById: async (_, args) => {
+            try {
+                const { id } = args
+                const { data } = await axios({
+                    method: 'get',
+                    url: BASE_URL + '/vendors/' + id  
+                })
+
+                return data
+            } catch (error) {
+                // console.log(error, '<--- error getVendorsById schema');
                 throw error
             }
         }
@@ -89,7 +104,7 @@ const vendorResolvers = {
                 await redis.del("get:vendors");
                 return data;
             } catch (error) {
-                console.log(error, '<--- error createVendor orches');
+                // console.log(error, '<--- error createVendor orches');
                 throw error;
             }
         },
@@ -104,7 +119,7 @@ const vendorResolvers = {
 
                 return data
             } catch (error) {
-                console.log(error, '<--- error loginVendor schema');
+                // console.log(error, '<--- error loginVendor schema');
                 throw error
             }
         },
@@ -135,7 +150,7 @@ const vendorResolvers = {
 
                 return data
             } catch (error) {
-                console.log(error, '<--- error deleteVendor orches');
+                // console.log(error, '<--- error deleteVendor orches');
                 throw error
             }
         },
