@@ -120,6 +120,28 @@ describe('testimonies -  CRUD', () => {
             expect(res.body).toHaveProperty('message')
         })
     })
+
+    describe('FAILED CASE: ', () => {
+        it('should return 404 - Data not found (wrong id)', async () => {
+            const res = await request(app)
+                .delete('/testimonies/999')
+                // .set("access_token", access_token)
+
+            expect(res.status).toBe(404)
+            expect(res.body).toHaveProperty('message')
+        })
+
+        it('should return 400 - Name is required', async () => {
+            const res = await request(app)
+                .post('/testimonies')
+                .send({
+                    testimony: ''
+                })
+
+            expect(res.status).toBe(400)
+            expect(res.body).toHaveProperty('message')
+        })
+    })
 })
 
 //testimony without authentication
