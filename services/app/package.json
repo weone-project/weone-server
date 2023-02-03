@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --detectOpenHandles --forceExit -i --silent",
+    "dev": "nodemon bin/www",
     "remigrate": "npx sequelize db:migrate:undo:all && npx sequelize db:migrate && npx sequelize db:seed:all",
     "drop": "npx sequelize db:drop && npx sequelize db:migrate"
   },
@@ -22,7 +23,9 @@
     "sequelize": "^6.28.0"
   },
   "devDependencies": {
+    "jest": "^29.4.1",
     "nodemon": "^2.0.20",
-    "sequelize-cli": "^6.6.0"
+    "sequelize-cli": "^6.6.0",
+    "supertest": "^6.3.3"
   }
 }
