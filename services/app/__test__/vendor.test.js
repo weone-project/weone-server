@@ -32,39 +32,39 @@ afterAll(async () => {
 
 
 // VENDOR REGISTER
-describe('/vendors -  Register', () => {
-    // describe("SUCCESS: ", () => {
-    //     it.only('should return 201 - Register Vendor', async () => {
-    //         try {
-    //             const res = await request(app)
-    //                 .post('/vendors/register')
-    //                 .send({
-    //                     name: 'testing1',
-    //                     email: 'testing1@mail.com',
-    //                     password: '123123',
-    //                     phoneNumber: '08123456',
-    //                     address: 'Jl. Vendor Testing',
-    //                     vendorImgUrl: 'https://via.placeholder.com/300.png/09f/fff'
-    //                 })
+describe('/vendors/register -  Register', () => {
+    describe("SUCCESS CASE: ", () => {
+        it('should return 201 - Register Vendor', async () => {
+            try {
+                const res = await request(app)
+                    .post('/vendors/register')
+                    .send({
+                        name: 'testing1',
+                        email: 'testing1@mail.com',
+                        password: '123123',
+                        phoneNumber: '08123456',
+                        address: 'Jl. Vendor Testing',
+                        vendorImgUrl: 'https://via.placeholder.com/300.png/09f/fff'
+                    })
 
-    //             expect(res.status).toBe(201)
-    //             expect(res.body).toBeInstanceOf(Object);
-    //             expect(res.body).toHaveProperty('id');
-    //             expect(res.body).toHaveProperty('name');
-    //             expect(res.body).toHaveProperty('email');
-    //             // expect(res.body).toHaveProperty('message', expect.any(String));
-    //             // expect(res.body).toHaveProperty('data');
-    //             // expect(res.body.data).not.toHaveProperty('password');
-    //             // expect(res.body.data).toHaveProperty('role');
-    //         } catch (error) {
-    //             console.log(error, '<========================');
-    //         }
+                expect(res.status).toBe(201)
+                expect(res.body).toBeInstanceOf(Object);
+                expect(res.body).toHaveProperty('id');
+                expect(res.body).toHaveProperty('name');
+                expect(res.body).toHaveProperty('email');
+                // expect(res.body).toHaveProperty('message', expect.any(String));
+                // expect(res.body).toHaveProperty('data');
+                // expect(res.body.data).not.toHaveProperty('password');
+                // expect(res.body.data).toHaveProperty('role');
+            } catch (error) {
+                console.log(error, '<========================');
+            }
 
-    //     });
-    // })
+        });
+    })
 
     //! Failed testing register - Invalid format email
-    describe('FAILED: ', () => {
+    describe('FAILED CASE: ', () => {
         it('should return 400 - Fail register invalid format email', async () => {
             const res = await request(app)
                 .post('/vendors/register')
@@ -83,7 +83,7 @@ describe('/vendors -  Register', () => {
     });
 
     //! Failed testing register - Empty email
-    describe('FAILED: ', () => {
+    describe('FAILED CASE: ', () => {
         it('should return 400 - Fail register with no email', async () => {
             const res = await request(app)
                 .post('/vendors/register')
@@ -122,7 +122,7 @@ describe('/vendors -  Register', () => {
 
     //! Failed testing register - Empty PhoneNumber
     describe('FAILED CASE: ', () => {
-        it('should return 400 - Fail register with no password', async () => {
+        it('should return 400 - Fail register empty phone number', async () => {
             const res = await request(app)
                 .post('/vendors/register')
                 .send({
@@ -139,29 +139,30 @@ describe('/vendors -  Register', () => {
         });
     });
 
-    // //! Failed testing register - Empty Address 
-    // describe('FAILED CASE: ', () => {
-    //     it.only('should return 400 - Fail register with no password', async () => {
-    //         try {
-    //             const res = await request(app)
-    //                 .post('/vendors/register')
-    //                 .send({
-    //                     name: 'testing12',
-    //                     email: 'testing1@mail.com',
-    //                     password: '123123',
-    //                     phoneNumber: '08123456',
+    //? Failed testing register - Empty Address 
+    describe('FAILED CASE: ', () => {
+        it('should return 400 - Fail register empty address', async () => {
+            try {
+                console.log('masuk TRY');
+                const res = await request(app)
+                    .post('/vendors/register')
+                    .send({
+                        name: 'testing12',
+                        email: 'testing1@mail.com',
+                        password: '123123',
+                        phoneNumber: '08123456',
 
-    //                     vendorImgUrl: 'https://via.placeholder.com/300.png/09f/fff'
-    //                 })
-    //             expect(res.status).toBe(400)
-    //             expect(res.body).toBeInstanceOf(Object);
-    //             expect(res.body.message).toContain('Adress is required');
-    //         } catch (error) {
-    //             console.log(error, '<========================= we');
-    //         }
+                        vendorImgUrl: 'https://via.placeholder.com/300.png/09f/fff'
+                    })
+                expect(res.status).toBe(400)
+                expect(res.body).toBeInstanceOf(Object);
+                expect(res.body.message).toContain('Adress is required');
+            } catch (error) {
+                console.log(error, '<========================= di error');
+            }
 
-    //     });
-    // });
+        });
+    });
 
     //! Failed testing register - Email already exist / unique
     describe('FAILED CASE: ', () => {
@@ -203,7 +204,7 @@ describe('/vendors -  Register', () => {
 
     //! Failed testing register - Empty Vendor Image URL 
     describe('FAILED CASE: ', () => {
-        it('should return 400 - Fail register with no password', async () => {
+        it('should return 400 - Fail register empty vendor img url', async () => {
             try {
                 const res = await request(app)
                     .post('/vendors/register')
@@ -211,17 +212,84 @@ describe('/vendors -  Register', () => {
                         name: 'testing12',
                         email: 'testing1@mail.com',
                         password: '123123',
-                        phoneNumber: '08123456',
-                        address: 'Jl. Vendor',
+                        // phoneNumber: '08123456',
+                        // address: 'Jl. Vendor',
 
                     })
                 expect(res.status).toBe(400)
                 expect(res.body).toBeInstanceOf(Object);
-                expect(res.body.message).toContain('Adress is required');
+                expect(res.body.message).toContain('Vendor Img Url is required');
             } catch (error) {
                 // console.log(error, '<========================= empty vendor');
             }
-
         });
     });
+})
+
+// VENDOR LOGIN
+describe('/vendors/login -  Login vendor', () => {
+    describe('SUCCESS CASE: ', () => {
+        it('should return 200 - Success login', async () => {
+            const res = await request(app)
+                .post('/vendors/login')
+                .send({
+                    email: 'aaa@mail.com',
+                    password: 'qwerty'
+                })
+            expect(res.status).toBe(200)
+            expect(res.body).toBeInstanceOf(Object)
+            expect(res.body).toHaveProperty('id', expect.any(Number))
+            expect(res.body).toHaveProperty('name', expect.any(String))
+            expect(res.body).toHaveProperty('email', expect.any(String))
+            expect(res.body).toHaveProperty('access_token', expect.any(String))
+        })
+    })
+
+    describe("FAILED: ", () => {
+        it('should return 401 - Fail login with wrong email or password', async () => {
+            const res = await request(app)
+                .post('/vendors/login')
+                .send({
+                    email: 'aaa@mail.com',
+                    password: 'qwertYY'
+                })
+            expect(res.status).toBe(401)
+            expect(res.body).toBeInstanceOf(Object)
+            expect(res.body.message).toContain('Invalid email/password')
+        })
+    })
+})
+
+// VENDORS
+describe('/vendors - CRUD', () => {
+    describe('SUCCESS CASE:', () => {
+        it('should return 200 - GET vendors', async() => {
+            const res = await request(app).get('/vendors')
+
+            expect(res.status).toBe(200)
+            expect(res.body).toBeInstanceOf(Array)
+            expect(res.body[0]).toHaveProperty('name')
+            expect(res.body[0]).toHaveProperty('email')
+            expect(res.body[0]).toHaveProperty('vendorImgUrl')
+        })
+
+        it('should return 200 - GET vendors By Id', async() => {
+            const res = await request(app).get('/vendors/1')
+
+            expect(res.status).toBe(200)
+            expect(res.body).toBeInstanceOf(Object)
+            expect(res.body).toHaveProperty('name')
+            expect(res.body).toHaveProperty('email')
+            expect(res.body).toHaveProperty('vendorImgUrl')
+        })
+
+        it('should return 200 - DELETE vendor', async () => {
+            const res = await request(app)
+                .delete('/vendors/1')
+                .set("access_token", access_token)
+                
+            expect(res.status).toBe(200)
+            expect(res.body).toHaveProperty('message')
+        })
+    })
 })

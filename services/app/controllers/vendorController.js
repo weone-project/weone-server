@@ -16,7 +16,7 @@ class VendorController {
             })
 
         } catch (error) {
-            console.log(error, '<---- error registerVendor');
+            // console.log(error, '<---- error registerVendor');
             next(error)
         }
     }
@@ -83,6 +83,19 @@ class VendorController {
 
         } catch (error) {
             console.log(error, '<---- error getAllVendor - 00');
+            next(error)
+        }
+    }
+
+    static async getVendorById(req, res, next) {
+        try {
+            const { id } = req.params
+            const oneVendor = await Vendor.findByPk(id)
+            if(!oneVendor) throw {name: 'Data not found'}
+
+            res.status(200).json(oneVendor)
+        } catch (error) {
+            console.log(error, '<---- error getVendorId');
             next(error)
         }
     }

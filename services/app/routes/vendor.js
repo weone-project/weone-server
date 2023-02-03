@@ -6,6 +6,7 @@ const router = require('express').Router()
 router.get('/', VendorController.getAllVendor)
 router.post('/register', VendorController.registerVendor)
 router.post('/login', VendorController.loginVendor)
+router.get('/:id', VendorController.getVendorById)
 router.put('/:id', VendorController.updateVendor)
 router.delete('/:id', VendorController.deleteVendor)
 
