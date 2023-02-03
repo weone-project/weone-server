@@ -37,13 +37,13 @@ class OrderController {
         try {
             // let userId=req.user.id
             let userId = 1
-            let { productId, vendorId } = req.params
+            let { productId} = req.params
             let chosenProduct = await Product.findByPk(productId)
             let { reservationDate, paymentStatus, downPayment, quantity, notes } = req.body
             let fullPayment = chosenProduct.price * quantity
             let newOrder = await Order.create({
                 UserId: userId,
-                VendorId: vendorId,
+                VendorId: chosenProduct.VendorId,
                 ProductId: productId,
                 reservationDate,
                 paymentStatus,
