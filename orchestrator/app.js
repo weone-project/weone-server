@@ -7,17 +7,18 @@ const { startStandaloneServer } = require("@apollo/server/standalone");
 
 const { categoryTypeDefs, categoryResolvers } = require('./schemas/categorySchema')
 const port = process.env.PORT || 4000
-const {vendorTypeDefs, vendorResolvers } = require('./schemas/vendorSchema')
+const { vendorTypeDefs, vendorResolvers } = require('./schemas/vendorSchema')
 const { productTypeDefs, productResolvers } = require('./schemas/productSchema')
-const {orderTypeDefs, orderResolvers } = require('./schemas/orderSchema')
-const {invitationTypeDefs, invitationResolvers } = require('./schemas/invitationSchema')
+const { orderTypeDefs, orderResolvers } = require('./schemas/orderSchema')
+const { invitationTypeDefs, invitationResolvers } = require('./schemas/invitationSchema');
+const { userTypeDefs, userResolvers } = require("./schemas/userSchema");
 
 
 const server = new ApolloServer({
     // typeDefs: [categoryTypeDefs],
     // resolvers: [categoryResolvers],
-    typeDefs: [categoryTypeDefs, vendorTypeDefs, productTypeDefs, orderTypeDefs, invitationTypeDefs],
-    resolvers: [categoryResolvers, vendorResolvers, productResolvers, orderResolvers, invitationResolvers],
+    typeDefs: [categoryTypeDefs, vendorTypeDefs, productTypeDefs, orderTypeDefs, invitationTypeDefs, userTypeDefs],
+    resolvers: [categoryResolvers, vendorResolvers, productResolvers, orderResolvers, invitationResolvers, userResolvers],
     introspection: true
 });
 

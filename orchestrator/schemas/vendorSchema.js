@@ -102,7 +102,7 @@ const vendorResolvers = {
             }
         },
 
-        update
+        // update
 
         // deleteVendor: async (_, args) => {
         //     try {
