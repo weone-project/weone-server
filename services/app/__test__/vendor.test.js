@@ -319,7 +319,7 @@ describe('/vendors - CRUD', () => {
             expect(res.body).toBeInstanceOf(Object)
             expect(res.body).toHaveProperty('message')
         })
-        
+            
         it('should return 404 - GET vendors By Id - Data not found', async() => {
             const res = await request(app).get('/vendors/999')
             
