@@ -1,4 +1,4 @@
-const { Testimony } = require('../models/index')
+const { Testimony,Product } = require('../models/index')
 
 class TestimonyController {
     static async showTestimonies(req, res, next) {
@@ -18,9 +18,9 @@ class TestimonyController {
         try {
             // let UserId=req.user.id
             let UserId=1
-            let { testimony, productId } = req.body
+            let { testimony, productId,vendorId } = req.body
             await Testimony.create({
-                UserId: UserId, ProductId: 1, testimony
+                UserId: UserId, ProductId: productId, testimony,VendorId:vendorId
             })
             res.status(201).json({ message: 'Testimony created now' })
         } catch (error) {
