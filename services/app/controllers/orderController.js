@@ -79,7 +79,7 @@ class OrderController {
             let { orderId } = req.params
             let { paymentStatus, downPayment } = req.body
             let order = await Order.update({
-                paymentStatus, downPayment
+                paymentStatus:'lunas'
             }, {
                 where: {
                     id: orderId
