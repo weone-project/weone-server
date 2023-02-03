@@ -288,7 +288,6 @@ describe('/vendors - CRUD', () => {
                 .delete('/vendors/1')
                 .set("access_token", access_token)
                 
-
             expect(res.status).toBe(200)
             expect(res.body).toHaveProperty('message')
         })
