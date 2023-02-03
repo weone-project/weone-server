@@ -51,6 +51,16 @@ class UserController {
       next(error);
     }
   }
+
+  static async getAllUsers(req, res, next) {
+    try {
+      let allUsers = await User.findAll()
+      res.status(200).json(allUsers)
+    } catch (error) {
+      console.log(error);
+      next(error);
+    }
+  }
 }
 
 module.exports = UserController
