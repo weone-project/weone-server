@@ -24,7 +24,24 @@ class OrderController {
     static async getOrder(req, res, next) {
         try {
             let { orderId } = req.params
-            let order = await Order.findByPk(orderId)
+            let order = await Order.findOne({
+                include: [
+                    {
+                        model: Vendor
+                    },
+                    {
+                        model: User,
+                        attributes: { exclude: ['password'] }
+                    },
+                    {
+                        model: Product
+                    }
+                ]
+            },{
+                where:{
+                    id:orderId
+                }
+            })
             if (!order) {
                 throw { name: 'Data not found' }
             }
@@ -39,6 +56,9 @@ class OrderController {
             let userId = 1
             let { productId} = req.params
             let chosenProduct = await Product.findByPk(productId)
+            if(!chosenProduct){
+                throw { name: 'Data not found' }
+            }
             let { reservationDate, paymentStatus, downPayment, quantity, notes } = req.body
             let fullPayment = chosenProduct.price * quantity
             let newOrder = await Order.create({
@@ -77,7 +97,7 @@ class OrderController {
     static async updateOrder(req, res, next) {
         try {
             let { orderId } = req.params
-            let { paymentStatus, downPayment } = req.body
+            let { paymentStatus} = req.body
             let order = await Order.update({
                 paymentStatus:'lunas'
             }, {
