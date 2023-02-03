@@ -283,12 +283,48 @@ describe('/vendors - CRUD', () => {
             expect(res.body).toHaveProperty('vendorImgUrl')
         })
 
+        it('should return 200 - GET vendors By Id', async() => {
+            const res = await request(app).get('/vendors/1')
+
+            expect(res.status).toBe(200)
+            expect(res.body).toBeInstanceOf(Object)
+            expect(res.body).toHaveProperty('name')
+            expect(res.body).toHaveProperty('email')
+            expect(res.body).toHaveProperty('vendorImgUrl')
+        })
+
+        it('should return 201 - PUT vendors By Id', async() => {
+            const res = await request(app).put('/vendors/1')
+
+            expect(res.status).toBe(201)
+            expect(res.body).toBeInstanceOf(Object)
+            expect(res.body).toHaveProperty('message')
+        })
+
         it('should return 200 - DELETE vendor', async () => {
             const res = await request(app)
                 .delete('/vendors/1')
                 .set("access_token", access_token)
                 
             expect(res.status).toBe(200)
+            expect(res.body).toHaveProperty('message')
+        })
+    })
+
+    describe('FAILED CASE:', () => {
+        it('should return 404 - PUT vendor - Data not found', async () => {
+            const res = await request(app).put('/vendors/999')
+
+            expect(res.status).toBe(404)
+            expect(res.body).toBeInstanceOf(Object)
+            expect(res.body).toHaveProperty('message')
+        })
+        
+        it('should return 404 - GET vendors By Id - Data not found', async() => {
+            const res = await request(app).get('/vendors/999')
+            
+            expect(res.status).toBe(404)
+            expect(res.body).toBeInstanceOf(Object)
             expect(res.body).toHaveProperty('message')
         })
     })
