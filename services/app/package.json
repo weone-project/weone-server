@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --detectOpenHandles --forceExit -i --silent",
+    "test": "jest --detectOpenHandles --forceExit -i",
     "dev": "nodemon bin/www",
     "remigrate": "npx sequelize db:migrate:undo:all && npx sequelize db:migrate && npx sequelize db:seed:all",
     "drop": "npx sequelize db:drop && npx sequelize db:migrate"
