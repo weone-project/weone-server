@@ -48,15 +48,15 @@ const testimonyTypeDefs = `#GraphQL
     }
 
     type Query {
-        getTestimonies(productId:ID): [Testimony]
+        getTestimonies(productId:ID,access_token:String): [Testimony]
         user:User
         product:Product
     }
 
     type Mutation {
-        createTestimony(form: TestimonyForm): Message
-        updateTestimony(form: EditTestimony, id:ID): Message
-        deleteTestimony(id: ID): Message
+        createTestimony(form: TestimonyForm,access_token:String): Message
+        updateTestimony(form: EditTestimony, id:ID,access_token:String): Message
+        deleteTestimony(id: ID,access_token:String): Message
     }
 `
 
@@ -64,14 +64,17 @@ const testimonyResolvers = {
     Query: {
         getTestimonies: async (_,args) => {
             try {
-                const{productId}=args
+                const{productId,access_token}=args
                 const cache = await redis.get('get:testimonies')
                 if (cache) {
                     return JSON.parse(cache)
                 } else {
                     const { data } = await axios({
                         method: 'get',
-                        url: BASE_URL + `/testimonies/${productId}`
+                        url: BASE_URL + `/testimonies/${productId}`,
+                        headers:{
+                            access_token:access_token
+                        }
                     })
                     await redis.set('foods', JSON.stringify(data))
                     return data
@@ -86,10 +89,14 @@ const testimonyResolvers = {
         createTestimony: async (_, args) => {
             // console.log(args, '<--- this args');
             try {
+                const{access_token}=args
                 const { data } = await axios({
                     method: 'post',
                     url: BASE_URL + '/testimonies',
                     data: args.form,
+                    headers:{
+                        access_token:access_token
+                    }
                 });
                 // console.log(data, '<--- data boy');
                 await redis.del('get:testimonies');
@@ -102,11 +109,14 @@ const testimonyResolvers = {
 
         updateTestimony: async (_, args) => {
             try {
-                const { id,form } = args
+                const { id,form,access_token } = args
                 const { data } = await axios({
                     method: 'patch',
                     url: `${BASE_URL}/testimonies/${id}`,
                     data: form,
+                    headers:{
+                        access_token:access_token
+                    }
                 })
                 await redis.del('get:testimonies');
                 return data;
@@ -117,15 +127,19 @@ const testimonyResolvers = {
 
         deleteTestimony: async (_, args) => {
             try {
-                const { id } = args
+                const { id,access_token } = args
                 const { data } = await axios({
                     method: 'delete',
-                    url: BASE_URL + '/testimonies/' + id
+                    url: BASE_URL + '/testimonies/' + id,
+                    headers:{
+                        access_token:access_token
+                    }
                 })
                 await redis.del('get:testimonies');
                 return data
             } catch (error) {
-                console.log(error, '<--- error deleteProduct orches');
+                // console.log(error, '<--- error deleteProduct orches');
+                // console.log(error.response.data.message)
                 throw error
             }
         },

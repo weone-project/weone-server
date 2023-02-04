@@ -1,5 +1,5 @@
 const { decodeToken } = require("../helpers/jwt");
-const { User } = require("../models/index");
+const { Vendor } = require("../models/index");
 
 async function authenticationVendor(req, res, next) {
   try {
@@ -9,18 +9,18 @@ async function authenticationVendor(req, res, next) {
       throw { name: "Invalid token" };
     }
 
-    const verify = verifyToken(access_token);
-    const findUser = await User.findByPk(verify.id);
+    const verify = decodeToken(access_token);
+    const findVendor = await Vendor.findByPk(verify.id);
 
-    if (!findUser) {
+    if (!findVendor) {
       throw { name: "Invalid token" };
     }
 
-    req.user = {
-      id: findUser.id,
-      username: findUser.username,
-      email: findUser.email,
-      status: findUser.status
+    req.vendor = {
+      id: findVendor.id,
+      username: findVendor.username,
+      email: findVendor.email,
+      status: findVendor.status
     };
 
     next();
