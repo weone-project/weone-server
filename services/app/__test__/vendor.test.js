@@ -257,6 +257,30 @@ describe('/vendors/login -  Login vendor', () => {
             expect(res.body).toBeInstanceOf(Object)
             expect(res.body.message).toContain('Invalid email/password')
         })
+
+        it('should return 401 - Fail login: empty email', async () => {
+            const res = await request(app)
+                .post('/vendors/login')
+                .send({
+                    // email: 'aaa@mail.com',
+                    password: 'qwertYY'
+                })
+            expect(res.status).toBe(400)
+            expect(res.body).toBeInstanceOf(Object)
+            expect(res.body.message).toContain('Email is required')
+        })
+
+        it('should return 401 - Fail login: empty password', async () => {
+            const res = await request(app)
+                .post('/vendors/login')
+                .send({
+                    email: 'aaa@mail.com',
+                    // password: 'qwertYY'
+                })
+            expect(res.status).toBe(400)
+            expect(res.body).toBeInstanceOf(Object)
+            expect(res.body.message).toContain('Password is required')
+        })
     })
 })
 
@@ -322,6 +346,14 @@ describe('/vendors - CRUD', () => {
             
         it('should return 404 - GET vendors By Id - Data not found', async() => {
             const res = await request(app).get('/vendors/999')
+            
+            expect(res.status).toBe(404)
+            expect(res.body).toBeInstanceOf(Object)
+            expect(res.body).toHaveProperty('message')
+        })
+
+        it('should return 404 - DELETE vendors By Id - Data not found', async() => {
+            const res = await request(app).delete('/vendors/999')
             
             expect(res.status).toBe(404)
             expect(res.body).toBeInstanceOf(Object)

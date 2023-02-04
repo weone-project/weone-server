@@ -24,7 +24,9 @@ class VendorController {
     static async loginVendor(req, res, next) {
         try {
             const { email, password } = req.body
-            console.log(email, password, '<----- email');
+            if(!email) throw { name: 'Email is required'}
+            if(!password) throw { name: 'Password is required'}
+            // console.log(email, password, '<----- email');
 
             const findVendor = await Vendor.findOne({ where: { email } })
             if (!findVendor) throw { name: 'Invalid email/password' }

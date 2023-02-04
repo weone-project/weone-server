@@ -133,5 +133,13 @@ describe('/products -  CRUD', () => {
             expect(res.body).toBeInstanceOf(Object)
             expect(res.body).toHaveProperty('message')
         })
+
+        it('should return 404 - DELETE products By Id - Data not found', async() => {
+            const res = await request(app).delete('/products/999')
+            
+            expect(res.status).toBe(404)
+            expect(res.body).toBeInstanceOf(Object)
+            expect(res.body).toHaveProperty('message')
+        })
     })
 })
