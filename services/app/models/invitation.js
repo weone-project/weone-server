@@ -21,10 +21,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.TEXT,
       allowNull: false,
       validate: {
-        notNull : {
+        notNull: {
           msg: "Quote Mohon diisi"
         },
-        notEmpty : {
+        notEmpty: {
           msg: "Quote Mohon diisi"
         }
       }
@@ -33,10 +33,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notNull : {
+        notNull: {
           msg: "Sumber Quote Mohon diisi"
         },
-        notEmpty : {
+        notEmpty: {
           msg: "Sumber Quote Mohon diisi"
         }
       }
@@ -45,10 +45,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notNull : {
+        notNull: {
           msg: "Nama Lengkap Mohon diisi"
         },
-        notEmpty : {
+        notEmpty: {
           msg: "Nama Lengkap Mohon diisi"
         }
       }
@@ -57,10 +57,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notNull : {
+        notNull: {
           msg: "Foto Mohon diupload"
         },
-        notEmpty : {
+        notEmpty: {
           msg: "Foto Mohon diupload"
         }
       }
@@ -69,10 +69,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notNull : {
+        notNull: {
           msg: "Nama Panggilan Mohon diisi"
         },
-        notEmpty : {
+        notEmpty: {
           msg: "Nama Panggilan Mohon diisi"
         }
       }
@@ -81,10 +81,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notNull : {
+        notNull: {
           msg: "Nama Ibu Mohon diisi"
         },
-        notEmpty : {
+        notEmpty: {
           msg: "Nama Ibu Mohon diisi"
         }
       }
@@ -93,10 +93,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notNull : {
+        notNull: {
           msg: "Nama Ayah Mohon diisi"
         },
-        notEmpty : {
+        notEmpty: {
           msg: "Nama Ayah Mohon diisi"
         }
       }
@@ -105,10 +105,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notNull : {
+        notNull: {
           msg: "Nama Lengkap Mohon diisi"
         },
-        notEmpty : {
+        notEmpty: {
           msg: "Nama Lengkap Mohon diisi"
         }
       }
@@ -117,10 +117,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notNull : {
+        notNull: {
           msg: "Foto Mohon diupload"
         },
-        notEmpty : {
+        notEmpty: {
           msg: "Foto Mohon diupload"
         }
       }
@@ -129,10 +129,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notNull : {
+        notNull: {
           msg: "Nama Panggilan Mohon diisi"
         },
-        notEmpty : {
+        notEmpty: {
           msg: "Nama Panggilan Mohon diisi"
         }
       }
@@ -141,10 +141,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notNull : {
+        notNull: {
           msg: "Nama Ibu Mohon diisi"
         },
-        notEmpty : {
+        notEmpty: {
           msg: "Nama Ibu Mohon diisi"
         }
       }
@@ -153,10 +153,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notNull : {
+        notNull: {
           msg: "Nama Ayah Mohon diisi"
         },
-        notEmpty : {
+        notEmpty: {
           msg: "Nama Ayah Mohon diisi"
         }
       }
@@ -165,10 +165,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notNull : {
+        notNull: {
           msg: "Nama Acara Akad/Pemberkatan Mohon diisi"
         },
-        notEmpty : {
+        notEmpty: {
           msg: "Nama Acara Akad/Pemberkatan Mohon diisi"
         }
       }
@@ -177,10 +177,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATE,
       allowNull: false,
       validate: {
-        notNull : {
+        notNull: {
           msg: "Tanggal Acara Mohon diisi"
         },
-        notEmpty : {
+        notEmpty: {
           msg: "Tanggal Acara Mohon diisi"
         }
       }
@@ -189,10 +189,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
-        notNull : {
+        notNull: {
           msg: "jam Mulai Mohon diisi"
         },
-        notEmpty : {
+        notEmpty: {
           msg: "Jam Mulai Mohon diisi"
         }
       }
@@ -201,10 +201,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
-        notNull : {
+        notNull: {
           msg: "Jam Selesai Mohon diisi"
         },
-        notEmpty : {
+        notEmpty: {
           msg: "Jam Selesai Mohon diisi"
         }
       }
@@ -213,10 +213,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notNull : {
+        notNull: {
           msg: "Nama Acara Resepsi Mohon diisi"
         },
-        notEmpty : {
+        notEmpty: {
           msg: "Nama Acara Resepsi Mohon diisi"
         }
       }
@@ -225,10 +225,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATE,
       allowNull: false,
       validate: {
-        notNull : {
+        notNull: {
           msg: "Tanggal Acara Mohon diisi"
         },
-        notEmpty : {
+        notEmpty: {
           msg: "Tanggal Acara Mohon diisi"
         }
       }
@@ -237,10 +237,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
-        notNull : {
+        notNull: {
           msg: "jam Mulai Mohon diisi"
         },
-        notEmpty : {
+        notEmpty: {
           msg: "Jam Mulai Mohon diisi"
         }
       }
@@ -249,10 +249,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
-        notNull : {
+        notNull: {
           msg: "Jam Selesai Mohon diisi"
         },
-        notEmpty : {
+        notEmpty: {
           msg: "Jam Selesai Mohon diisi"
         }
       }
@@ -262,10 +262,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notNull : {
+        notNull: {
           msg: "Alamat Akad Mohon diisi"
         },
-        notEmpty : {
+        notEmpty: {
           msg: "Alamat Akad Mohon diisi"
         }
       }
@@ -274,10 +274,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notNull : {
+        notNull: {
           msg: "Alamat Resepsi Mohon diisi"
         },
-        notEmpty : {
+        notEmpty: {
           msg: "Alamat Resepsi Mohon diisi"
         }
       }
@@ -286,10 +286,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notNull : {
+        notNull: {
           msg: "Foto Mohon diupload"
         },
-        notEmpty : {
+        notEmpty: {
           msg: "Foto Mohon diupload"
         }
       }
@@ -298,10 +298,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notNull : {
+        notNull: {
           msg: "Story Mohon diisi"
         },
-        notEmpty : {
+        notEmpty: {
           msg: "Story Mohon diisi"
         }
       }
@@ -310,10 +310,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notNull : {
+        notNull: {
           msg: "Foto Mohon diupload"
         },
-        notEmpty : {
+        notEmpty: {
           msg: "Foto Mohon diupload"
         }
       }
@@ -322,10 +322,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notNull : {
+        notNull: {
           msg: "Nama Bank Mohon diisi"
         },
-        notEmpty : {
+        notEmpty: {
           msg: "Nama Bank Mohon diisi"
         }
       }
@@ -334,22 +334,22 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
-        notNull : {
+        notNull: {
           msg: "Nomor Rekening Mohon diisi"
         },
-        notEmpty : {
+        notEmpty: {
           msg: "Nomor Rekening Mohon diisi"
         }
       }
     },
-    wallet_owner:{
+    wallet_owner: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notNull : {
+        notNull: {
           msg: "Nama Pemilik Rekening Mohon diisi"
         },
-        notEmpty : {
+        notEmpty: {
           msg: "Nama Pemilik Rekening Mohon diisi"
         }
       }
@@ -358,15 +358,15 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
-        notNull : {
+        notNull: {
           msg: "Mohon Pilih Lagu Terlebih Dahulu"
         },
-        notEmpty : {
+        notEmpty: {
           msg: "Mohon Pilih Lagu Terlebih Dahulu"
         }
       }
     },
-    UserId: DataTypes.INTEGER,
+    OrderId: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'Invitations',
