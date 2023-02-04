@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       User.hasMany(models.Order)
       User.hasMany(models.Testimony)
+      // User.hasMany(models.Invitation)
     }
   }
   User.init({

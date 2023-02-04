@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       Order.belongsTo(models.User)
       Order.belongsTo(models.Product)
       Order.belongsTo(models.Vendor)
+      Order.hasMany(models.Invitations)
     }
   }
   Order.init({
