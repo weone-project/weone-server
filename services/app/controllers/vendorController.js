@@ -1,6 +1,6 @@
 const { comparePassword } = require('../helpers/bcrypt');
 const { createToken } = require('../helpers/jwt');
-const { Vendor } = require('../models')
+const { Vendor, Order } = require('../models')
 
 class VendorController {
     static async registerVendor(req, res, next) {
@@ -24,8 +24,8 @@ class VendorController {
     static async loginVendor(req, res, next) {
         try {
             const { email, password } = req.body
-            if(!email) throw { name: 'Email is required'}
-            if(!password) throw { name: 'Password is required'}
+            if (!email) throw { name: 'Email is required' }
+            if (!password) throw { name: 'Password is required' }
             // console.log(email, password, '<----- email');
 
             const findVendor = await Vendor.findOne({ where: { email } })
@@ -56,7 +56,7 @@ class VendorController {
             console.log(id, '<--- ini id');
             const findVendor = await Vendor.findByPk(id)
             if (!findVendor) throw { name: 'Data not found' }
-            
+
             const { name, phoneNumber, address, vendorImgUrl } = req.body
             const updatedVendor = await Vendor.update({
                 name,
@@ -66,8 +66,8 @@ class VendorController {
             }, {
                 where: { id }
             })
-            
-            res.status(201).json({message: 'Success update profile vendor'})
+
+            res.status(201).json({ message: 'Success update profile vendor' })
         } catch (error) {
             console.log(error, '<=======> error updateVendor');
             next(error)
@@ -93,7 +93,7 @@ class VendorController {
         try {
             const { id } = req.params
             const oneVendor = await Vendor.findByPk(id)
-            if(!oneVendor) throw {name: 'Data not found'}
+            if (!oneVendor) throw { name: 'Data not found' }
 
             res.status(200).json(oneVendor)
         } catch (error) {
@@ -114,6 +114,30 @@ class VendorController {
             res.status(200).json({ message: `Account ${findOne.name} has been deleted` })
 
         } catch (error) {
+            next(error)
+        }
+    }
+
+    static async updateStatusOrder(req, res, next) {
+        try {
+            console.log('MASUK PATCH===');
+            const { orderId } = req.params
+
+            console.log(orderId, '<--ORDERID');
+            const { rescheduleStatus } = req.body
+
+            let dataOrder = await Order.findByPk(orderId)
+            if (!dataOrder) {
+                throw { name: 'Data not found' }
+            }
+            await Order.update({ rescheduleStatus }, {
+                where: { id: orderId  }
+            })
+
+            res.status(201).json({ message: `Status for ${dataOrder.rescheduleStatus} changed from ${dataOrder.rescheduleStatus} to ${rescheduleStatus}` })
+
+        } catch (error) {
+            console.log(error, '<---- ERROR DI PATCH');
             next(error)
         }
     }
