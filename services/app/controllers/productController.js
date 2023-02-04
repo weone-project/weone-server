@@ -12,11 +12,24 @@ class ProductController {
         }
     }
 
+    static async getProductById(req, res, next) {
+        try {
+            const { id } = req.params
+            const oneProduct = await Product.findByPk(id)
+            if (!oneProduct) throw { name: 'Data not found' }
+
+            res.status(200).json(oneProduct)
+        } catch (error) {
+            console.log(error, '<---- error getProductById');
+            next(error)
+        }
+    }
+
     static async createProduct(req, res, next) {
         try {
             const { name, description, imgUrl, price, estimatedDay, rating, dpPrice, VendorId, CategoryId } = req.body
             let stringifyImgUrl = JSON.stringify(imgUrl)
-            
+
             const newProduct = await Product.create({
                 name,
                 description,
@@ -42,10 +55,18 @@ class ProductController {
     static async updateProduct(req, res, next) {
         try {
             const { id } = req.params
-            const { name, description, imgUrl, price, estimatedDay, rating, dpPrice, VendorId, CategoryId } = req.body
             const findProduct = await Product.findByPk(id)
-
             if (!findProduct) throw { name: 'Data not found' }
+
+            const { name, description, imgUrl, price, estimatedDay, rating, dpPrice, VendorId, CategoryId } = req.body
+
+            if (!name) throw { name: 'Product Name is required' }
+            if (!description) throw { name: 'Description is required' }
+            if (!imgUrl) throw { name: 'Img Url is required' }
+            if (!price) throw { name: 'Price is required' }
+            if (!CategoryId) throw { name: 'Category Id is required' }
+
+
             await Product.update({
                 name,
                 description,
@@ -60,7 +81,7 @@ class ProductController {
                 where: { id }
             })
 
-            res.status(200).json({ message: `Success update prodcuct ${name}` })
+            res.status(201).json({ message: `Success update prodcuct ${name}` })
 
         } catch (error) {
             console.log(error, '<---- error update product');

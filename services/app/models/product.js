@@ -52,6 +52,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     estimatedDay: {
       type: DataTypes.INTEGER,
+      defaultValue: 1,
       max: 7,
     },
     rating: {
@@ -59,6 +60,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     dpPrice: {
       type: DataTypes.INTEGER,
+      defaultValue: 0
     },
     VendorId: {
       type: DataTypes.INTEGER,
