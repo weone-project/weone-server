@@ -1,7 +1,7 @@
 const { decodeToken } = require("../helpers/jwt");
 const { User } = require("../models/index");
 
-async function authentication(req, res, next) {
+async function authenticationVendor(req, res, next) {
   try {
     const { access_token } = req.headers;
 
@@ -29,4 +29,4 @@ async function authentication(req, res, next) {
   }
 }
 
-module.exports =  authentication
+module.exports = authenticationVendor
