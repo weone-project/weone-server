@@ -9,7 +9,7 @@ async function authenticationUser(req, res, next) {
       throw { name: "Invalid token" };
     }
 
-    const verify = verifyToken(access_token);
+    const verify = decodeToken(access_token);
     const findUser = await User.findByPk(verify.id);
 
     if (!findUser) {

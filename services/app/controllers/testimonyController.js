@@ -28,8 +28,7 @@ class TestimonyController {
     }
     static async createTestimony(req, res, next) {
         try {
-            // let UserId=req.user.id
-            let UserId = 1
+            let UserId=req.user.id
             let { testimony, productId } = req.body
             await Testimony.create({
                 UserId: UserId, ProductId: productId, testimony
