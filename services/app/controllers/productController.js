@@ -12,6 +12,16 @@ class ProductController {
         }
     }
 
+    static async getAllProductActive(req, res, next) {
+        try {
+            const dataProduct = await Product.findAll({where: {status: 'Active'}})
+            res.status(200).json(dataProduct)
+
+        } catch (error) {
+            next(error)
+        }
+    }
+
     static async getProductById(req, res, next) {
         try {
             const { id } = req.params

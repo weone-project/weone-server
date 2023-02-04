@@ -70,5 +70,17 @@
     "status": "Active",
     "VendorId": 5,
     "CategoryId": 6
+  },
+  {
+    "name": "Contoh Produk Status INACTIVE",
+    "description": "200 - 600 pax, Unlimited meeting for consultation & advises for well prepared and smooth clients wedding event including budgeting consultation and discussion, Providing information and discussing all things needed refer to the wedding event of the client, Giving idea and concept, how the theme and rundown will be for wedding event and implement all concepts and idea to wedding card, decoration, souvenir, wedding gown, and others, Accompanying & Assisting client to find, select and have meeting with vendors E.g: Wedding Card, Wedding Gown, Wedding Cake, Photo & Video, and MC & Entertainment; Ensuring the crew and duties for each crew members at the event, Finalizing and implementing rundown on D day, Coordinating technical meeting, between vendor & client, also with the crew if needed, Provide 8 crew members to support the event on D day with detail job function as follow: Floor Manager, Assistant MC on WO side, Assistant F&B, Checker, Butler and Stopper, Assist preparation for Sangjit Days, also Holy Matrimony & Civil Registration, Assisting Tea Pay Ceremony, Rehearsal, Family Photo Session & Reception. Free Bonus : 2 bottles Sparkling Wine, Confetti for wedding toast moment, Guest book for Holy Matrimony & sticker tom & jerry, Bridal Room Decoration standard type (not included fresh flower & equipment for lend only E.g. teddy bear, ring cushion). Free to borrow: Exclusive ring cushion, Large Shuang Xi sign, Groom Pickup Games equipment ( fake mustache, bunny ear, etc), Angpao Box for Holy Matrimony, Teapay Set, Tray for Teapay gifts, Mingle basket + rose petal, Basket for flower girls, Sangjit Boxes",
+    "imgUrl": "https://img.freepik.com/free-psd/wedding-planner-vertical-poster-template-with-watercolor-floral-design_23-2149447518.jpg?w=2000",
+    "price": 28000000,
+    "estimatedDay": 7,
+    "rating": "4",
+    "dpPrice": 15000000,
+    "status": "Inactive",
+    "VendorId": 5,
+    "CategoryId": 6
   }
 ]

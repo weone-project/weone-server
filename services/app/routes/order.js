@@ -1,20 +1,21 @@
 const OrderController = require('../controllers/orderController')
-const { vendorAuthentication, authentication } = require('../middlewares/authentication')
+// const { vendo, authentication } = require('../middlewares/authentication') 
+//! NOTES: AUTHENTICATION NYA DI CEK DULU YAT SEBELUM LU PASANG, KALI AJA BELOM GW UBAH (CEK DI FOLDER MIDDLEWARES)
 
 const router = require('express').Router()
 
 
-router.get('/user',authentication,OrderController.getOrdersUser)
-router.get('/vendor',vendorAuthentication,OrderController.getAllOrdersByVendor)
-router.get('/user/:paymentStatus',authentication,OrderController.getOrdersFilter)
-router.get('/vendor/:paymentStatus',vendorAuthentication,OrderController.getOrdersFilterByVendor)
-router.get('/:orderId/vendor',vendorAuthentication,OrderController.getOrderVendor)
-router.get('/:orderId/user',authentication,OrderController.getOrderUser)
+router.get('/user', OrderController.getOrdersUser)
+router.get('/vendor', OrderController.getAllOrdersByVendor)
+router.get('/user/:paymentStatus', OrderController.getOrdersFilter)
+router.get('/vendor/:paymentStatus', OrderController.getOrdersFilterByVendor)
+router.get('/:orderId/vendor', OrderController.getOrderVendor)
+router.get('/:orderId/user', OrderController.getOrderUser)
 // router.delete('/:orderId',OrderController.deleteOrder)
-router.patch('/:orderId/userSchedule',authentication,OrderController.updateOrderVendor)
-router.patch('/:orderId/vendorSchedule',vendorAuthentication,OrderController.updateOrderUser)
-router.patch(':orderId/userAllowed',authentication,OrderController.reschedule)
+router.patch('/:orderId/userSchedule', OrderController.updateOrderVendor)
+router.patch('/:orderId/vendorSchedule', OrderController.updateOrderUser)
+router.patch(':orderId/userAllowed', OrderController.reschedule)
 
-router.post('/:productId',authentication,OrderController.addOrder)
+router.post('/:productId', OrderController.addOrder)
 
-module.exports=router
+module.exports = router
