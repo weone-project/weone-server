@@ -7,6 +7,7 @@
     "test": "jest --detectOpenHandles --forceExit -i",
     "dev": "nodemon bin/www",
     "remigrate": "npx sequelize db:migrate:undo:all && npx sequelize db:migrate && npx sequelize db:seed:all",
+    "remigrate-test": "npx sequelize --env test db:migrate:undo:all && npx sequelize --env test db:migrate",
     "drop": "npx sequelize db:drop && npx sequelize db:migrate"
   },
   "keywords": [],

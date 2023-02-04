@@ -56,6 +56,8 @@ class ProductController {
         try {
             const { id } = req.params
             const { name, description, imgUrl, price, estimatedDay, rating, dpPrice, VendorId, CategoryId } = req.body
+            // if(name)
+
             const findProduct = await Product.findByPk(id)
 
             if (!findProduct) throw { name: 'Data not found' }

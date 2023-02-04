@@ -139,7 +139,7 @@ describe('/vendors/register -  Register', () => {
         });
     });
 
-    //? Failed testing register - Empty Address 
+    //! Failed testing register - Empty Address 
     describe('FAILED CASE: ', () => {
         it('should return 400 - Fail register empty address', async () => {
             try {
