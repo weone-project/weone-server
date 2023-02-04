@@ -50,6 +50,12 @@ module.exports = (sequelize, DataTypes) => {
         notNull: { msg: 'Reservation Date is required' }
       }
     },
+    rescheduleDate: {
+      type: DataTypes.DATE,
+    },
+    rescheduleStatus: {
+      type: DataTypes.STRING,
+    },
     paymentStatus: {
       type: DataTypes.STRING,
     },

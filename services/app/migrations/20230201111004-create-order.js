@@ -43,6 +43,12 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       },
+      rescheduleDate: {
+        type: Sequelize.DATE,
+      },
+      rescheduleStatus: {
+        type: Sequelize.STRING
+      },
       paymentStatus: { // gawajib
         type: Sequelize.STRING
       },

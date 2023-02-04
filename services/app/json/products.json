@@ -7,6 +7,7 @@
     "estimatedDay": 7,
     "rating": "3",
     "dpPrice": 18000000,
+    "status": "Active",
     "VendorId": 1,
     "CategoryId": 1
   },
@@ -18,6 +19,7 @@
     "estimatedDay": 5,
     "rating": "4",
     "dpPrice": 10000000,
+    "status": "Active",
     "VendorId": 2,
     "CategoryId": 2
   },
@@ -29,6 +31,7 @@
     "estimatedDay": 2,
     "rating": 1,
     "dpPrice": 1000000,
+    "status": "Active",
     "VendorId": 1,
     "CategoryId": 3
   },
@@ -40,6 +43,7 @@
     "estimatedDay": 3,
     "rating": "4",
     "dpPrice": 500000,
+    "status": "Active",
     "VendorId": 3,
     "CategoryId": 4
   },
@@ -51,6 +55,7 @@
     "estimatedDay": 7,
     "rating": "4",
     "dpPrice": 5000000,
+    "status": "Active",
     "VendorId": 4,
     "CategoryId": 5
   },
@@ -62,6 +67,7 @@
     "estimatedDay": 7,
     "rating": "4",
     "dpPrice": 15000000,
+    "status": "Active",
     "VendorId": 5,
     "CategoryId": 6
   }

@@ -62,6 +62,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       defaultValue: 0
     },
+    status: {
+      type: DataTypes.STRING,
+      defaultValue: 'Active'
+    },
     VendorId: {
       type: DataTypes.INTEGER,
       allowNull: false,

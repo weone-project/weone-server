@@ -34,6 +34,9 @@ module.exports = {
       dpPrice: { // ga wajib
         type: Sequelize.INTEGER
       },
+      status: { // ga wajib
+        type: Sequelize.STRING
+      },
       VendorId: {
         allowNull: false,
         type: Sequelize.INTEGER,
