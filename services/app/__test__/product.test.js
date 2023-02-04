@@ -79,6 +79,23 @@ describe('/products -  CRUD', () => {
             expect(res.body[0]).toHaveProperty('CategoryId')
         })
 
+        it('should return 200 - GET product By Id', async () => {
+            const res = await request(app).get('/products/1')
+
+            // console.log(res.body, '<---- BODY');
+            expect(res.status).toBe(200)
+            expect(res.body).toBeInstanceOf(Object)
+            expect(res.body).toHaveProperty('name')
+            expect(res.body).toHaveProperty('description')
+            expect(res.body).toHaveProperty('imgUrl')
+            expect(res.body).toHaveProperty('price')
+            expect(res.body).toHaveProperty('estimatedDay')
+            expect(res.body).toHaveProperty('rating')
+            expect(res.body).toHaveProperty('dpPrice')
+            expect(res.body).toHaveProperty('VendorId')
+            expect(res.body).toHaveProperty('CategoryId')
+        })
+
         it('should return 201 - POST products', async () => {
             const res = await request(app)
                 .post('/products')
@@ -99,8 +116,20 @@ describe('/products -  CRUD', () => {
             expect(res.body).toHaveProperty('message')
         })
 
-        it('should return 201 - PUT product By Id', async() => {
-            const res = await request(app).put('/products/1')
+        it('should return 201 - PUT product By Id', async () => {
+            const res = await request(app)
+                .put('/products/2')
+                .send({
+                    name: 'Barang Testing EDIT',
+                    description: 'Desikripsi Barang testing EDIT',
+                    imgUrl: 'https://via.placeholder.com/300.png/09f/fff',
+                    price: '100000',
+                    estimatedDat: 2,
+                    // rating: 1, // emang ga ada rating, default nya 1
+                    dpPrice: 20000,
+                    VendorId: 1,
+                    CategoryId: 1,
+                })
 
             expect(res.status).toBe(201)
             expect(res.body).toBeInstanceOf(Object)
@@ -111,7 +140,7 @@ describe('/products -  CRUD', () => {
             const res = await request(app)
                 .delete('/products/1')
                 .set("access_token", access_token)
-                
+
             expect(res.status).toBe(200)
             expect(res.body).toHaveProperty('message')
         })
@@ -126,17 +155,17 @@ describe('/products -  CRUD', () => {
             expect(res.body).toHaveProperty('message')
         })
 
-        it('should return 404 - GET products By Id - Data not found', async() => {
+        it('should return 404 - GET products By Id - Data not found', async () => {
             const res = await request(app).get('/products/999')
-            
+
             expect(res.status).toBe(404)
             expect(res.body).toBeInstanceOf(Object)
             expect(res.body).toHaveProperty('message')
         })
 
-        it('should return 404 - DELETE products By Id - Data not found', async() => {
+        it('should return 404 - DELETE products By Id - Data not found', async () => {
             const res = await request(app).delete('/products/999')
-            
+
             expect(res.status).toBe(404)
             expect(res.body).toBeInstanceOf(Object)
             expect(res.body).toHaveProperty('message')
@@ -221,6 +250,101 @@ describe('/products -  CRUD', () => {
         it('should return 400 - POST product - empty CategoryId', async () => {
             const res = await request(app)
                 .post('/products')
+                .send({
+                    name: 'test',
+                    description: 'test',
+                    imgUrl: 'test',
+                    price: 10000,
+                    //* estimatedDay: 1 // default value 1 day,
+                    //* rating, // default value is 1
+                    //* dpPrice, // default value i 0 if user not choose "DP option"
+                    VendorId: 1,
+                    // CategoryId: 1
+                })
+            expect(res.status).toBe(400)
+            expect(res.body).toBeInstanceOf(Object);
+            expect(res.body.message).toContain('Category Id is required');
+        });
+
+        it('should return 400 - PUT product - empty product name', async () => {
+            const res = await request(app)
+                .put('/products/2')
+                .send({
+                    // name: 'test',
+                    description: 'test',
+                    imgUrl: 'test',
+                    price: 10000,
+                    //* estimatedDay: 1 // default value 1 day,
+                    //* rating, // default value is 1
+                    //* dpPrice, // default value i 0 if user not choose "DP option"
+                    VendorId: 1,
+                    CategoryId: 1
+                })
+            expect(res.status).toBe(400)
+            expect(res.body).toBeInstanceOf(Object);
+            expect(res.body.message).toContain('Product Name is required');
+        });
+
+        it('should return 400 - PUT product - empty description', async () => {
+            const res = await request(app)
+                .put('/products/2')
+                .send({
+                    name: 'test',
+                    // description: 'test',
+                    imgUrl: 'test',
+                    price: 10000,
+                    //* estimatedDay: 1 // default value 1 day,
+                    //* rating, // default value is 1
+                    //* dpPrice, // default value i 0 if user not choose "DP option"
+                    VendorId: 1,
+                    CategoryId: 1
+                })
+            expect(res.status).toBe(400)
+            expect(res.body).toBeInstanceOf(Object);
+            expect(res.body.message).toContain('Description is required');
+        });
+
+        it('should return 400 - PUT product - empty imgUrl', async () => {
+            const res = await request(app)
+                .put('/products/2')
+                .send({
+                    name: 'test',
+                    description: 'test',
+                    // imgUrl: 'test',
+                    price: 10000,
+                    //* estimatedDay: 1 // default value 1 day,
+                    //* rating, // default value is 1
+                    //* dpPrice, // default value i 0 if user not choose "DP option"
+                    VendorId: 1,
+                    CategoryId: 1
+                })
+            expect(res.status).toBe(400)
+            expect(res.body).toBeInstanceOf(Object);
+            expect(res.body.message).toContain('Img Url is required');
+        });
+
+        it('should return 400 - PUT product - empty price', async () => {
+            const res = await request(app)
+                .put('/products/2')
+                .send({
+                    name: 'test',
+                    description: 'test',
+                    imgUrl: 'test',
+                    // price: 10000,
+                    //* estimatedDay: 1 // default value 1 day,
+                    //* rating, // default value is 1
+                    //* dpPrice, // default value i 0 if user not choose "DP option"
+                    VendorId: 1,
+                    CategoryId: 1
+                })
+            expect(res.status).toBe(400)
+            expect(res.body).toBeInstanceOf(Object);
+            expect(res.body.message).toContain('Price is required');
+        });
+
+        it('should return 400 - PUT product - empty CategoryId', async () => {
+            const res = await request(app)
+                .put('/products/2')
                 .send({
                     name: 'test',
                     description: 'test',

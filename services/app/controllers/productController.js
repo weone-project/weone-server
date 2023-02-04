@@ -55,12 +55,18 @@ class ProductController {
     static async updateProduct(req, res, next) {
         try {
             const { id } = req.params
-            const { name, description, imgUrl, price, estimatedDay, rating, dpPrice, VendorId, CategoryId } = req.body
-            // if(name)
-
             const findProduct = await Product.findByPk(id)
-
             if (!findProduct) throw { name: 'Data not found' }
+
+            const { name, description, imgUrl, price, estimatedDay, rating, dpPrice, VendorId, CategoryId } = req.body
+
+            if (!name) throw { name: 'Product Name is required' }
+            if (!description) throw { name: 'Description is required' }
+            if (!imgUrl) throw { name: 'Img Url is required' }
+            if (!price) throw { name: 'Price is required' }
+            if (!CategoryId) throw { name: 'Category Id is required' }
+
+
             await Product.update({
                 name,
                 description,
