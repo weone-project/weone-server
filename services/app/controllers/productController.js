@@ -12,11 +12,24 @@ class ProductController {
         }
     }
 
+    static async getProductById(req, res, next) {
+        try {
+            const { id } = req.params
+            const oneProduct = await Product.findByPk(id)
+            if (!oneProduct) throw { name: 'Data not found' }
+
+            res.status(200).json(oneProduct)
+        } catch (error) {
+            console.log(error, '<---- error getProductById');
+            next(error)
+        }
+    }
+
     static async createProduct(req, res, next) {
         try {
             const { name, description, imgUrl, price, estimatedDay, rating, dpPrice, VendorId, CategoryId } = req.body
             let stringifyImgUrl = JSON.stringify(imgUrl)
-            
+
             const newProduct = await Product.create({
                 name,
                 description,
@@ -60,7 +73,7 @@ class ProductController {
                 where: { id }
             })
 
-            res.status(200).json({ message: `Success update prodcuct ${name}` })
+            res.status(201).json({ message: `Success update prodcuct ${name}` })
 
         } catch (error) {
             console.log(error, '<---- error update product');

@@ -301,7 +301,7 @@ describe('/vendors - CRUD', () => {
             expect(res.body).toHaveProperty('message')
         })
 
-        it('should return 200 - DELETE vendor', async () => {
+        it('should return 200 - DELETE vendor By Id', async () => {
             const res = await request(app)
                 .delete('/vendors/1')
                 .set("access_token", access_token)

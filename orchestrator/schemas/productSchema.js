@@ -33,6 +33,7 @@ const productTypeDefs = `#GraphQL
 
     type Query {
         getProducts: [Product]
+        getProductById(id: ID): Product
     }
 
     type Mutation {
@@ -58,7 +59,22 @@ const productResolvers = {
                     return data
                 }
             } catch (error) {
-                console.log(error, '<--- error getProducts schema');
+                // console.log(error, '<--- error getProducts schema');
+                throw error
+            }
+        },
+
+        getProductById: async (_, args) => {
+            try {
+                const { id } = args
+                const { data } = await axios({
+                    method: 'get',
+                    url: BASE_URL + '/products/' + id  
+                })
+
+                return data
+            } catch (error) {
+                // console.log(error, '<--- error getVendorsById schema');
                 throw error
             }
         }
@@ -78,7 +94,7 @@ const productResolvers = {
                 await redis.del('get:products');
                 return data;
             } catch (error) {
-                console.log(error, '<--- error create product orchestra');
+                // console.log(error, '<--- error create product orchestra');
                 throw error;
             }
         },
@@ -109,7 +125,7 @@ const productResolvers = {
     
                 return data
             } catch (error) {
-                console.log(error, '<--- error deleteProduct orches');
+                // console.log(error, '<--- error deleteProduct orches');
                 throw error
             }
         },

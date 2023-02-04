@@ -5,6 +5,7 @@ const router = require('express').Router()
 // Your route here
 router.get('/', ProductController.getAllProduct)
 router.post('/', ProductController.createProduct)
+router.get('/:id', ProductController.getProductById)
 router.put('/:id', ProductController.updateProduct)
 router.delete('/:id', ProductController.deleteProduct)
 
