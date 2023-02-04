@@ -218,23 +218,23 @@ describe('/products -  CRUD', () => {
             expect(res.body.message).toContain('Price is required');
         });
 
-        // it('should return 400 - POST product - empty price', async () => {
-        //     const res = await request(app)
-        //         .post('/products')
-        //         .send({
-        //             name: 'test',
-        //             description: 'test',
-        //             imgUrl: 'test',
-        //             price: 10000,
-        //             // estimatedDay: 1,
-        //             //* rating, // default value is 1
-        //             //* dpPrice, // default value i 0 if user not choose "DP option"
-        //             VendorId: 1,
-        //             CategoryId: 1
-        //         })
-        //     expect(res.status).toBe(400)
-        //     expect(res.body).toBeInstanceOf(Object);
-        //     expect(res.body.message).toContain('Price is required');
-        // });
+        it('should return 400 - POST product - empty CategoryId', async () => {
+            const res = await request(app)
+                .post('/products')
+                .send({
+                    name: 'test',
+                    description: 'test',
+                    imgUrl: 'test',
+                    price: 10000,
+                    //* estimatedDay: 1 // default value 1 day,
+                    //* rating, // default value is 1
+                    //* dpPrice, // default value i 0 if user not choose "DP option"
+                    VendorId: 1,
+                    // CategoryId: 1
+                })
+            expect(res.status).toBe(400)
+            expect(res.body).toBeInstanceOf(Object);
+            expect(res.body.message).toContain('Category Id is required');
+        });
     })
 })
