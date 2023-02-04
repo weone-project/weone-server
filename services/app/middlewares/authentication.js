@@ -1,5 +1,5 @@
-const { verifyToken } = require("../helpers/jwt");
-const { User } = require("../models/index");
+const { decodeToken } = require("../helpers/jwt");
+const { User,Vendor } = require("../models/index");
 
 async function authentication(req, res, next) {
   try {
@@ -9,7 +9,7 @@ async function authentication(req, res, next) {
       throw { name: "Invalid token" };
     }
 
-    const verify = verifyToken(access_token);
+    const verify = decodeToken(access_token);
     const findUser = await User.findByPk(verify.id);
 
     if (!findUser) {
@@ -29,4 +29,32 @@ async function authentication(req, res, next) {
   }
 }
 
-module.exports =  authentication
+async function vendorAuthentication(req, res, next) {
+  try {
+    const { access_token } = req.headers;
+
+    if (!access_token) {
+      throw { name: "Invalid token" };
+    }
+
+    const verify = decodeToken(access_token);
+    const findVendor = await Vendor.findByPk(verify.id);
+
+    if (!findVendor) {
+      throw { name: "Invalid token" };
+    }
+
+    req.vendor = {
+      id: findVendor.id,
+      username: findVendor.username,
+      email: findVendor.email,
+      status: findVendor.status
+    };
+
+    next();
+  } catch (error) {
+    next(error);
+  }
+}
+
+module.exports =  {authentication,vendorAuthentication}

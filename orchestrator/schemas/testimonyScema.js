@@ -122,6 +122,7 @@ const testimonyResolvers = {
                     method: 'delete',
                     url: BASE_URL + '/testimonies/' + id
                 })
+                await redis.del('get:testimonies');
                 return data
             } catch (error) {
                 console.log(error, '<--- error deleteProduct orches');
