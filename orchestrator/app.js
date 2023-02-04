@@ -12,13 +12,14 @@ const { productTypeDefs, productResolvers } = require('./schemas/productSchema')
 const { orderTypeDefs, orderResolvers } = require('./schemas/orderSchema')
 const { invitationTypeDefs, invitationResolvers } = require('./schemas/invitationSchema');
 const { userTypeDefs, userResolvers } = require("./schemas/userSchema");
+const {testimonyTypeDefs,testimonyResolvers}=require("./schemas/testimonyScema")
 
 
 const server = new ApolloServer({
     // typeDefs: [categoryTypeDefs],
     // resolvers: [categoryResolvers],
-    typeDefs: [categoryTypeDefs, vendorTypeDefs, productTypeDefs, orderTypeDefs, invitationTypeDefs, userTypeDefs],
-    resolvers: [categoryResolvers, vendorResolvers, productResolvers, orderResolvers, invitationResolvers, userResolvers],
+    typeDefs: [categoryTypeDefs, vendorTypeDefs, productTypeDefs, orderTypeDefs, invitationTypeDefs, userTypeDefs,testimonyTypeDefs],
+    resolvers: [categoryResolvers, vendorResolvers, productResolvers, orderResolvers, invitationResolvers, userResolvers,testimonyResolvers],
     introspection: true
 });
 
