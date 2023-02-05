@@ -1,7 +1,8 @@
 const { decodeToken } = require("../helpers/jwt");
-const { User } = require("../models/index");
+const { Vendor } = require("../models/index");
 
 async function authenticationVendor(req, res, next) {
+  console.log('===masuk authen===');
   try {
     const { access_token } = req.headers;
 
@@ -9,22 +10,25 @@ async function authenticationVendor(req, res, next) {
       throw { name: "Invalid token" };
     }
 
-    const verify = verifyToken(access_token);
-    const findUser = await User.findByPk(verify.id);
+    const payload = decodeToken(access_token);
+    const findUser = await Vendor.findByPk(payload.id);
+
+    // console.log(findUser, '<---- FINDUSER');
 
     if (!findUser) {
       throw { name: "Invalid token" };
     }
 
-    req.user = {
+    req.vendor = {
       id: findUser.id,
-      username: findUser.username,
+      name: findUser.name,
       email: findUser.email,
-      status: findUser.status
     };
-
+    console.log(req.vendor, '<---- REQQQ');
+    
     next();
   } catch (error) {
+    console.log(error, '<----- error authenVendor');
     next(error);
   }
 }
