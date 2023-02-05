@@ -3,6 +3,9 @@ const app = require('../app')
 const { sequelize } = require('../models')
 const { queryInterface } = sequelize
 const { Testimony, User, Category, Product, Vendor } = require('../models')
+const {createToken}=require("../helpers/jwt")
+let validToken
+let invalidToken
 
 beforeAll(async () => {
     try {
@@ -18,6 +21,11 @@ beforeAll(async () => {
             el.createdAt = new Date()
             el.updatedAt = new Date()
         })
+        validToken=createToken({
+            id:1
+        })
+        invalidToken =
+      '12345678eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIwMUBtYWlsLmNvbSIsImlkIjoxLCJpYXQiOjE2MjI2MDk2NTF9';
         await queryInterface.bulkInsert('Users', userJSON)
 
         let vendorJSON = require('../json/vendors.json')
@@ -90,6 +98,7 @@ describe('testimonies -  CRUD', () => {
         it('should return 201 - POST testimony', async () => {
             const res = await request(app)
                 .post('/testimonies')
+                .set("access_token",validToken)
                 .send({
                     testimony: 'Mantap',
                     productId: 1,
@@ -104,6 +113,7 @@ describe('testimonies -  CRUD', () => {
         it('should return 200 - Patch testimony', async () => {
             const res = await request(app)
                 .patch('/testimonies/1')
+                .set("access_token",validToken)
                 .send({
                     testimony: 'Mantap',
                 })
@@ -115,6 +125,7 @@ describe('testimonies -  CRUD', () => {
         it('should return 200 - DELETE testimony', async () => {
             const res = await request(app)
                 .delete('/testimonies/1')
+                .set("access_token",validToken)
             // .set("access_token", access_token)
             expect(res.status).toBe(200)
             expect(res.body).toHaveProperty('message')
@@ -125,15 +136,39 @@ describe('testimonies -  CRUD', () => {
         it('should return 404 - Data not found (wrong id)', async () => {
             const res = await request(app)
                 .delete('/testimonies/999')
-                // .set("access_token", access_token)
-
+                .set("access_token", validToken)
             expect(res.status).toBe(404)
+            expect(res.body).toHaveProperty('message')
+        })
+
+        it('should return 401 - delete testimonies with invalid Token', async () => {
+            const res = await request(app)
+                .delete('/testimonies/1')
+                .set("access_token", invalidToken)
+            expect(res.status).toBe(401)
+            expect(res.body).toHaveProperty('message')
+        })
+
+        it('should return 401 - edit testimonies with invalid Token', async () => {
+            const res = await request(app)
+                .patch('/testimonies/1')
+                .set("access_token", invalidToken)
+            expect(res.status).toBe(401)
+            expect(res.body).toHaveProperty('message')
+        })
+
+        it('should return 401 - post testimonies with invalid Token', async () => {
+            const res = await request(app)
+                .post('/testimonies')
+                .set("access_token", invalidToken)
+            expect(res.status).toBe(401)
             expect(res.body).toHaveProperty('message')
         })
 
         it('should return 400 - Testimony is required', async () => {
             const res = await request(app)
                 .post('/testimonies')
+                .set("access_token",validToken)
                 .send({
                     testimony: ''
                 })
@@ -145,6 +180,7 @@ describe('testimonies -  CRUD', () => {
         it('should return 400 - UserId is required', async () => {
             const res = await request(app)
                 .post('/testimonies')
+                .set("access_token",validToken)
                 .send({
                     userId: ''
                 })
@@ -156,6 +192,7 @@ describe('testimonies -  CRUD', () => {
         it('should return 400 - VendorId is required', async () => {
             const res = await request(app)
                 .post('/testimonies')
+                .set("access_token",validToken)
                 .send({
                     vendorId: ''
                 })
@@ -167,6 +204,7 @@ describe('testimonies -  CRUD', () => {
         it('should return 400 - ProductId is required', async () => {
             const res = await request(app)
                 .post('/testimonies')
+                .set("access_token",validToken)
                 .send({
                     productId: ''
                 })

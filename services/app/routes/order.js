@@ -11,9 +11,9 @@ router.get('/vendor/:paymentStatus',authenticationVendor,OrderController.getOrde
 router.get('/:orderId/vendor',authenticationVendor,OrderController.getOrderVendor)
 router.get('/:orderId/user',authenticationUser,OrderController.getOrderUser)
 // router.delete('/:orderId',OrderController.deleteOrder)
-router.patch('/:orderId/userSchedule',authenticationUser,OrderController.updateOrderVendor)
-router.patch('/:orderId/vendorSchedule',authenticationVendor,OrderController.updateOrderUser)
-router.patch(':orderId/userAllowed',authenticationUser,OrderController.reschedule)
+router.patch('/:orderId/userSchedule',authenticationUser,OrderController.updateOrderUser)
+router.patch('/:orderId/vendorSchedule',authenticationVendor,OrderController.updateOrderVendor)
+router.patch('/:orderId/userAllowed',authenticationUser,OrderController.reschedule)
 
 router.post('/:productId',authenticationUser,OrderController.addOrder)
 

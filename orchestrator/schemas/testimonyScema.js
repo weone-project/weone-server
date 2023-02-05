@@ -48,7 +48,7 @@ const testimonyTypeDefs = `#GraphQL
     }
 
     type Query {
-        getTestimonies(productId:ID,access_token:String): [Testimony]
+        getTestimonies(productId:ID): [Testimony]
         user:User
         product:Product
     }
@@ -64,7 +64,7 @@ const testimonyResolvers = {
     Query: {
         getTestimonies: async (_,args) => {
             try {
-                const{productId,access_token}=args
+                const{productId}=args
                 const cache = await redis.get('get:testimonies')
                 if (cache) {
                     return JSON.parse(cache)
@@ -72,9 +72,6 @@ const testimonyResolvers = {
                     const { data } = await axios({
                         method: 'get',
                         url: BASE_URL + `/testimonies/${productId}`,
-                        headers:{
-                            access_token:access_token
-                        }
                     })
                     await redis.set('foods', JSON.stringify(data))
                     return data
