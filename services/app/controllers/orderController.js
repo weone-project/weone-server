@@ -188,7 +188,9 @@ class OrderController {
                 fullPayment: fullPayment,
                 downPayment,
                 quantity,
-                notes
+                notes,
+                rescheduleDate:null, 
+                rescheduleStatus:null 
             })
             res.status(201).json({ message: `Order with reservationDate ${newOrder.reservationDate} has been made` })
         } catch (error) {
@@ -216,6 +218,7 @@ class OrderController {
         try {
             let { orderId } = req.params
             let userId=req.user.id
+            console.log(userId)
             let { paymentStatus,rescheduleStatus } = req.body
             let order = await Order.update({
                 paymentStatus: paymentStatus,
