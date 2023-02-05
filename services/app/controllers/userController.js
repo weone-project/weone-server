@@ -41,7 +41,7 @@ class UserController {
       let payload = {
         id: user.id
       }
-      let username = user.username
+      let username = user.name
       let emailUser = user.email
       let access_token = createToken(payload)
 
