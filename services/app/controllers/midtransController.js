@@ -36,11 +36,11 @@ class MidtransController {
 
             const midtransToken = await snap.createTransaction(parameter)
             // console.log(midtransToken, '<---- midtransToken');
-            res.status(200).json(midtransToken);
+            res.status(201).json(midtransToken);
 
 
         } catch (error) {
-            console.log(error, '<---- error midtrans');
+            // console.log(error, '<---- error midtrans');
             next(error)
 
         }
