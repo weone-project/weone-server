@@ -12,6 +12,7 @@ const productTypeDefs = `#GraphQL
         estimatedDay: Int
         rating: Int
         dpPrice: Int
+        status: String
         VendorId: Int
         CategoryId: Int
     }
@@ -32,7 +33,8 @@ const productTypeDefs = `#GraphQL
     }
 
     type Query {
-        getProducts: [Product]
+        getProducts(access_token: String): [Product]
+        getProductActive: [Product]
         getProductById(id: ID): Product
     }
 
@@ -45,7 +47,31 @@ const productTypeDefs = `#GraphQL
 
 const productResolvers = {
     Query: {
-        getProducts: async () => {
+        // GET PRODUCT SEMUA STATUS, BUAT SI VENDOR
+        getProducts: async (_, args) => {
+            try {
+                const { access_token } = args
+                const cache = await redis.get('get:products')
+                if (cache) {
+                    return JSON.parse(cache)
+                } else {
+                    const { data } = await axios({
+                        method: 'get',
+                        url: BASE_URL + '/products',
+                        headers: {
+                            access_token: access_token
+                        }
+                    })
+
+                    return data
+                }
+            } catch (error) {
+                // console.log(error, '<--- error getProducts schema');
+                throw error
+            }
+        },
+
+        getProductActive: async () => {
             try {
                 const cache = await redis.get('get:products')
                 if (cache) {
@@ -53,9 +79,10 @@ const productResolvers = {
                 } else {
                     const { data } = await axios({
                         method: 'get',
-                        url: BASE_URL + '/products'
+                        url: BASE_URL + '/products/active',
                     })
 
+                    console.log(data, '<===== datahere');
                     return data
                 }
             } catch (error) {
@@ -69,7 +96,7 @@ const productResolvers = {
                 const { id } = args
                 const { data } = await axios({
                     method: 'get',
-                    url: BASE_URL + '/products/' + id  
+                    url: BASE_URL + '/products/' + id
                 })
 
                 return data
@@ -122,7 +149,7 @@ const productResolvers = {
                     method: 'delete',
                     url: BASE_URL + '/products/' + id
                 })
-    
+
                 return data
             } catch (error) {
                 // console.log(error, '<--- error deleteProduct orches');
@@ -131,7 +158,7 @@ const productResolvers = {
         },
     },
 
-    
+
 }
 
 module.exports = { productTypeDefs, productResolvers }
