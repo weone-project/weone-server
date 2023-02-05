@@ -3,11 +3,18 @@ const app = require('../app')
 const { hashPassword } = require('../helpers/bcrypt')
 const { sequelize } = require('../models')
 const { queryInterface } = sequelize
-const { Vendor } = require('../models')
+const { Category, Vendor, Product, User, Order } = require('../models')
 let access_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjcyOTMxNTA2fQ.SwrY-SWcyCldGPrneHEYzXcDQ5yUwOdxEPBSJbRBEDc'
 
 beforeAll(async () => {
     try {
+        let categoryJSON = require('../json/categories.json')
+        categoryJSON.forEach(el => {
+            el.createdAt = new Date()
+            el.updatedAt = new Date()
+        })
+        await queryInterface.bulkInsert('Categories', categoryJSON)
+
         let vendorJSON = require('../json/vendors.json')
         vendorJSON.forEach(el => {
             const hashedPassword = hashPassword(el.password)
@@ -16,6 +23,30 @@ beforeAll(async () => {
             el.updatedAt = new Date()
         })
         await queryInterface.bulkInsert('Vendors', vendorJSON)
+
+        let productJSON = require('../json/products.json')
+        productJSON.forEach(el => {
+            el.createdAt = new Date()
+            el.updatedAt = new Date()
+        })
+        await queryInterface.bulkInsert('Products', productJSON)
+
+        let userJSON = require('../json/users.json')
+        userJSON.forEach(el => {
+            el.createdAt = new Date()
+            el.updatedAt = new Date()
+        })
+        await queryInterface.bulkInsert('Users', userJSON)
+
+        let orderJSON = require('../json/order.json')
+        orderJSON.forEach(el => {
+            el.createdAt = new Date()
+            el.updatedAt = new Date()
+        })
+        await queryInterface.bulkInsert('Orders', orderJSON)
+
+        console.log(orderJSON, '<---- DATAORDER');
+
     } catch (error) {
         console.log(error, '<---- error beforeAll vendor');
     }
@@ -23,7 +54,31 @@ beforeAll(async () => {
 
 
 afterAll(async () => {
+    await Category.destroy({
+        restartIdentity: true,
+        truncate: true,
+        cascade: true
+    })
+
     await Vendor.destroy({
+        restartIdentity: true,
+        truncate: true,
+        cascade: true
+    })
+
+    await Product.destroy({
+        restartIdentity: true,
+        truncate: true,
+        cascade: true
+    })
+
+    await User.destroy({
+        restartIdentity: true,
+        truncate: true,
+        cascade: true
+    })
+
+    await Order.destroy({
         restartIdentity: true,
         truncate: true,
         cascade: true
@@ -333,6 +388,15 @@ describe('/vendors - CRUD', () => {
             expect(res.status).toBe(200)
             expect(res.body).toHaveProperty('message')
         })
+
+        it('should return 201 - PATCH vendor order id', async () => {
+            const res = await request(app)
+                .patch('/vendors/orders/1')
+                .set("access_token", access_token)
+                
+            expect(res.status).toBe(201)
+            expect(res.body).toHaveProperty('message')
+        })
     })
 
     describe('FAILED CASE:', () => {
@@ -357,6 +421,15 @@ describe('/vendors - CRUD', () => {
             
             expect(res.status).toBe(404)
             expect(res.body).toBeInstanceOf(Object)
+            expect(res.body).toHaveProperty('message')
+        })
+
+        it('should return 201 - PATCH vendor order id', async () => {
+            const res = await request(app)
+                .patch('/vendors/orders/999')
+                .set("access_token", access_token)
+                
+            expect(res.status).toBe(404)
             expect(res.body).toHaveProperty('message')
         })
     })

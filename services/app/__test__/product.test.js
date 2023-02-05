@@ -4,7 +4,7 @@ const { hashPassword } = require('../helpers/bcrypt')
 const { sequelize } = require('../models')
 const { queryInterface } = sequelize
 const { Category, Vendor, Product } = require('../models')
-let access_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjcyOTMxNTA2fQ.SwrY-SWcyCldGPrneHEYzXcDQ5yUwOdxEPBSJbRBEDc'
+let access_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjc1NjAxMzgxfQ.R-fjSfLkRNyZFXikqevmRItqcwA4NnTxX5KqwPRSuuI'
 
 
 beforeAll(async () => {
@@ -63,7 +63,26 @@ afterAll(async () => {
 describe('/products -  CRUD', () => {
     describe('SUCCESS CASE: ', () => {
         it('should return 200 - GET products', async () => {
-            const res = await request(app).get('/products')
+            const res = await request(app).get('/products').set("access_token", access_token)
+
+            // console.log(res.body, '<---- BODY');
+            expect(res.status).toBe(200)
+            expect(res.body).toBeInstanceOf(Array)
+            expect(res.body[0]).toHaveProperty('name')
+            expect(res.body[0]).toHaveProperty('description')
+            expect(res.body[0]).toHaveProperty('imgUrl')
+            expect(res.body[0]).toHaveProperty('price')
+            expect(res.body[0]).toHaveProperty('estimatedDay')
+            expect(res.body[0]).toHaveProperty('rating')
+            expect(res.body[0]).toHaveProperty('dpPrice')
+            expect(res.body[0]).toHaveProperty('VendorId')
+            expect(res.body[0]).toHaveProperty('CategoryId')
+        })
+
+        it('should return 200 - GET products only Active status', async () => {
+            const res = await request(app)
+                .get('/products/active')
+                .set("access_token", access_token)
 
             // console.log(res.body, '<---- BODY');
             expect(res.status).toBe(200)
@@ -99,6 +118,7 @@ describe('/products -  CRUD', () => {
         it('should return 201 - POST products', async () => {
             const res = await request(app)
                 .post('/products')
+                .set("access_token", access_token)
                 .send({
                     name: 'Barang Testing',
                     description: 'Desikripsi Barang testing',
@@ -147,8 +167,17 @@ describe('/products -  CRUD', () => {
     })
 
     describe('FAILED CASE: ', () => {
+        it('should return 401 - GET Product - Invalid token', async () => {
+            const res = await request(app)
+                .get('/products')
+
+            expect(res.status).toBe(401)
+            expect(res.body).toBeInstanceOf(Object)
+            expect(res.body).toHaveProperty('message')
+        })
+
         it('should return 404 - PUT product By Id - Data not found', async () => {
-            const res = await request(app).put('/products/999')
+            const res = await request(app).put('/products/999').set("access_token", access_token)
 
             expect(res.status).toBe(404)
             expect(res.body).toBeInstanceOf(Object)
@@ -156,7 +185,7 @@ describe('/products -  CRUD', () => {
         })
 
         it('should return 404 - GET products By Id - Data not found', async () => {
-            const res = await request(app).get('/products/999')
+            const res = await request(app).get('/products/999').set("access_token", access_token)
 
             expect(res.status).toBe(404)
             expect(res.body).toBeInstanceOf(Object)
@@ -164,7 +193,7 @@ describe('/products -  CRUD', () => {
         })
 
         it('should return 404 - DELETE products By Id - Data not found', async () => {
-            const res = await request(app).delete('/products/999')
+            const res = await request(app).delete('/products/999').set("access_token", access_token)
 
             expect(res.status).toBe(404)
             expect(res.body).toBeInstanceOf(Object)
@@ -174,6 +203,7 @@ describe('/products -  CRUD', () => {
         it('should return 400 - POST product - empty product name', async () => {
             const res = await request(app)
                 .post('/products')
+                .set("access_token", access_token)
                 .send({
                     // name: 'test',
                     description: 'test',
@@ -193,6 +223,7 @@ describe('/products -  CRUD', () => {
         it('should return 400 - POST product - empty product description', async () => {
             const res = await request(app)
                 .post('/products')
+                .set("access_token", access_token)
                 .send({
                     name: 'test',
                     // description: 'test',
@@ -212,6 +243,7 @@ describe('/products -  CRUD', () => {
         it('should return 400 - POST product - empty imgUrl', async () => {
             const res = await request(app)
                 .post('/products')
+                .set("access_token", access_token)
                 .send({
                     name: 'test',
                     description: 'test',
@@ -231,6 +263,7 @@ describe('/products -  CRUD', () => {
         it('should return 400 - POST product - empty price', async () => {
             const res = await request(app)
                 .post('/products')
+                .set("access_token", access_token)
                 .send({
                     name: 'test',
                     description: 'test',
@@ -250,6 +283,7 @@ describe('/products -  CRUD', () => {
         it('should return 400 - POST product - empty CategoryId', async () => {
             const res = await request(app)
                 .post('/products')
+                .set("access_token", access_token)
                 .send({
                     name: 'test',
                     description: 'test',
@@ -269,6 +303,7 @@ describe('/products -  CRUD', () => {
         it('should return 400 - PUT product - empty product name', async () => {
             const res = await request(app)
                 .put('/products/2')
+                .set("access_token", access_token)
                 .send({
                     // name: 'test',
                     description: 'test',
@@ -288,6 +323,7 @@ describe('/products -  CRUD', () => {
         it('should return 400 - PUT product - empty description', async () => {
             const res = await request(app)
                 .put('/products/2')
+                .set("access_token", access_token)
                 .send({
                     name: 'test',
                     // description: 'test',
@@ -307,6 +343,7 @@ describe('/products -  CRUD', () => {
         it('should return 400 - PUT product - empty imgUrl', async () => {
             const res = await request(app)
                 .put('/products/2')
+                .set("access_token", access_token)
                 .send({
                     name: 'test',
                     description: 'test',
@@ -326,6 +363,7 @@ describe('/products -  CRUD', () => {
         it('should return 400 - PUT product - empty price', async () => {
             const res = await request(app)
                 .put('/products/2')
+                .set("access_token", access_token)
                 .send({
                     name: 'test',
                     description: 'test',
@@ -345,6 +383,7 @@ describe('/products -  CRUD', () => {
         it('should return 400 - PUT product - empty CategoryId', async () => {
             const res = await request(app)
                 .put('/products/2')
+                .set("access_token", access_token)
                 .send({
                     name: 'test',
                     description: 'test',

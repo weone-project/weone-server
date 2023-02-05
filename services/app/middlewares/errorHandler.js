@@ -16,7 +16,7 @@ function errorHandler(err, req, res, next) {
     if (err.name == 'SequelizeValidationError' || err.name == 'SequelizeUniqueConstraintError') [code, message] = [400, err.errors[0].message]
     if (err.name == 'Testimony cannot be updated') [code, message] = [400, "Sorry,testimony can be edited only within two days or less"]
     if (err.name == 'Invalid token' || err.name == 'JsonWebTokenError') [code, message] = [401, 'Invalid token']
-    if (err.name == "You are not authorized") [code, message] = [403, err.name]
+    // if (err.name == "You are not authorized") [code, message] = [403, err.name]
     if (err.name == "Data not found") [code, message] = [404, err.name]
 
 

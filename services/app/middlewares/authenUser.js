@@ -20,7 +20,6 @@ async function authenticationUser(req, res, next) {
       id: findUser.id,
       username: findUser.username,
       email: findUser.email,
-      status: findUser.status
     };
 
     next();
