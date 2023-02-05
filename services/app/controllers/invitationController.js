@@ -39,7 +39,7 @@ class InvitationController {
 
       res.status(200).json(findInvitation)
     } catch (error) {
-      // console.log(error);
+      // console.log(error, '<<<<<<');
       next(error);
     }
   }
@@ -50,7 +50,7 @@ class InvitationController {
       await Invitations.create({ quote, quote_src, bride, bride_img, bride_nick, bride_mother, bride_father, groom, groom_img, groom_nick, groom_mother, groom_father, matrimony_name, matrimony_date, matrimony_time_start, matrimony_time_end, ceremonial_name, ceremonial_date, ceremonial_time_start, ceremonial_time_end, map_location, address_ceremonial, address_matrimony, photo, story, story_img, wallet_bank, wallet_no, wallet_owner, MusicId, OrderId })
       res.status(201).json({ message: `Success create invitation of ${bride_nick} and ${groom_nick}` })
     } catch (error) {
-      // console.log(error);
+      console.log(error, '<---- error createInvitation Controller');
       next(error);
     }
   }
