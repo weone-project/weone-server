@@ -4,15 +4,15 @@ function sendEmail(email) {
     const transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
-            user: "kaisarfirjatullah@gmail.com",
-            pass: "chldzhbdokspsfez"
+            user: process.env.NODEMAILER_EMAIL,
+            pass: process.env.NODEMAILER_PASS
         },
         debug: true,
         logger: true
     })
 
     let details = {
-        from: "kaisarfirjatullah@gmail.com",
+        from: process.env.NODEMAILER_EMAIL,
         to: email,
         subject: `Congrats ${email}!`,
         text: "Your account already created, Please login to your with your details, and Enjoy!"

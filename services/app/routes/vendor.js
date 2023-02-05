@@ -1,4 +1,5 @@
 const VendorController = require('../controllers/vendorController.js')
+const authenticationVendor = require('../middlewares/authenVendor.js')
 const router = require('express').Router()
 
 

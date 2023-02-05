@@ -2,9 +2,12 @@ const { Product } = require('../models')
 
 
 class ProductController {
+
+    // Ini buat vendor, bakal nampilin semua produk sesuai vendorId nya, dan statusnya active & inactive
     static async getAllProduct(req, res, next) {
         try {
-            const dataProduct = await Product.findAll()
+
+            const dataProduct = await Product.findAll({ where: { VendorId: req.vendor.id } })
             res.status(200).json(dataProduct)
 
         } catch (error) {
@@ -12,9 +15,10 @@ class ProductController {
         }
     }
 
+    // Ini buat user, cuma nampilin yang statusnya active aja
     static async getAllProductActive(req, res, next) {
         try {
-            const dataProduct = await Product.findAll({where: {status: 'Active'}})
+            const dataProduct = await Product.findAll({ where: { status: 'Active' } })
             res.status(200).json(dataProduct)
 
         } catch (error) {
@@ -40,6 +44,8 @@ class ProductController {
             const { name, description, imgUrl, price, estimatedDay, rating, dpPrice, VendorId, CategoryId } = req.body
             let stringifyImgUrl = JSON.stringify(imgUrl)
 
+            // console.log(req.vendor.id , '<=== idvendor');
+
             const newProduct = await Product.create({
                 name,
                 description,
@@ -48,7 +54,7 @@ class ProductController {
                 estimatedDay,
                 rating: 1,
                 dpPrice,
-                VendorId: 1, //! Nanti di ubah id dari access_token
+                VendorId: req.vendor.id,
                 CategoryId
             })
 
