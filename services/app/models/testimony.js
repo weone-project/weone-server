@@ -40,6 +40,14 @@ module.exports = (sequelize, DataTypes) => {
         notNull: { msg: 'Testimony is required' }
       }
     },
+    rating: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notEmpty: { msg: 'Rating is required' },
+        notNull: { msg: 'Rating is required' }
+      }
+    }
   }, {
     sequelize,
     modelName: 'Testimony',

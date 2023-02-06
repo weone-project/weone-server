@@ -56,7 +56,7 @@ module.exports = (sequelize, DataTypes) => {
       max: 7,
     },
     rating: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.DECIMAL,
     },
     dpPrice: {
       type: DataTypes.INTEGER,
