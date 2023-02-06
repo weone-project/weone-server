@@ -30,7 +30,6 @@ class UserController {
           email
         }
       })
-      //! belom ada authentication
 
       let compareHashedPassword = comparePassword(password, user.password)
 
@@ -61,7 +60,7 @@ class UserController {
       })
       res.status(200).json(allUsers)
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       next(error);
     }
   }
@@ -82,7 +81,7 @@ class UserController {
 
       res.status(200).json(findUser)
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       next(error);
     }
   }
