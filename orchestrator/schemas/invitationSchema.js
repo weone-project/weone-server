@@ -112,18 +112,28 @@ const invitationTypeDefs = `#GraphQL
     OrderId: Int
   }
 
+  input GreetingForm {
+    guest: String
+    presence: String
+    greeting: String
+    date: String
+    InvitationId: Int
+  }
+
   type Message {
     message: String
   }
 
   type Query {
     getInvitations(access_token: String): [Invitation]
-    getInvitationById(id: ID): Invitation 
+    getInvitationById(id: ID): Invitation
+    getGreetingsByInvitation(id: ID): [Greet]
   }
 
   type Mutation {
     createInvitation(form: CreateInvitationForm, access_token: String) : Message
     updateInvitation(id: ID, form: CreateInvitationForm, access_token: String) : Message
+    createGreetingByInvitation(id: ID, form: GreetingForm): Greet
   }
 
 `
@@ -166,6 +176,22 @@ const invitationResolvers = {
         // console.log(error, '<---- error getInvitationById schema');
         throw error
       }
+    },
+
+    getGreetingsByInvitation: async (_, args) => {
+      try {
+        const { id } = args
+        const { data } = await axios({
+          method: 'get',
+          url: `${BASE_URL}/invitations/${id}/greets`
+        })
+
+        await redis.set('get:greetingsByInvitation', JSON.stringify(data))
+        return data
+      } catch (error) {
+        // console.log(error, '<---- error getGreetingsByInvitation schema');
+        throw (error);
+      }
     }
   },
   Mutation: {
@@ -205,6 +231,22 @@ const invitationResolvers = {
         throw err;
       }
     },
+
+    createGreetingByInvitation: async (_, args) => {
+      try {
+        const { id } = args
+        const { data } = await axios({
+          method: 'post',
+          url: `${BASE_URL}/invitations/${id}/greets`,
+          data: args.form
+        })
+        await redis.del('get:greetingsByInvitation')
+        return data
+      } catch (error) {
+        // console.log(error, '<---- error createGreetingByInvitation schema');
+        throw (error);
+      }
+    }
   }
 }
 

@@ -19,10 +19,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notNull : {
+        notNull: {
           msg: "Nama Mohon diisi"
         },
-        notEmpty : {
+        notEmpty: {
           msg: "Nama Mohon diisi"
         }
       }
@@ -31,10 +31,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notNull : {
+        notNull: {
           msg: "Kehadiran mohon dipilih"
         },
-        notEmpty : {
+        notEmpty: {
           msg: "Kehadiran Mohon dipilih"
         }
       }
@@ -43,10 +43,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notNull : {
+        notNull: {
           msg: "Ucapan Mohon diisi"
         },
-        notEmpty : {
+        notEmpty: {
           msg: "Ucapan Mohon diisi"
         }
       }
@@ -57,5 +57,10 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Greets',
   });
+
+  Greets.beforeCreate((greet, option) => {
+    greet.date = greet.createdAt;
+  });
+
   return Greets;
 };

@@ -8,6 +8,8 @@ router.get('/', authenticationUser, InvitationController.getAllInvitation)
 router.post('/', authenticationUser, InvitationController.createInvitation)
 router.get('/:id', InvitationController.getInvitationById)
 router.put('/:id', authenticationUser, InvitationController.editInvitation)
+router.post('/:id/greets', InvitationController.createGreeting)
+router.get('/:id/greets', InvitationController.getGreetingsByInvitation)
 
 
 module.exports = router
