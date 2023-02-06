@@ -3,6 +3,7 @@ function errorHandler(err, req, res, next) {
     let [code, message] = [500, 'Internal server error']
 
     if (err.name == 'Password is required' ||
+        err.name == 'Name is required' ||
         err.name == 'Email is required' ||
         err.name == 'Username is required' ||
         err.name == 'Email is required' ||

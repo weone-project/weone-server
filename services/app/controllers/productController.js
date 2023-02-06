@@ -1,4 +1,4 @@
-const { Product } = require('../models')
+const { Product, Vendor, Category, User } = require('../models')
 
 
 class ProductController {
@@ -7,7 +7,17 @@ class ProductController {
     static async getAllProduct(req, res, next) {
         try {
 
-            const dataProduct = await Product.findAll({ where: { VendorId: req.vendor.id } })
+            const dataProduct = await Product.findAll({
+                include: [
+                    {
+                        model: Vendor
+                    },
+                    {
+                        model: Category
+                    }
+                ]
+
+            })
             res.status(200).json(dataProduct)
 
         } catch (error) {
@@ -18,7 +28,10 @@ class ProductController {
     // Ini buat user, cuma nampilin yang statusnya active aja
     static async getAllProductActive(req, res, next) {
         try {
-            const dataProduct = await Product.findAll({ where: { status: 'Active' } })
+            const dataProduct = await Product.findAll({
+
+                where: { status: 'Active' }
+            })
             res.status(200).json(dataProduct)
 
         } catch (error) {

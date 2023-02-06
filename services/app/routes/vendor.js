@@ -5,10 +5,10 @@ const router = require('express').Router()
 
 // Your route here
 router.get('/', VendorController.getAllVendor)
+router.put('/', authenticationVendor, VendorController.updateVendor)
 router.post('/register', VendorController.registerVendor)
 router.post('/login', VendorController.loginVendor)
 router.get('/:id', VendorController.getVendorById)
-router.put('/:id', VendorController.updateVendor)
 router.delete('/:id', VendorController.deleteVendor)
 router.patch('/orders/:orderId', VendorController.updateStatusOrder)
 
