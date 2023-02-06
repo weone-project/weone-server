@@ -78,7 +78,7 @@ const invitationTypeDefs = `#GraphQL
 
   type Query {
     getInvitations(access_token: String): [Invitation]
-    getInvitationById(id: ID, access_token: String): Invitation 
+    getInvitationById(id: ID): Invitation 
   }
 
   type Mutation {
@@ -112,14 +112,11 @@ const invitationResolvers = {
 
     getInvitationById: async (_, args) => {
       try {
-        const { id, access_token } = args
+        const { id } = args
         // console.log(id, 'IDIDIDIDID');
         const { data } = await axios({
           method: 'get',
-          url: `${BASE_URL}/invitations/${id}`,
-          headers: {
-            access_token: access_token
-          }
+          url: `${BASE_URL}/invitations/${id}`
         })
 
         await redis.set('get:invitationById', JSON.stringify(data))

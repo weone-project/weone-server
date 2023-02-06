@@ -4,11 +4,10 @@ const authenticationUser = require('../middlewares/authenUser')
 
 
 // Your route here
-router.use(authenticationUser)
-router.get('/', InvitationController.getAllInvitation)
-router.post('/', InvitationController.createInvitation)
+router.get('/', authenticationUser, InvitationController.getAllInvitation)
+router.post('/', authenticationUser, InvitationController.createInvitation)
 router.get('/:id', InvitationController.getInvitationById)
-router.put('/:id', InvitationController.editInvitation)
+router.put('/:id', authenticationUser, InvitationController.editInvitation)
 
 
 module.exports = router
