@@ -101,7 +101,7 @@ module.exports = {
         allowNull: false,
       },
       photo: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
         allowNull: false,
       },
       story: {

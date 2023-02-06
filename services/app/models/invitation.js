@@ -284,7 +284,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     photo: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
       validate: {
         notNull: {
