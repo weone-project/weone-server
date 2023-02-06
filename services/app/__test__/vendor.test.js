@@ -98,6 +98,8 @@ describe('/vendors/register -  Register', () => {
                         email: 'testing1@mail.com',
                         password: '123123',
                         phoneNumber: '08123456',
+                        city: 'Sampit',
+                        province: 'Kalimantan Tengah',
                         address: 'Jl. Vendor Testing',
                         vendorImgUrl: 'https://via.placeholder.com/300.png/09f/fff'
                     })
@@ -128,6 +130,8 @@ describe('/vendors/register -  Register', () => {
                     email: 'testing1mail.com',
                     password: '123123',
                     phoneNumber: '08123456',
+                    city: 'Sampit',
+                    province: 'Kalimantan Tengah',
                     address: 'Jl. Vendor Testing',
                     vendorImgUrl: 'https://via.placeholder.com/300.png/09f/fff'
                 })
@@ -147,6 +151,8 @@ describe('/vendors/register -  Register', () => {
 
                     password: '123123',
                     phoneNumber: '08123456',
+                    city: 'Sampit',
+                    province: 'Kalimantan Tengah',
                     address: 'Jl. Vendor Testing',
                     vendorImgUrl: 'https://via.placeholder.com/300.png/09f/fff'
                 })
@@ -166,6 +172,8 @@ describe('/vendors/register -  Register', () => {
                     email: 'testing1mail.com',
 
                     phoneNumber: '08123456',
+                    city: 'Sampit',
+                    province: 'Kalimantan Tengah',
                     address: 'Jl. Vendor Testing',
                     vendorImgUrl: 'https://via.placeholder.com/300.png/09f/fff'
                 })
@@ -174,6 +182,7 @@ describe('/vendors/register -  Register', () => {
             expect(res.body.message).toContain('Password is required');
         });
     });
+
 
     //! Failed testing register - Empty PhoneNumber
     describe('FAILED CASE: ', () => {
@@ -194,6 +203,46 @@ describe('/vendors/register -  Register', () => {
         });
     });
 
+    describe('FAILED CASE: ', () => {
+        it('should return 400 - Fail register with no city', async () => {
+            const res = await request(app)
+                .post('/vendors/register')
+                .send({
+                    name: 'testing1',
+                    email: 'testing1mail.com',
+                    password: '123123',
+                    phoneNumber: '08123456',
+                    // city: 'Sampit',
+                    province: 'Kalimantan Tengah',
+                    address: 'Jl. Vendor Testing',
+                    vendorImgUrl: 'https://via.placeholder.com/300.png/09f/fff'
+                })
+            expect(res.status).toBe(400)
+            expect(res.body).toBeInstanceOf(Object);
+            expect(res.body.message).toContain('City is required');
+        });
+    });
+
+    describe('FAILED CASE: ', () => {
+        it('should return 400 - Fail register with no city', async () => {
+            const res = await request(app)
+                .post('/vendors/register')
+                .send({
+                    name: 'testing1',
+                    email: 'testing1mail.com',
+                    password: '123123',
+                    phoneNumber: '08123456',
+                    city: 'Sampit',
+                    // province: 'Kalimantan Tengah',
+                    address: 'Jl. Vendor Testing',
+                    vendorImgUrl: 'https://via.placeholder.com/300.png/09f/fff'
+                })
+            expect(res.status).toBe(400)
+            expect(res.body).toBeInstanceOf(Object);
+            expect(res.body.message).toContain('Province is required');
+        });
+    });
+
     //! Failed testing register - Empty Address 
     describe('FAILED CASE: ', () => {
         it('should return 400 - Fail register empty address', async () => {
@@ -206,6 +255,8 @@ describe('/vendors/register -  Register', () => {
                         email: 'testing1@mail.com',
                         password: '123123',
                         phoneNumber: '08123456',
+                        city: 'Sampit',
+                        province: 'Kalimantan Tengah',
 
                         vendorImgUrl: 'https://via.placeholder.com/300.png/09f/fff'
                     })
@@ -229,6 +280,8 @@ describe('/vendors/register -  Register', () => {
                     email: 'aaa@mail.com',
                     password: '123123',
                     phoneNumber: '08123456',
+                    city: 'Sampit',
+                    province: 'Kalimantan Tengah',
                     address: 'Jl. Vendor Testing',
                     vendorImgUrl: 'https://via.placeholder.com/300.png/09f/fff'
                 })
@@ -248,6 +301,8 @@ describe('/vendors/register -  Register', () => {
                     email: 'aaa3232@mail.com',
                     password: '123123',
                     phoneNumber: '08123456',
+                    city: 'Sampit',
+                    province: 'Kalimantan Tengah',
                     address: 'Jl. Vendor Testing',
                     vendorImgUrl: 'https://via.placeholder.com/300.png/09f/fff'
                 })
@@ -267,8 +322,10 @@ describe('/vendors/register -  Register', () => {
                         name: 'testing12',
                         email: 'testing1@mail.com',
                         password: '123123',
-                        // phoneNumber: '08123456',
-                        // address: 'Jl. Vendor',
+                        phoneNumber: '08123456',
+                        city: 'Sampit',
+                        province: 'Kalimantan Tengah',
+                        address: 'Jl. Vendor',
 
                     })
                 expect(res.status).toBe(400)

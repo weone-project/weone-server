@@ -56,7 +56,7 @@ const vendorTypeDefs = `#GraphQL
         createVendor(form: VendorForm): Vendor
         deleteVendor(id: ID): Message
         loginVendor(form: LoginVendorForm): LoginResponse
-        updateVendor(form: UpdateVendorForm, id: ID): Message
+        updateVendor(form: UpdateVendorForm, access_token: String): Message
     }
 `
 
@@ -132,10 +132,14 @@ const vendorResolvers = {
 
         updateVendor: async (_, args) => {
             try {
-                const { id } = args
+                // const { id } = args
+                const {access_token} = args
                 const { data } = await axios({
                     method: 'put',
-                    url: `${BASE_URL}/vendors/${id}`,
+                    url: `${BASE_URL}/vendors`,
+                    headers: {
+                        access_token: access_token
+                    },
                     data: args.form,
                 })
 

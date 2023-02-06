@@ -87,7 +87,7 @@ class VendorController {
             const dataVendor = await Vendor.findAll()
 
             res.status(200).json(dataVendor)
-
+ 
         } catch (error) {
             // console.log(error, '<---- error getAllVendor - 00');
             next(error)

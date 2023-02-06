@@ -60,7 +60,6 @@ class ProductController {
                         model: Category
                     }
                 ],
-                
                 where: { status: 'Active' }
             })
             if (!oneProduct) throw { name: 'Data not found' }
