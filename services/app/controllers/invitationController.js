@@ -1,4 +1,4 @@
-const { Invitations, Musics, Order, User, Greets } = require('../models/index')
+const { Invitations, Musics, Order, User, Greets, GuestBook } = require('../models/index')
 
 class InvitationController {
   static async getAllInvitation(req, res, next) {
@@ -117,7 +117,52 @@ class InvitationController {
 
       res.status(200).json(greetingsData)
     } catch (error) {
-      console.log(error, '<---- error getGreetingsByInvitation Controller');
+      // console.log(error, '<---- error getGreetingsByInvitation Controller');
+      next(error);
+    }
+  }
+
+  static async inputGuestBookByInvitation(req, res, next) {
+    try {
+      const { id } = req.params
+
+      const findInvitation = await Invitations.findByPk(id)
+
+      if (!findInvitation) {
+        throw { name: 'Data not found' }
+      }
+
+      const { name } = req.body
+      const dataGuestBook = await GuestBook.create({ name, InvitationId: id })
+      res.status(201).json({ message: `Success input Guest ${name} from Invitation ${id}` })
+    } catch (error) {
+      console.log(error, '<---- error inputGuestBookByInvitation Controller');
+      next(error);
+    }
+  }
+
+  static async getGuestBookByInvitation(req, res, next) {
+    try {
+      const { id } = req.params
+      const findInvitation = await Invitations.findByPk(id)
+
+      if (!findInvitation) {
+        throw { name: 'Data not found' }
+      }
+
+      const dataGuestsBook = await Invitations.findAll({
+        where: {
+          id: id
+        },
+        include: [
+          {
+            model: GuestBook
+          }
+        ]
+      })
+      res.status(200).json(dataGuestsBook)
+    } catch (error) {
+      console.log(error, '<---- error getGuestBookByInvitation Controller');
       next(error);
     }
   }

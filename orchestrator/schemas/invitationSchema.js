@@ -78,6 +78,16 @@ const invitationTypeDefs = `#GraphQL
     User: UserInvitation
   }
 
+  type InvitationGuestBook {
+    id: ID
+    GuestBooks: [GuestBook]
+  }
+
+  type GuestBook {
+    name: String
+    InvitationId: Int
+  }
+
   input CreateInvitationForm {
     quote: String
     quote_src: String
@@ -112,6 +122,11 @@ const invitationTypeDefs = `#GraphQL
     OrderId: Int
   }
 
+  input InputGuestBookByInvitationForm {
+    name: String
+    InvitationId: Int
+  }
+  
   input GreetingForm {
     guest: String
     presence: String
@@ -127,13 +142,15 @@ const invitationTypeDefs = `#GraphQL
   type Query {
     getInvitations(access_token: String): [Invitation]
     getInvitationById(id: ID): Invitation
-    getGreetingsByInvitation(id: ID): [Greet]
+    getGreetingsByInvitation(id: ID, access_token: String): [Greet]
+    getGuestBookByInvitation(id: ID, access_token: String): [InvitationGuestBook]
   }
 
   type Mutation {
     createInvitation(form: CreateInvitationForm, access_token: String) : Message
     updateInvitation(id: ID, form: CreateInvitationForm, access_token: String) : Message
     createGreetingByInvitation(id: ID, form: GreetingForm): Greet
+    inputGuestBookByInvitation(id: ID, form: InputGuestBookByInvitationForm): Message
   }
 
 `
@@ -180,16 +197,38 @@ const invitationResolvers = {
 
     getGreetingsByInvitation: async (_, args) => {
       try {
-        const { id } = args
+        const { id, access_token } = args
         const { data } = await axios({
           method: 'get',
-          url: `${BASE_URL}/invitations/${id}/greets`
+          url: `${BASE_URL}/invitations/${id}/greets`,
+          headers: {
+            access_token: access_token
+          }
         })
 
         await redis.set('get:greetingsByInvitation', JSON.stringify(data))
         return data
       } catch (error) {
         // console.log(error, '<---- error getGreetingsByInvitation schema');
+        throw (error);
+      }
+    },
+
+    getGuestBookByInvitation: async (_, args) => {
+      try {
+        const { id, access_token } = args
+        const { data } = await axios({
+          method: 'get',
+          url: `${BASE_URL}/invitations/${id}/guestsBook`,
+          headers: {
+            access_token: access_token
+          }
+        })
+
+        await redis.set('get:guestBookByInvitation', JSON.stringify(data))
+        return data
+      } catch (error) {
+        console.log(error, '<---- error getGreetingsByInvitation schema');
         throw (error);
       }
     }
@@ -244,6 +283,22 @@ const invitationResolvers = {
         return data
       } catch (error) {
         // console.log(error, '<---- error createGreetingByInvitation schema');
+        throw (error);
+      }
+    },
+
+    inputGuestBookByInvitation: async (_, args) => {
+      try {
+        const { id } = args
+        const { data } = await axios({
+          method: 'post',
+          url: `${BASE_URL}/invitations/${id}/guestsBook`,
+          data: args.form
+        })
+        await redis.del('get:guestBookByInvitation')
+        return data
+      } catch (error) {
+        console.log(error, '<---- error inputGuestBookByInvitation schema');
         throw (error);
       }
     }
