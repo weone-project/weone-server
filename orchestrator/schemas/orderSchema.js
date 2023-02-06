@@ -50,8 +50,8 @@ type UserOrder{
     Product:Product
     Vendor:Vendor
     User:User
-    createdAt
-    updatedAt
+    createdAt:String
+    updatedAt:String
 }
 
 type VendorOrder{
