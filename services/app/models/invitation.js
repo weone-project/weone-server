@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       Invitations.belongsTo(models.Order)
       Invitations.belongsTo(models.Musics)
       Invitations.hasMany(models.Greets)
+      Invitations.hasMany(models.GuestBook)
     }
   }
   Invitations.init({
