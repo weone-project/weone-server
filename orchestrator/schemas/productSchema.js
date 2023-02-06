@@ -10,7 +10,7 @@ const productTypeDefs = `#GraphQL
         imgUrl: String
         price: Int
         estimatedDay: Int
-        rating: Int
+        rating: Float
         dpPrice: Int
         status: String
         VendorId: Int

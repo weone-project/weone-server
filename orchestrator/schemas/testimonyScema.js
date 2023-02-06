@@ -10,7 +10,7 @@ const testimonyTypeDefs = `#GraphQL
         imgUrl: String
         price: Int
         estimatedDay: Int
-        rating: Int
+        rating: Float
         dpPrice: Int
         VendorId: Int
         CategoryId: Int
@@ -23,6 +23,7 @@ const testimonyTypeDefs = `#GraphQL
         testimony:String
         Product:Product
         User:User
+        rating:Int
     }
 
     type User{
@@ -37,6 +38,7 @@ const testimonyTypeDefs = `#GraphQL
     input TestimonyForm {
         productId:ID
         testimony:String
+        rating:Int
     }
 
     input EditTestimony {

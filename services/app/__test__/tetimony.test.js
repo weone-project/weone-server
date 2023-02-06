@@ -103,7 +103,8 @@ describe('testimonies -  CRUD', () => {
                     testimony: 'Mantap',
                     productId: 1,
                     vendorId: 1,
-                    UserId: 1
+                    UserId: 1,
+                    rating:4
                 })
             expect(res.status).toBe(201)
             expect(res.body).toBeInstanceOf(Object)

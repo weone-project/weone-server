@@ -10,7 +10,7 @@ type Product {
     imgUrl: String
     price: Int
     estimatedDay: Int
-    rating: Int
+    rating: Float
     dpPrice: Int
     VendorId: Int
     CategoryId: Int
