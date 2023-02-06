@@ -50,7 +50,18 @@ class ProductController {
     static async getProductById(req, res, next) {
         try {
             const { id } = req.params
-            const oneProduct = await Product.findByPk(id)
+            const oneProduct = await Product.findByPk(id, {
+                include: [
+                    {
+                        // attributes: { exclude: ['password'] },
+                        model: Vendor
+                    },
+                    {
+                        model: Category
+                    }
+                ],
+                where: { status: 'Active' }
+            })
             if (!oneProduct) throw { name: 'Data not found' }
 
             res.status(200).json(oneProduct)
