@@ -50,17 +50,16 @@ class TestimonyController {
             countRatingInTestimony.forEach((element) => {
                 counting += element.rating
             })
-            console.log(counting)
             counting /=countRatingInTestimony.length+1
+            let roundedCounting=Math.round(counting * 10) / 10
             await Product.update({
-                rating:counting
+                rating:roundedCounting
             },{
                 where:{
                     id:productId
                 }
             })
-            console.log(counting)
-            res.status(201).json({ message: `Testimony created now and rating of the product ${productId} and the rating is ${counting}` })
+            res.status(201).json({ message: `Testimony created now and rating of the product ${productId} and the rating is ${roundedCounting}` })
         } catch (error) {
             next(error)
         }
