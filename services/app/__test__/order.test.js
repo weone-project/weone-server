@@ -139,7 +139,7 @@ describe('orders -  CRUD', () => {
 
         it('should return 200 - GET filtered Orders from vendor', async () => {
             const res = await request(app)
-                .get("/orders/user/Belum lunas")
+                .get("/orders/vendor/Belum lunas")
                 .set("access_token", validTokenVendor)
             // console.log(res.body, '<---- BODY');
             expect(res.status).toBe(200)
@@ -342,6 +342,13 @@ describe('orders -  CRUD', () => {
             expect(res.body).toHaveProperty('message')
         })
 
+        it('should return 404 - Patch order user request with order data not found (wrong Id)', async () => {
+            const res = await request(app)
+                .patch('/orders/999/userSchedule')
+                .set("access_token", validTokenUser)
+            expect(res.status).toBe(404)
+            expect(res.body).toHaveProperty('message')
+        })
         
         it('should return 401 - Patch order vendor approved reschedule with invalid token vendor', async () => {
             const res = await request(app)
@@ -351,12 +358,27 @@ describe('orders -  CRUD', () => {
             expect(res.body).toHaveProperty('message')
         })
 
+        it('should return 404 - Patch order vendor approved reschedule with order data not found (wrong Id)', async () => {
+            const res = await request(app)
+                .patch('/orders/999/vendorSchedule')
+                .set("access_token", validTokenVendor)
+            expect(res.status).toBe(404)
+            expect(res.body).toHaveProperty('message')
+        })
         
         it('should return 401 - Patch order user approved and choose date token invalid user', async () => {
             const res = await request(app)
                 .patch('/orders/1/userAllowed')
                 .set("access_token", invalidToken)
             expect(res.status).toBe(401)
+            expect(res.body).toHaveProperty('message')
+        })
+
+        it('should return 404 - Patch order user approved with order data not found (wrong Id)', async () => {
+            const res = await request(app)
+                .patch('/orders/999/userAllowed')
+                .set("access_token", validTokenUser)
+            expect(res.status).toBe(404)
             expect(res.body).toHaveProperty('message')
         })
     })

@@ -2,13 +2,13 @@ const { Order, Vendor, User, Product } = require('../models/index')
 class OrderController {
     static async getOrdersFilter(req, res, next) {
         try {
-            let userId=req.user.id
+            let userId = req.user.id
             let { paymentStatus } = req.params
             let orders = await Order.findAll({
                 where: {
                     UserId: userId,
                     paymentStatus: paymentStatus
-                }, 
+                },
                 include: [
                     {
                         model: Vendor
@@ -30,7 +30,7 @@ class OrderController {
     }
     static async getOrdersUser(req, res, next) {
         try {
-            let userId=req.user.id
+            let userId = req.user.id
             let orders = await Order.findAll(
                 {
                     where: {
@@ -56,7 +56,7 @@ class OrderController {
     }
     static async getAllOrdersByVendor(req, res, next) {
         try {
-            let vendorId=req.vendor.id
+            let vendorId = req.vendor.id
             let orders = await Order.findAll(
                 {
                     where: {
@@ -75,7 +75,7 @@ class OrderController {
                         }
                     ]
                 }
-                )
+            )
             res.status(200).json(orders)
         } catch (error) {
             next(error)
@@ -83,7 +83,7 @@ class OrderController {
     }
     static async getOrdersFilterByVendor(req, res, next) {
         try {
-            let vendorId=req.vendor.id
+            let vendorId = req.vendor.id
             let { paymentStatus } = req.params
             let orders = await Order.findAll(
                 {
@@ -112,7 +112,7 @@ class OrderController {
     static async getOrderVendor(req, res, next) {
         try {
             let { orderId } = req.params
-            let vendorId=req.vendor.id
+            let vendorId = req.vendor.id
             let order = await Order.findOne({
                 include: [
                     {
@@ -128,7 +128,7 @@ class OrderController {
                 ],
                 where: {
                     id: orderId,
-                    VendorId:vendorId
+                    VendorId: vendorId
                 }
             })
             if (!order) {
@@ -142,7 +142,7 @@ class OrderController {
     static async getOrderUser(req, res, next) {
         try {
             let { orderId } = req.params
-            let userId=req.user.id
+            let userId = req.user.id
             let order = await Order.findOne({
                 include: [
                     {
@@ -158,7 +158,7 @@ class OrderController {
                 ],
                 where: {
                     id: orderId,
-                    UserId:userId
+                    UserId: userId
                 }
             })
             if (!order) {
@@ -171,7 +171,7 @@ class OrderController {
     }
     static async addOrder(req, res, next) {
         try {
-            let userId=req.user.id
+            let userId = req.user.id
             let { productId } = req.params
             let chosenProduct = await Product.findByPk(productId)
             if (!chosenProduct) {
@@ -189,8 +189,8 @@ class OrderController {
                 downPayment,
                 quantity,
                 notes,
-                rescheduleDate:null, 
-                rescheduleStatus:null 
+                rescheduleDate: null,
+                rescheduleStatus: null
             })
             res.status(201).json({ message: `Order with reservationDate ${newOrder.reservationDate} has been made` })
         } catch (error) {
@@ -217,16 +217,20 @@ class OrderController {
     static async updateOrderUser(req, res, next) {
         try {
             let { orderId } = req.params
-            let userId=req.user.id
-            console.log(userId)
-            let { paymentStatus,rescheduleStatus } = req.body
+            let userId = req.user.id
+            let { paymentStatus, rescheduleStatus } = req.body
+            let findOrder = await Order.findByPk(orderId)
+            if (!findOrder) {
+                throw { name: 'Data not found' }
+            }
+
             let order = await Order.update({
                 paymentStatus: paymentStatus,
-                rescheduleStatus:rescheduleStatus
+                rescheduleStatus: rescheduleStatus
             }, {
                 where: {
                     id: orderId,
-                    UserId:userId
+                    UserId: userId
                 }
             })
             res.status(200).json({ message: `Order status has been updated to ${paymentStatus}` })
@@ -237,15 +241,19 @@ class OrderController {
     static async updateOrderVendor(req, res, next) {
         try {
             let { orderId } = req.params
-            let vendorId=req.vendor.id
-            let { paymentStatus,rescheduleStatus } = req.body
+            let vendorId = req.vendor.id
+            let { paymentStatus, rescheduleStatus } = req.body
+            let findOrder = await Order.findByPk(orderId)
+            if (!findOrder) {
+                throw { name: 'Data not found' }
+            }
             let order = await Order.update({
                 paymentStatus: paymentStatus,
-                rescheduleStatus:rescheduleStatus
+                rescheduleStatus: rescheduleStatus
             }, {
                 where: {
                     id: orderId,
-                    VendorId:vendorId
+                    VendorId: vendorId
                 }
             })
             res.status(200).json({ message: `Reschedule Status is ${paymentStatus}` })
@@ -257,16 +265,20 @@ class OrderController {
     static async reschedule(req, res, next) {
         try {
             let { orderId } = req.params
-            let userId=req.user.id
-            let { paymentStatus,rescheduleDate,rescheduleStatus } = req.body
+            let userId = req.user.id
+            let { paymentStatus, rescheduleDate, rescheduleStatus } = req.body
+            let findOrder = await Order.findByPk(orderId)
+            if (!findOrder) {
+                throw { name: 'Data not found' }
+            }
             let order = await Order.update({
                 paymentStatus: paymentStatus,
-                rescheduleDate:rescheduleDate,
-                rescheduleStatus:rescheduleStatus
+                rescheduleDate: rescheduleDate,
+                rescheduleStatus: rescheduleStatus
             }, {
                 where: {
                     id: orderId,
-                    UserId:userId
+                    UserId: userId
                 }
             })
             res.status(200).json({ message: `Reschedule Status is ${paymentStatus}` })
