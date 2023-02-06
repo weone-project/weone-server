@@ -29,7 +29,15 @@ class ProductController {
     static async getAllProductActive(req, res, next) {
         try {
             const dataProduct = await Product.findAll({
-
+                include: [
+                    {
+                        // attributes: { exclude: ['password'] },
+                        model: Vendor
+                    },
+                    {
+                        model: Category
+                    }
+                ],
                 where: { status: 'Active' }
             })
             res.status(200).json(dataProduct)
