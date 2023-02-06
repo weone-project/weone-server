@@ -1,4 +1,4 @@
-const { Invitations, Musics, Order, User } = require('../models/index')
+const { Invitations, Musics, Order, User, Greets } = require('../models/index')
 
 class InvitationController {
   static async getAllInvitation(req, res, next) {
@@ -20,6 +20,9 @@ class InvitationController {
           [
             {
               model: Musics
+            },
+            {
+              model: Greets
             },
             {
               model: Order,

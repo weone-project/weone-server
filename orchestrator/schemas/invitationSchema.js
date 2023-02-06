@@ -34,8 +34,48 @@ const invitationTypeDefs = `#GraphQL
     wallet_bank: String
     wallet_no: Int
     wallet_owner: String
-    MusicId: Int
-    OrderId: Int
+    Music: Music
+    Order: Order
+    Greets: [Greet]
+  }
+
+  type Music {
+    id: ID
+    band: String
+    song: String
+    song_src: String
+  }
+
+  type Greet {
+    id: ID
+    guest: String
+    presence: String
+    greeting: String
+    date: String
+    InvitationId: Int
+  }
+
+  type UserInvitation {
+    id: ID
+    name: String
+    email: String
+    phoneNumber: String
+    address: String
+    userImgUrl: String
+  }
+
+  type Order {
+    id: ID
+    ProductId: Int
+    VendorId: Int
+    reservationDate: String
+    rescheduleDate: String
+    rescheduleStatus: String
+    paymentStatus: String
+    fullPayment: Int
+    downPayment: Int
+    quantity: Int
+    User: UserInvitation
   }
 
   input CreateInvitationForm {
