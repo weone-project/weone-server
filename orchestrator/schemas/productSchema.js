@@ -32,6 +32,8 @@ const productTypeDefs = `#GraphQL
         email: String
         password: String
         phoneNumber: String
+        city: String
+        province: String
         address: String
         vendorImgUrl: String
     }
