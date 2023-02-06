@@ -52,19 +52,22 @@ class VendorController {
 
     static async updateVendor(req, res, next) {
         try {
-            const { id } = req.params
-            console.log(id, '<--- ini id');
-            const findVendor = await Vendor.findByPk(id)
+            // const { id } = req.params
+            // console.log(id, '<--- ini id');
+            // console.log(req.vendor.id, '<---vendorIdboy');
+            const findVendor = await Vendor.findByPk(req.vendor.id)
             if (!findVendor) throw { name: 'Data not found' }
 
             const { name, phoneNumber, address, vendorImgUrl } = req.body
+            if(!name) throw {name: 'Name is required'}
+
             const updatedVendor = await Vendor.update({
                 name,
                 phoneNumber,
                 address,
                 vendorImgUrl
             }, {
-                where: { id }
+                where: { id: req.vendor.id }
             })
 
             res.status(201).json({ message: 'Success update profile vendor' })

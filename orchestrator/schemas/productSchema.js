@@ -15,6 +15,25 @@ const productTypeDefs = `#GraphQL
         status: String
         VendorId: Int
         CategoryId: Int
+        createdAt: String
+        updatedAt: String
+        Category: Category
+        Vendor: Vendor
+    }
+
+    type Category {
+        id: ID
+        name: String
+    }
+
+    type Vendor {
+        id: ID
+        name: String
+        email: String
+        password: String
+        phoneNumber: String
+        address: String
+        vendorImgUrl: String
     }
 
     input ProductForm {

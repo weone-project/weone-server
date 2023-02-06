@@ -4,7 +4,7 @@ const { hashPassword } = require('../helpers/bcrypt')
 const { sequelize } = require('../models')
 const { queryInterface } = sequelize
 const { Category, Vendor, Product, User, Order } = require('../models')
-let access_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjcyOTMxNTA2fQ.SwrY-SWcyCldGPrneHEYzXcDQ5yUwOdxEPBSJbRBEDc'
+let access_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNjc1NjI4MTgwfQ.B74U7fwCPexg4T6QoTlW2ooe3FbkSuj2H8DGA5jSwIo'
 
 beforeAll(async () => {
     try {
@@ -342,7 +342,7 @@ describe('/vendors/login -  Login vendor', () => {
 // VENDORS
 describe('/vendors - CRUD', () => {
     describe('SUCCESS CASE:', () => {
-        it('should return 200 - GET vendors', async() => {
+        it('should return 200 - GET vendors', async () => {
             const res = await request(app).get('/vendors')
 
             expect(res.status).toBe(200)
@@ -352,7 +352,7 @@ describe('/vendors - CRUD', () => {
             expect(res.body[0]).toHaveProperty('vendorImgUrl')
         })
 
-        it('should return 200 - GET vendors By Id', async() => {
+        it('should return 200 - GET vendors By Id', async () => {
             const res = await request(app).get('/vendors/1')
 
             expect(res.status).toBe(200)
@@ -362,7 +362,7 @@ describe('/vendors - CRUD', () => {
             expect(res.body).toHaveProperty('vendorImgUrl')
         })
 
-        it('should return 200 - GET vendors By Id', async() => {
+        it('should return 200 - GET vendors By Id', async () => {
             const res = await request(app).get('/vendors/1')
 
             expect(res.status).toBe(200)
@@ -372,8 +372,21 @@ describe('/vendors - CRUD', () => {
             expect(res.body).toHaveProperty('vendorImgUrl')
         })
 
-        it('should return 201 - PUT vendors By Id', async() => {
-            const res = await request(app).put('/vendors/1')
+        // it('should return 201 - PUT vendors By Id', async() => {
+        //     const res = await request(app).put('/vendors/1')
+
+        //     expect(res.status).toBe(201)
+        //     expect(res.body).toBeInstanceOf(Object)
+        //     expect(res.body).toHaveProperty('message')
+        // })
+
+        it('should return 201 - PUT vendors ', async () => {
+            const res = await request(app)
+                .put('/vendors')
+                .set("access_token", access_token)
+                .send({
+                    name: 'Testing name'
+                })
 
             expect(res.status).toBe(201)
             expect(res.body).toBeInstanceOf(Object)
@@ -384,7 +397,7 @@ describe('/vendors - CRUD', () => {
             const res = await request(app)
                 .delete('/vendors/1')
                 .set("access_token", access_token)
-                
+
             expect(res.status).toBe(200)
             expect(res.body).toHaveProperty('message')
         })
@@ -393,32 +406,45 @@ describe('/vendors - CRUD', () => {
             const res = await request(app)
                 .patch('/vendors/orders/1')
                 .set("access_token", access_token)
-                
+
             expect(res.status).toBe(201)
             expect(res.body).toHaveProperty('message')
         })
     })
 
     describe('FAILED CASE:', () => {
-        it('should return 404 - PUT vendor - Data not found', async () => {
-            const res = await request(app).put('/vendors/999')
+        // it('should return 404 - PUT vendor - Data not found', async () => {
+        //     const res = await request(app).put('/vendors/999')
 
-            expect(res.status).toBe(404)
+        //     expect(res.status).toBe(404)
+        //     expect(res.body).toBeInstanceOf(Object)
+        //     expect(res.body).toHaveProperty('message')
+        // })
+
+        it('should return 400 - PUT vendors ', async () => {
+            const res = await request(app)
+                .put('/vendors')
+                .set("access_token", access_token)
+                .send({
+                    // name: 'Testing name'
+                })
+
+            expect(res.status).toBe(400)
             expect(res.body).toBeInstanceOf(Object)
             expect(res.body).toHaveProperty('message')
         })
-            
-        it('should return 404 - GET vendors By Id - Data not found', async() => {
+
+        it('should return 404 - GET vendors By Id - Data not found', async () => {
             const res = await request(app).get('/vendors/999')
-            
+
             expect(res.status).toBe(404)
             expect(res.body).toBeInstanceOf(Object)
             expect(res.body).toHaveProperty('message')
         })
 
-        it('should return 404 - DELETE vendors By Id - Data not found', async() => {
+        it('should return 404 - DELETE vendors By Id - Data not found', async () => {
             const res = await request(app).delete('/vendors/999')
-            
+
             expect(res.status).toBe(404)
             expect(res.body).toBeInstanceOf(Object)
             expect(res.body).toHaveProperty('message')
@@ -428,7 +454,7 @@ describe('/vendors - CRUD', () => {
             const res = await request(app)
                 .patch('/vendors/orders/999')
                 .set("access_token", access_token)
-                
+
             expect(res.status).toBe(404)
             expect(res.body).toHaveProperty('message')
         })
