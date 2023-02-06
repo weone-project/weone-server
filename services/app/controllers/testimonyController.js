@@ -13,7 +13,7 @@ class TestimonyController {
                         }
                     },
                     {
-                        model:Product
+                        model: Product
                     }
                 ]
             }, {
@@ -28,12 +28,39 @@ class TestimonyController {
     }
     static async createTestimony(req, res, next) {
         try {
-            let UserId=req.user.id
-            let { testimony, productId } = req.body
+            let UserId = req.user.id
+            let { testimony, productId, rating } = req.body
             await Testimony.create({
-                UserId: UserId, ProductId: productId, testimony
+                UserId: UserId, ProductId: productId, testimony, rating
             })
-            res.status(201).json({ message: 'Testimony created now' })
+            let productTestimonies = await Product.findOne({
+                attributes: ['rating'],
+                where: {
+                    id: productId
+                }
+            })
+            let countRatingInTestimony = await Testimony.findAll({
+                attributes: ['rating'],
+                where: {
+                    ProductId: productId
+                }
+            })
+            // console.log(productTestimonies.rating)
+            let counting = +productTestimonies.rating
+            countRatingInTestimony.forEach((element) => {
+                counting += element.rating
+            })
+            console.log(counting)
+            counting /=countRatingInTestimony.length+1
+            await Product.update({
+                rating:counting
+            },{
+                where:{
+                    id:productId
+                }
+            })
+            console.log(counting)
+            res.status(201).json({ message: `Testimony created now and rating of the product ${productId} and the rating is ${counting}` })
         } catch (error) {
             next(error)
         }

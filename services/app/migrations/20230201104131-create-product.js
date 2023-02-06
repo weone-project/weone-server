@@ -29,7 +29,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       rating: { //? ga wajib
-        type: Sequelize.INTEGER
+        type: Sequelize.DECIMAL
       },
       dpPrice: { // ga wajib
         type: Sequelize.INTEGER
