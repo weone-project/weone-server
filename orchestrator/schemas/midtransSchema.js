@@ -12,18 +12,34 @@ const midtransTypeDefs = `#GraphQL
         message: String
     }
 
+    input OrderForMidtrans{
+        UserId: Int
+        productId:Int
+        orderId: Int
+        reservationDate:String
+        paymentStatus:String
+        fullPayment:Int
+        downPayment:Int
+        quantity:Int
+        notes:String 
+    }
+
     type Mutation {
-        midtransToken(orderId :ID): MidtransResponse
+        midtransToken(form: OrderForMidtrans,status:String,access_token:String): MidtransResponse
     }
 `
 const midtransResolvers = {
     Mutation: {
         midtransToken: async (_, args) => {
             try {
-                const { orderId } = args
+                const { status,access_token,form } = args
                 const { data } = await axios({
                     method: 'post',
-                    url: BASE_URL + '/midtrans/' + orderId
+                    url: BASE_URL + '/midtrans/' + status,
+                    headers:{
+                        access_token:access_token
+                    },
+                    data:form
                 })
 
                 return data
@@ -32,6 +48,8 @@ const midtransResolvers = {
                 throw error
             }
         }
+
+
     }
 }
 
