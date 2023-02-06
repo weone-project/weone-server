@@ -9,7 +9,9 @@ router.post('/', authenticationUser, InvitationController.createInvitation)
 router.get('/:id', InvitationController.getInvitationById)
 router.put('/:id', authenticationUser, InvitationController.editInvitation)
 router.post('/:id/greets', InvitationController.createGreeting)
-router.get('/:id/greets', InvitationController.getGreetingsByInvitation)
+router.get('/:id/greets', authenticationUser, InvitationController.getGreetingsByInvitation)
+router.post('/:id/guestsBook', InvitationController.inputGuestBookByInvitation)
+router.get('/:id/guestsBook', authenticationUser, InvitationController.getGuestBookByInvitation)
 
 
 module.exports = router
