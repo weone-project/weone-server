@@ -40,11 +40,11 @@ class UserController {
       let payload = {
         id: user.id
       }
-      let username = user.name
-      let emailUser = user.email
+      let name = user.name
+      // let emailUser = user.email
       let access_token = createToken(payload)
 
-      res.status(200).json({ access_token, username, id: payload.id, emailUser })
+      res.status(200).json({ access_token, name, id: payload.id, email })
     } catch (error) {
       // console.log(error);
       next(error);
