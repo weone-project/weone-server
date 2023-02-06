@@ -144,6 +144,7 @@ const invitationTypeDefs = `#GraphQL
     getInvitationById(id: ID): Invitation
     getGreetingsByInvitation(id: ID, access_token: String): [Greet]
     getGuestBookByInvitation(id: ID, access_token: String): [InvitationGuestBook]
+    getAllMusics: [Music]
   }
 
   type Mutation {
@@ -229,6 +230,21 @@ const invitationResolvers = {
         return data
       } catch (error) {
         console.log(error, '<---- error getGreetingsByInvitation schema');
+        throw (error);
+      }
+    },
+
+    getAllMusics: async () => {
+      try {
+        const { data } = await axios({
+          method: 'get',
+          url: `${BASE_URL}/invitations/musics`
+        })
+
+        await redis.set('get:allMusics', JSON.stringify(data))
+        return data
+      } catch (error) {
+        console.log(error, '<---- error getAllMusics schema');
         throw (error);
       }
     }

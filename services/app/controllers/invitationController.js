@@ -166,6 +166,16 @@ class InvitationController {
       next(error);
     }
   }
+
+  static async getAllMusic(req, res, next) {
+    try {
+      const musics = await Musics.findAll()
+      res.status(200).json(musics)
+    } catch (error) {
+      console.log(error, '<---- error getAllMusic Controller');
+      next(error);
+    }
+  }
 }
 
 module.exports = InvitationController

@@ -6,6 +6,7 @@ const authenticationUser = require('../middlewares/authenUser')
 // Your route here
 router.get('/', authenticationUser, InvitationController.getAllInvitation)
 router.post('/', authenticationUser, InvitationController.createInvitation)
+router.get('/musics', InvitationController.getAllMusic)
 router.get('/:id', InvitationController.getInvitationById)
 router.put('/:id', authenticationUser, InvitationController.editInvitation)
 router.post('/:id/greets', InvitationController.createGreeting)
