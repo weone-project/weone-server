@@ -4,6 +4,8 @@
     "email": "aaa@mail.com",
     "password": "qwerty",
     "phoneNumber": "+62222500303",
+    "city": "Bandung",
+    "province": "Jawa Barat",
     "address": "Jl. Ir. H. Juanda No.390, Dago, Kecamatan Coblong, Kota Bandung, Jawa Barat 40135",
     "vendorImgUrl": "https://www.sheratonbandung.co.id/resourcefiles/home-content-section-image/entrance.jpg?version=8252022033912"
   },
@@ -12,6 +14,8 @@
     "email": "bbb@mail.com",
     "password": "qwerty",
     "phoneNumber": "+6281319340930",
+    "city": "Jakarta Selatan",
+    "province": "DKI Jakarta",
     "address": "Jl. Bina Harapan No.38 A, RW.7, Duren Tiga, Kec. Pancoran, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12760",
     "vendorImgUrl": "https://london.bridestory.com/images/c_fill,dpr_1.0,f_auto,fl_progressive,h_45,pg_1,q_80,w_45/v1/assets/bridestory-ryN63TvC7/nendia-primarasa-catering.webp"
   },
@@ -20,7 +24,9 @@
     "email": "ccc@mail.com",
     "password": "qwerty",
     "phoneNumber": "+628567835235",
-    "address": "Jakarta",
+    "city": "Bandung",
+    "province": "Jawa Barat",
+    "address": "Jl. Ir. H. Juanda No.390, Dago, Kecamatan Coblong, Kota Bandung, Jawa Barat 40135",
     "vendorImgUrl": "https://london.bridestory.com/images/c_fill,dpr_1.0,f_auto,fl_progressive,h_45,pg_1,q_80,w_45/v1/assets/newlogo-SytJZvCwE/memoira-studio.webp"
   },
   {
@@ -28,6 +34,8 @@
     "email": "ddd@mail.com",
     "password": "qwerty",
     "phoneNumber": "+6281293589855",
+    "city": "Jakarta Timur",
+    "province": "DKI Jakarta",
     "address": "Blok J13, Jl. Jeruk Joglo Timur, RT.9/RW.5, Srengseng, Kembangan, West Jakarta City, Jakarta 11630",
     "vendorImgUrl": "https://london.bridestory.com/images/c_fill,dpr_1.0,f_auto,fl_progressive,h_45,pg_1,q_80,w_45/v1/assets/dariusshopia-wd-tw-02-317-SJGmhKZME/ilook-makeup-couture.webp"
   },
@@ -36,6 +44,8 @@
     "email": "eee@mail.com",
     "password": "qwerty",
     "phoneNumber": "+6281291781040",
+    "city": "Tanggerang Selatan",
+    "province": "Banten",
     "address": "Golden Pk No.12, Lengkong Karya, Kec. Serpong, Kota Tangerang Selatan, Banten 15320",
     "vendorImgUrl": "https://london.bridestory.com/images/c_fill,dpr_1.0,f_auto,fl_progressive,h_45,pg_1,q_80,w_45/v1/assets/pp-N5QX6-YgZ/priceless-wedding-planner-organizer.webp"
   }

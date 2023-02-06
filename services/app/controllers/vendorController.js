@@ -6,8 +6,8 @@ class VendorController {
     static async registerVendor(req, res, next) {
         console.log('masuk --');
         try {
-            const { name, email, password, phoneNumber, address, vendorImgUrl } = req.body
-            const newVendor = await Vendor.create({ name, email, password, phoneNumber, address, vendorImgUrl })
+            const { name, email, password, phoneNumber, city, province, address, vendorImgUrl } = req.body
+            const newVendor = await Vendor.create({ name, email, password, phoneNumber, city, province, address, vendorImgUrl })
 
             res.status(201).json({
                 id: newVendor.id,
@@ -58,12 +58,14 @@ class VendorController {
             const findVendor = await Vendor.findByPk(req.vendor.id)
             if (!findVendor) throw { name: 'Data not found' }
 
-            const { name, phoneNumber, address, vendorImgUrl } = req.body
+            const { name, phoneNumber, city, province, address, vendorImgUrl } = req.body
             if(!name) throw {name: 'Name is required'}
 
             const updatedVendor = await Vendor.update({
                 name,
                 phoneNumber,
+                city,
+                province,
                 address,
                 vendorImgUrl
             }, {

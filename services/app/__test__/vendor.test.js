@@ -395,7 +395,7 @@ describe('/vendors - CRUD', () => {
 
         it('should return 200 - DELETE vendor By Id', async () => {
             const res = await request(app)
-                .delete('/vendors/1')
+                .delete('/vendors/4')
                 .set("access_token", access_token)
 
             expect(res.status).toBe(200)

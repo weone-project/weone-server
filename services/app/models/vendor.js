@@ -52,6 +52,22 @@ module.exports = (sequelize, DataTypes) => {
         notNull: { msg: 'Phone Number is required' }
       }
     },
+    city: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: { msg: 'City is required' },
+        notNull: { msg: 'City is required' }
+      }
+    },
+    province: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: { msg: 'Province is required' },
+        notNull: { msg: 'Province is required' }
+      }
+    },
     address: {
       type: DataTypes.STRING,
       allowNull: false,

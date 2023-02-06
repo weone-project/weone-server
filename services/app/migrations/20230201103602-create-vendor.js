@@ -30,6 +30,14 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
+      city: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      province: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
       address: {
         allowNull: false,
         type: Sequelize.STRING
