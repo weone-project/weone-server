@@ -13,7 +13,7 @@ const midtransTypeDefs = `#GraphQL
     }
 
     input OrderForMidtrans{
-        UserId: Int
+        UserId:Int
         productId:Int
         orderId: Int
         reservationDate:String

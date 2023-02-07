@@ -8,14 +8,12 @@ class MidtransController {
             let { status } = req.params
             let { reservationDate, paymentStatus, downPayment, quantity, notes, productId, fullPayment, orderId } = req.body
             let chosenProduct = await Product.findByPk(productId)
-            console.log(status, orderId);
             // fullPayment 
             if (!chosenProduct) {
                 throw { name: 'Data not found' }
             }
             let dataOrder = {}
             if (!orderId) {
-                console.log('<<<<<<<<<<<<<<<<<<');
                 dataOrder = await Order.create({
                     UserId: userId,
                     VendorId: chosenProduct.VendorId,
@@ -32,7 +30,6 @@ class MidtransController {
             } else {
                 dataOrder = await Order.findByPk(orderId)
             }
-            console.log(dataOrder, '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
 
             // const [order, created] = await Order.findOrCreate({
             //     where: { id: orderId },
@@ -64,7 +61,6 @@ class MidtransController {
             } else {
                 amount = dataOrder.fullPayment - dataOrder.downPayment
             }
-            console.log(amount, "<<<<<<<<<<<");
 
 
             let snap = new midtransClient.Snap({
@@ -97,7 +93,6 @@ class MidtransController {
         } catch (error) {
             // console.log(error, '<---- error midtrans');
             next(error)
-
         }
     }
 }
