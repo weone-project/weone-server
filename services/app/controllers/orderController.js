@@ -192,6 +192,7 @@ class OrderController {
                 rescheduleDate: null,
                 rescheduleStatus: null
             })
+
             res.status(201).json({ message: `Order with reservationDate ${newOrder.reservationDate} has been made` })
         } catch (error) {
             next(error)
