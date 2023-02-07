@@ -18,6 +18,7 @@ class ProductController {
                 ],
                 where: { VendorId: vendorId }
 
+                
             })
             res.status(200).json(dataProduct)
 
