@@ -60,7 +60,7 @@ const productTypeDefs = `#GraphQL
     }
 
     type Mutation {
-        createProduct(form: ProductForm): Message
+        createProduct(form: ProductForm,  access_token: String): Message
         updateProduct(form: ProductForm, id:ID): Message
         deleteProduct(id: ID): Message
     }
@@ -131,9 +131,13 @@ const productResolvers = {
         createProduct: async (_, args) => {
             console.log(args, '<--- this args');
             try {
+                const { access_token } = args
                 const { data } = await axios({
                     method: 'post',
                     url: BASE_URL + '/products',
+                    headers: {
+                        access_token: access_token
+                    },
                     data: args.form,
                 });
 
