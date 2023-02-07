@@ -6,7 +6,7 @@ class ProductController {
     // Ini buat vendor, bakal nampilin semua produk sesuai vendorId nya, dan statusnya active & inactive
     static async getAllProduct(req, res, next) {
         try {
-
+            const vendorId = req.vendor.id
             const dataProduct = await Product.findAll({
                 include: [
                     {
@@ -15,7 +15,8 @@ class ProductController {
                     {
                         model: Category
                     }
-                ]
+                ],
+                where: { VendorId: vendorId }
 
             })
             res.status(200).json(dataProduct)
@@ -28,6 +29,28 @@ class ProductController {
     // Ini buat user, cuma nampilin yang statusnya active aja
     static async getAllProductActive(req, res, next) {
         try {
+            const dataProduct = await Product.findAll({
+                include: [
+                    {
+                        // attributes: { exclude: ['password'] },
+                        model: Vendor
+                    },
+                    {
+                        model: Category
+                    }
+                ],
+                where: { status: 'Active' }
+            })
+            res.status(200).json(dataProduct)
+
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    static async getAllProductActive(req, res, next) {
+        try {
+            const vendorId = req.vendor.id
             const dataProduct = await Product.findAll({
                 include: [
                     {
