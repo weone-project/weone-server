@@ -45,7 +45,6 @@ const productTypeDefs = `#GraphQL
         price: Int
         estimatedDay: Int
         dpPrice: Int
-        VendorId: Int
         CategoryId: Int
     }
 
