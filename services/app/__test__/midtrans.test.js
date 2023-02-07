@@ -99,7 +99,7 @@ describe('/categories -  CRUD', () => {
                     downPayment: 12987,
                     quantity: 6,
                     notes: "bayar woy",
-                    fullPayment:10000000
+                    fullPayment:10000000,
                 })
 
             // console.log(res.body, '<---- BODY');
