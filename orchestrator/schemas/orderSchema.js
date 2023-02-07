@@ -109,9 +109,9 @@ type Query {
 type Mutation{
     createOrder(form: OrderForm,productId:ID,access_token:String): Message
     deleteOrder(orderId:ID):Message
-    updateOrderUser(orderId:ID,form:editOrder):Message
-    updateOrderVendor(orderId:ID,form:editOrder):Message
-    updateReschedule(orderId:ID,form:reschedule):Message
+    updateOrderUser(orderId:ID,form:editOrder,access_token:String):Message
+    updateOrderVendor(orderId:ID,form:editOrder,access_token:String):Message
+    updateReschedule(orderId:ID,form:reschedule,access_token:String):Message
 }
 `
 
