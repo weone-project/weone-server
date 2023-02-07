@@ -37,7 +37,7 @@ class InvitationController {
       })
 
       if (!findInvitation) {
-        throw { name: "notFound" }
+        throw { name: "Data not found" }
       }
 
       res.status(200).json(findInvitation)
