@@ -84,7 +84,7 @@ class ProductController {
                 imgUrl, //: stringifyImgUrl,
                 price,
                 estimatedDay,
-                rating: 1,
+                rating: null,
                 dpPrice,
                 VendorId: req.vendor.id,
                 CategoryId
