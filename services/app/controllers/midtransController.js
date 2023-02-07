@@ -1,7 +1,7 @@
 const { Order, User,Product } = require('../models')
 const midtransClient = require('midtrans-client');
-const sendEmailOrderDp = require('../helpers/nodemailer_order_dp');
-const sendEmailOrderFull = require('../helpers/nodemailer_order_full');
+// const sendEmailOrderDp = require('../helpers/nodemailer_order_dp');
+// const sendEmailOrderFull = require('../helpers/nodemailer_order_full');
 
 class MidtransController {
     static async midtransToken(req, res, next) {
@@ -68,10 +68,10 @@ class MidtransController {
             let amount = 0
             if (status === 'full') {
                 amount = dataOrder.fullPayment
-                sendEmailOrderDp(dataUser.email, chosenProduct.name, paymentStatus, dataOrder.fullPayment)
+                // sendEmailOrderDp(dataUser.email, chosenProduct.name, paymentStatus, dataOrder.fullPayment)
             } else if (status === 'dp') {
                 amount = dataOrder.downPayment
-                sendEmailOrderFull(dataUser.email, chosenProduct.name, paymentStatus, dataOrder.downPayment)
+                // sendEmailOrderFull(dataUser.email, chosenProduct.name, paymentStatus, dataOrder.downPayment)
             } else {
                 amount = dataOrder.fullPayment - dataOrder.downPayment
             }
@@ -91,8 +91,8 @@ class MidtransController {
 
             let parameter = {
                 transaction_details: {
-                    // order_id: dataorderdetail,
-                    order_id:"Transaction_" + Math.floor(9000000 + Math.random() * 9000000),
+                    order_id: dataorderdetail,
+                    // order_id:"Transaction_" + Math.floor(9000000 + Math.random() * 9000000),
                     // "YOUR-ORDERID-" + Math.floor(1000000 + Math.random() * 9000000),
                     gross_amount: +amount
                     // dataOrder.fullPayments
