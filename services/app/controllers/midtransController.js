@@ -27,7 +27,16 @@ class MidtransController {
                     rescheduleDate: null,
                     rescheduleStatus: null
                 })
-            } else {
+            } else if(orderId) {                
+                await Order.update({
+                    paymentStatus: paymentStatus,
+                },
+                    {
+                        where: {
+                            id: orderId
+                        }
+                    }
+                )
                 dataOrder = await Order.findByPk(orderId)
             }
 
@@ -68,12 +77,18 @@ class MidtransController {
                 isProduction: false,
                 serverKey: process.env.MIDTRANS_SERVER_KEY
             });
+            let dataorderdetail
+            if (status === 'full' || status === 'dp') {
+                dataorderdetail = dataOrder.id
+            } else {
+                dataorderdetail = dataOrder.id + ' - ' + status
+            } 
 
             let parameter = {
                 transaction_details: {
-                    order_id: dataOrder.id,
+                    order_id: dataorderdetail,
                     // "YOUR-ORDERID-" + Math.floor(1000000 + Math.random() * 9000000),
-                    gross_amount: amount
+                    gross_amount: +amount
                     // dataOrder.fullPayments
                 },
                 credit_card: {

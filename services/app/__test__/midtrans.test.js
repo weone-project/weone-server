@@ -98,51 +98,8 @@ describe('/categories -  CRUD', () => {
                     paymentStatus: "Belum lunas",
                     downPayment: 12987,
                     quantity: 6,
-                    notes: "bayar woy"
-                })
-
-            // console.log(res.body, '<---- BODY');
-            expect(res.status).toBe(201)
-            expect(res.body).toBeInstanceOf(Object)
-            expect(res.body).toHaveProperty('token')
-            expect(res.body).toHaveProperty('redirect_url')
-        })
-
-        it('should return 201 - POST midtrans token with order id', async () => {
-            const res = await request(app)
-                .post('/midtrans/dp')
-                .set("access_token", validToken)
-                .send({
-                    UserId: 1,
-                    productId:1,
-                    reservationDate: "2023-02-03",
-                    paymentStatus: "Belum lunas",
-                    downPayment: 12987,
-                    quantity: 6,
                     notes: "bayar woy",
-                    orderId:1
-                })
-
-            // console.log(res.body, '<---- BODY');
-            expect(res.status).toBe(201)
-            expect(res.body).toBeInstanceOf(Object)
-            expect(res.body).toHaveProperty('token')
-            expect(res.body).toHaveProperty('redirect_url')
-        })
-
-        it('should return 201 - POST midtrans token with order id', async () => {
-            const res = await request(app)
-                .post('/midtrans/full')
-                .set("access_token", validToken)
-                .send({
-                    UserId: 1,
-                    productId:1,
-                    reservationDate: "2023-02-03",
-                    paymentStatus: "Belum lunas",
-                    downPayment: 0,
-                    quantity: 6,
-                    notes: "bayar woy",
-                    orderId:1
+                    fullPayment:10000000
                 })
 
             // console.log(res.body, '<---- BODY');
@@ -164,7 +121,54 @@ describe('/categories -  CRUD', () => {
                     downPayment: 12987,
                     quantity: 6,
                     notes: "bayar woy",
-                    orderId:1
+                    orderId:1,
+                    fullPayment:10000000
+                })
+
+            // console.log(res.body, '<---- BODY');
+            expect(res.status).toBe(201)
+            expect(res.body).toBeInstanceOf(Object)
+            expect(res.body).toHaveProperty('token')
+            expect(res.body).toHaveProperty('redirect_url')
+        })
+
+        it('should return 201 - POST midtrans token with order id fullpayment', async () => {
+            const res = await request(app)
+                .post('/midtrans/full')
+                .set("access_token", validToken)
+                .send({
+                    UserId: 1,
+                    productId:1,
+                    reservationDate: "2023-02-03",
+                    paymentStatus: "Belum lunas",
+                    downPayment: 0,
+                    quantity: 6,
+                    notes: "bayar woy",
+                    orderId:2,
+                    fullPayment:100000
+                })
+
+            // console.log(res.body, '<---- BODY');
+            expect(res.status).toBe(201)
+            expect(res.body).toBeInstanceOf(Object)
+            expect(res.body).toHaveProperty('token')
+            expect(res.body).toHaveProperty('redirect_url')
+        })
+
+        it('should return 201 - POST midtrans token with order id', async () => {
+            const res = await request(app)
+                .post('/midtrans/remaining')
+                .set("access_token", validToken)
+                .send({
+                    UserId: 1,
+                    productId:1,
+                    reservationDate: "2023-02-03",
+                    paymentStatus: "Belum lunas",
+                    downPayment: 12987,
+                    quantity: 6,
+                    notes: "bayar woy",
+                    orderId:1,
+                    fullPayment:10000000
                 })
 
             // console.log(res.body, '<---- BODY');
