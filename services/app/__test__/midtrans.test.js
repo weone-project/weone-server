@@ -3,7 +3,9 @@ const app = require('../app')
 const { sequelize } = require('../models')
 const { queryInterface } = sequelize
 const { Category, User, Vendor, Product, Order } = require('../models')
-let access_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjcyOTMxNTA2fQ.SwrY-SWcyCldGPrneHEYzXcDQ5yUwOdxEPBSJbRBEDc'
+const { createToken } = require('../helpers/jwt')
+let validToken
+let invalidToken
 
 beforeAll(async () => {
     try {
@@ -19,6 +21,11 @@ beforeAll(async () => {
             el.createdAt = new Date()
             el.updatedAt = new Date()
         })
+        validToken=createToken({
+            id:1
+        })
+        invalidToken =
+      '12345678eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXIwMUBtYWlsLmNvbSIsImlkIjoxLCJpYXQiOjE2MjI2MDk2NTF9';
         await queryInterface.bulkInsert('Users', userJSON)
 
         let vendorJSON = require('../json/vendors.json')
@@ -80,9 +87,85 @@ afterAll(async () => {
 // MIDTRANS
 describe('/categories -  CRUD', () => {
     describe('SUCCESS CASE: ', () => {
-        it('should return 201 - POST midtrans token', async () => {
+        it('should return 201 - POST midtrans token with new order', async () => {
             const res = await request(app)
-                .post('/midtrans/1')
+                .post('/midtrans/dp')
+                .set("access_token", validToken)
+                .send({
+                    UserId: 1,
+                    productId:1,
+                    reservationDate: "2023-02-03",
+                    paymentStatus: "Belum lunas",
+                    downPayment: 12987,
+                    quantity: 6,
+                    notes: "bayar woy"
+                })
+
+            // console.log(res.body, '<---- BODY');
+            expect(res.status).toBe(201)
+            expect(res.body).toBeInstanceOf(Object)
+            expect(res.body).toHaveProperty('token')
+            expect(res.body).toHaveProperty('redirect_url')
+        })
+
+        it('should return 201 - POST midtrans token with order id', async () => {
+            const res = await request(app)
+                .post('/midtrans/dp')
+                .set("access_token", validToken)
+                .send({
+                    UserId: 1,
+                    productId:1,
+                    reservationDate: "2023-02-03",
+                    paymentStatus: "Belum lunas",
+                    downPayment: 12987,
+                    quantity: 6,
+                    notes: "bayar woy",
+                    orderId:1
+                })
+
+            // console.log(res.body, '<---- BODY');
+            expect(res.status).toBe(201)
+            expect(res.body).toBeInstanceOf(Object)
+            expect(res.body).toHaveProperty('token')
+            expect(res.body).toHaveProperty('redirect_url')
+        })
+
+        it('should return 201 - POST midtrans token with order id', async () => {
+            const res = await request(app)
+                .post('/midtrans/full')
+                .set("access_token", validToken)
+                .send({
+                    UserId: 1,
+                    productId:1,
+                    reservationDate: "2023-02-03",
+                    paymentStatus: "Belum lunas",
+                    downPayment: 0,
+                    quantity: 6,
+                    notes: "bayar woy",
+                    orderId:1
+                })
+
+            // console.log(res.body, '<---- BODY');
+            expect(res.status).toBe(201)
+            expect(res.body).toBeInstanceOf(Object)
+            expect(res.body).toHaveProperty('token')
+            expect(res.body).toHaveProperty('redirect_url')
+        })
+
+        it('should return 201 - POST midtrans token with order id', async () => {
+            const res = await request(app)
+                .post('/midtrans/remaining')
+                .set("access_token", validToken)
+                .send({
+                    UserId: 1,
+                    productId:1,
+                    reservationDate: "2023-02-03",
+                    paymentStatus: "Belum lunas",
+                    downPayment: 12987,
+                    quantity: 6,
+                    notes: "bayar woy",
+                    orderId:1
+                })
 
             // console.log(res.body, '<---- BODY');
             expect(res.status).toBe(201)
@@ -93,13 +176,125 @@ describe('/categories -  CRUD', () => {
     })
 
     describe('FAILED CASE: ', () => {
-        it('should return 404 - POST midtrans - no order id', async () => {
+        it('should return 404 - POST midtrans - wrong product id', async () => {
             const res = await request(app)
-                .post('/midtrans/999')
+                .post('/midtrans/dp')
+                .set("access_token", validToken)
+                .send({
+                    UserId: 1,
+                    productId:999,
+                    reservationDate: "2023-02-03",
+                    paymentStatus: "Belum lunas",
+                    downPayment: 12987,
+                    quantity: 6,
+                    notes: "bayar woy"
+                })
 
             // console.log(res.body, '<---- BODY');
             expect(res.status).toBe(404)
             expect(res.body).toBeInstanceOf(Object)
+            expect(res.body).toHaveProperty('message')
+        })
+
+        it('should return 401 - POST midtrans token with new order but invalid token', async () => {
+            const res = await request(app)
+                .post('/midtrans/dp')
+                .set("access_token", invalidToken)
+                .send({
+                    UserId: 1,
+                    productId:1,
+                    reservationDate: "2023-02-03",
+                    paymentStatus: "Belum lunas",
+                    downPayment: 12987,
+                    quantity: 6,
+                    notes: "bayar woy"
+                })
+
+            // console.log(res.body, '<---- BODY');
+            expect(res.body).toBeInstanceOf(Object)
+            expect(res.status).toBe(401)
+            expect(res.body).toHaveProperty('message')
+        })
+
+        it('should return 401 - POST midtrans token with order id but invalid token', async () => {
+            const res = await request(app)
+                .post('/midtrans/dp')
+                .set("access_token", invalidToken)
+                .send({
+                    UserId: 1,
+                    productId:1,
+                    reservationDate: "2023-02-03",
+                    paymentStatus: "Belum lunas",
+                    downPayment: 12987,
+                    quantity: 6,
+                    notes: "bayar woy",
+                    orderId:1
+                })
+
+            // console.log(res.body, '<---- BODY');
+            expect(res.body).toBeInstanceOf(Object)
+            expect(res.status).toBe(401)
+            expect(res.body).toHaveProperty('message')
+        })
+
+        it('should return 401 - POST midtrans token with new order and full payment but invalid token', async () => {
+            const res = await request(app)
+                .post('/midtrans/full')
+                .set("access_token", invalidToken)
+                .send({
+                    UserId: 1,
+                    productId:1,
+                    reservationDate: "2023-02-03",
+                    paymentStatus: "Belum lunas",
+                    downPayment: 12987,
+                    quantity: 6,
+                    notes: "bayar woy",
+                })
+            // console.log(res.body, '<---- BODY');
+            expect(res.body).toBeInstanceOf(Object)
+            expect(res.status).toBe(401)
+            expect(res.body).toHaveProperty('message')
+        })
+
+        it('should return 401 - POST midtrans token with order id but invalid token and full payment', async () => {
+            const res = await request(app)
+                .post('/midtrans/full')
+                .set("access_token", invalidToken)
+                .send({
+                    UserId: 1,
+                    productId:1,
+                    reservationDate: "2023-02-03",
+                    paymentStatus: "Belum lunas",
+                    downPayment: 12987,
+                    quantity: 6,
+                    notes: "bayar woy",
+                    orderId:1
+                })
+
+            // console.log(res.body, '<---- BODY');
+            expect(res.body).toBeInstanceOf(Object)
+            expect(res.status).toBe(401)
+            expect(res.body).toHaveProperty('message')
+        })
+
+        it('should return 401 - POST midtrans token with order id and remaining payment but invalid token', async () => {
+            const res = await request(app)
+                .post('/midtrans/remaining')
+                .set("access_token", invalidToken)
+                .send({
+                    UserId: 1,
+                    productId:1,
+                    reservationDate: "2023-02-03",
+                    paymentStatus: "Belum lunas",
+                    downPayment: 12987,
+                    quantity: 6,
+                    notes: "bayar woy",
+                    orderId:1
+                })
+
+            // console.log(res.body, '<---- BODY');
+            expect(res.body).toBeInstanceOf(Object)
+            expect(res.status).toBe(401)
             expect(res.body).toHaveProperty('message')
         })
     })
