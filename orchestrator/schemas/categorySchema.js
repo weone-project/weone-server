@@ -37,7 +37,7 @@ const categoryResolvers = {
 
             } catch (error) {
                 console.log(error, '<---- error getCategory resolvers');
-                throw error
+                throw error.response.data.response.data
             }
         },
     },
@@ -54,7 +54,7 @@ const categoryResolvers = {
                 return data;
             } catch (error) {
                 console.log(error, '<--- error createCategory orches');
-                throw error;
+                throw error.response.data;
             }
         },
 
@@ -69,7 +69,7 @@ const categoryResolvers = {
                 return data
             } catch (error) {
                 console.log(error, '<--- error deleteCategory orches');
-                throw error
+                throw error.response.data
             }
         },
     }

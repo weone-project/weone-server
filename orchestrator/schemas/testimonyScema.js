@@ -80,7 +80,7 @@ const testimonyResolvers = {
                 }
             } catch (error) {
                 console.log(error, '<--- error getProducts schema');
-                throw error
+                throw error.response.data
             }
         }
     },
@@ -102,7 +102,7 @@ const testimonyResolvers = {
                 return data;
             } catch (error) {
                 console.log(error, '<--- error create product orchestra');
-                throw error;
+                throw error.response.data;
             }
         },
 
@@ -119,8 +119,8 @@ const testimonyResolvers = {
                 })
                 await redis.del('get:testimonies');
                 return data;
-            } catch (err) {
-                throw err;
+            } catch (error) {
+                throw error.response.data;
             }
         },
 
@@ -139,7 +139,7 @@ const testimonyResolvers = {
             } catch (error) {
                 // console.log(error, '<--- error deleteProduct orches');
                 // console.log(error.response.data.message)
-                throw error
+                throw error.response.data
             }
         },
     },

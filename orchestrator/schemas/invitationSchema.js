@@ -174,7 +174,7 @@ const invitationResolvers = {
 
       } catch (error) {
         // console.log(error, '<---- error getInvitations schema');
-        throw error
+        throw error.response.data
       }
     },
 
@@ -192,7 +192,7 @@ const invitationResolvers = {
 
       } catch (error) {
         // console.log(error, '<---- error getInvitationById schema');
-        throw error
+        throw error.response.data
       }
     },
 
@@ -265,7 +265,7 @@ const invitationResolvers = {
         return data;
       } catch (error) {
         console.log(error, '<---- error createInvitation schema');
-        throw error
+        throw error.response.data
       }
     },
 
@@ -282,8 +282,8 @@ const invitationResolvers = {
         })
         await redis.del('get:invitations');
         return data;
-      } catch (err) {
-        throw err;
+      } catch (error) {
+        throw error.response.data;
       }
     },
 

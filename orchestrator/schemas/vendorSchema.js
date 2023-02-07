@@ -79,7 +79,7 @@ const vendorResolvers = {
                 }
             } catch (error) {
                 // console.log(error, '<---- error getVendors schema');
-                throw error
+                throw error.response.data
             }
         },
 
@@ -94,7 +94,7 @@ const vendorResolvers = {
                 return data
             } catch (error) {
                 // console.log(error, '<--- error getVendorsById schema');
-                throw error
+                throw error.response.data
             }
         }
     },
@@ -111,7 +111,7 @@ const vendorResolvers = {
                 return data;
             } catch (error) {
                 // console.log(error, '<--- error createVendor orches');
-                throw error;
+                throw error.response.data;
             }
         },
 
@@ -126,7 +126,7 @@ const vendorResolvers = {
                 return data
             } catch (error) {
                 // console.log(error, '<--- error loginVendor schema');
-                throw error
+                throw error.response.data
             }
         },
 
@@ -145,8 +145,8 @@ const vendorResolvers = {
 
                 await redis.del('get:vendors');
                 return data;
-            } catch (err) {
-                throw err;
+            } catch (error) {
+                throw error.response.data;
             }
         },
 
@@ -161,7 +161,7 @@ const vendorResolvers = {
                 return data
             } catch (error) {
                 // console.log(error, '<--- error deleteVendor orches');
-                throw error
+                throw error.response.data
             }
         },
     }

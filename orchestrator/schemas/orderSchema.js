@@ -136,7 +136,7 @@ const orderResolvers = {
                 }
             } catch (error) {
                 console.log(error, '<--- error getProducts schema');
-                throw error
+                throw error.response.data
             }
         },
         getOrderUser: async (_,args) => {
@@ -153,7 +153,7 @@ const orderResolvers = {
                 
             } catch (error) {
                 console.log(error, '<--- error getProducts schema');
-                throw error
+                throw error.response.data
             }
         },
         getOrdersVendor: async (_,args) => {
@@ -175,7 +175,7 @@ const orderResolvers = {
                 }
             } catch (error) {
                 console.log(error, '<--- error getProducts schema');
-                throw error
+                throw error.response.data
             }
         },
         getOrderVendor: async (_,args) => {
@@ -192,7 +192,7 @@ const orderResolvers = {
                 
             } catch (error) {
                 console.log(error, '<--- error getProducts schema');
-                throw error
+                throw error.response.data
             }
         },
         getOrdersUserFilter: async (_,args) => {
@@ -214,7 +214,7 @@ const orderResolvers = {
                 }
             } catch (error) {
                 console.log(error, '<--- error getProducts schema');
-                throw error
+                throw error.response.data
             }
         },
         getOrdersVendorFilter: async (_,args) => {
@@ -236,7 +236,7 @@ const orderResolvers = {
                 }
             } catch (error) {
                 console.log(error, '<--- error getProducts schema');
-                throw error
+                throw error.response.data
             }
         }
     },
@@ -257,7 +257,7 @@ const orderResolvers = {
                 return data;
             } catch (error) {
                 // console.log(error, '<--- error create product orchestra');
-                throw error;
+                throw error.response.data;
             }
         },
         // deleteOrder: async (_, args) => {
@@ -271,7 +271,7 @@ const orderResolvers = {
         //         return data
         //     } catch (error) {
         //         console.log(error, '<--- error deleteProduct orches');
-        //         throw error
+        //         throw error.response.data
         //     }
         // },
         updateOrderUser: async (_, args) => {
@@ -287,8 +287,8 @@ const orderResolvers = {
                 })
                 await redis.del('get:testimonies');
                 return data;
-            } catch (err) {
-                throw err;
+            } catch (error) {
+                throw error.response.data;
             }
         },
         updateOrderVendor: async (_, args) => {
@@ -304,8 +304,8 @@ const orderResolvers = {
                 })
                 await redis.del('get:testimonies');
                 return data;
-            } catch (err) {
-                throw err;
+            } catch (error) {
+                throw error.response.data;
             }
         },
         updateReschedule: async (_, args) => {
@@ -321,8 +321,8 @@ const orderResolvers = {
                 })
                 await redis.del('get:testimonies');
                 return data;
-            } catch (err) {
-                throw err;
+            } catch (error) {
+                throw error.response.data;
             }
         }
     }

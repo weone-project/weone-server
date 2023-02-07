@@ -77,7 +77,7 @@ const userResolvers = {
         }
       } catch (error) {
         console.log(error, '<---- error getUsers schema');
-        throw error
+        throw error.response.data
       }
     },
 
@@ -96,7 +96,7 @@ const userResolvers = {
       }
       catch (error) {
         console.log(error, '<--- error getUserById schema');
-        throw error
+        throw error.response.data
       }
     }
   },
@@ -112,7 +112,7 @@ const userResolvers = {
         return data;
       } catch (error) {
         console.log(error, '<--- error registerUser orches');
-        throw error;
+        throw error.response.data;
       }
     },
 
@@ -127,7 +127,7 @@ const userResolvers = {
         return data
       } catch (error) {
         console.log(error, '<--- error loginUser schema');
-        throw error
+        throw error.response.data
       }
     }
   }
