@@ -18,7 +18,7 @@ class ProductController {
                 ],
                 where: { VendorId: vendorId }
 
-                
+
             })
             res.status(200).json(dataProduct)
 
@@ -49,27 +49,27 @@ class ProductController {
         }
     }
 
-    static async getAllProductActive(req, res, next) {
-        try {
-            const vendorId = req.vendor.id
-            const dataProduct = await Product.findAll({
-                include: [
-                    {
-                        // attributes: { exclude: ['password'] },
-                        model: Vendor
-                    },
-                    {
-                        model: Category
-                    }
-                ],
-                where: { status: 'Active' }
-            })
-            res.status(200).json(dataProduct)
+    // static async getAllProductActive(req, res, next) {
+    //     try {
+    //         const vendorId = req.vendor.id
+    //         const dataProduct = await Product.findAll({
+    //             include: [
+    //                 {
+    //                     // attributes: { exclude: ['password'] },
+    //                     model: Vendor
+    //                 },
+    //                 {
+    //                     model: Category
+    //                 }
+    //             ],
+    //             where: { status: 'Active' }
+    //         })
+    //         res.status(200).json(dataProduct)
 
-        } catch (error) {
-            next(error)
-        }
-    }
+    //     } catch (error) {
+    //         next(error)
+    //     }
+    // }
 
     static async getProductById(req, res, next) {
         try {
