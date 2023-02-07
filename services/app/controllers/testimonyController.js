@@ -15,8 +15,7 @@ class TestimonyController {
                     {
                         model: Product
                     }
-                ]
-            }, {
+                ],
                 where: {
                     ProductId: productId
                 }
