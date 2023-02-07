@@ -88,7 +88,7 @@ const productResolvers = {
                 }
             } catch (error) {
                 // console.log(error, '<--- error getProducts schema');
-                throw error
+                throw error.response.data
             }
         },
 
@@ -108,7 +108,7 @@ const productResolvers = {
                 }
             } catch (error) {
                 // console.log(error, '<--- error getProducts schema');
-                throw error
+                throw error.response.data
             }
         },
 
@@ -123,7 +123,7 @@ const productResolvers = {
                 return data
             } catch (error) {
                 // console.log(error, '<--- error getVendorsById schema');
-                throw error
+                throw error.response.data
             }
         }
     },
@@ -143,7 +143,7 @@ const productResolvers = {
                 return data;
             } catch (error) {
                 // console.log(error, '<--- error create product orchestra');
-                throw error;
+                throw error.response.data;
             }
         },
 
@@ -174,7 +174,7 @@ const productResolvers = {
                 return data
             } catch (error) {
                 // console.log(error, '<--- error deleteProduct orches');
-                throw error
+                throw error.response.data
             }
         },
     },

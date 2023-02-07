@@ -68,10 +68,10 @@ class MidtransController {
             let amount = 0
             if (status === 'full') {
                 amount = dataOrder.fullPayment
-                sendEmailOrderDp(dataUser.email, chosenProduct.name, paymentStatus, dataOrder.fullPayment)
+                // sendEmailOrderDp(dataUser.email, chosenProduct.name, paymentStatus, dataOrder.fullPayment)
             } else if (status === 'dp') {
                 amount = dataOrder.downPayment
-                sendEmailOrderFull(dataUser.email, chosenProduct.name, paymentStatus, dataOrder.downPayment)
+                // sendEmailOrderFull(dataUser.email, chosenProduct.name, paymentStatus, dataOrder.downPayment)
             } else {
                 amount = dataOrder.fullPayment - dataOrder.downPayment
             }

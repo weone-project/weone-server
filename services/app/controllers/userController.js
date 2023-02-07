@@ -8,7 +8,7 @@ class UserController {
       const { name, email, password, phoneNumber, address, userImgUrl } = req.body
       let userData = await User.create({ name, email, password, phoneNumber, address, userImgUrl })
 
-      sendEmailRegister(email)
+      // sendEmailRegister(email)
 
       res.status(201).json(userData)
     } catch (error) {
