@@ -55,6 +55,34 @@ class UserController {
     }
   }
 
+  static async googleLogin(req, res, next) {
+    try {
+      const { google_token } = req.headers;
+      const { email, name } = await verify(google_token);
+      const [user, created] = await User.findOrCreate({
+        where: { email },
+        defaults: {
+          email,
+          username: name,
+          password: "dariMbahGugel",
+        },
+        hooks: false,
+      });
+      const access_token = signToken({
+        id: user.id,  
+        email,
+      });
+      res.json({
+        access_token,
+        id: user.id,
+        email,
+        username: user.username,
+      });
+    } catch (err) {
+      next(err);
+    }
+  }
+
   static async getAllUsers(req, res, next) {
     try {
       let allUsers = await User.findAll({

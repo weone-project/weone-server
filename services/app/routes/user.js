@@ -7,6 +7,7 @@ const authenticationUser = require('../middlewares/authenUser')
 router.get('/', authenticationUser, UserController.getAllUsers)
 router.post('/register', UserController.registerUser)
 router.post('/login', UserController.loginUser)
+router.post('/google-login', UserController.googleLogin)
 router.get('/:id', authenticationUser, UserController.getUserById)
 
 
