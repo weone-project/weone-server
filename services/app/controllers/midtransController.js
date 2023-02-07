@@ -1,5 +1,7 @@
 const { Order, User,Product } = require('../models')
 const midtransClient = require('midtrans-client');
+const sendEmailOrderDp = require('../helpers/nodemailer_order_dp');
+const sendEmailOrderFull = require('../helpers/nodemailer_order_full');
 
 class MidtransController {
     static async midtransToken(req, res, next) {
@@ -8,6 +10,7 @@ class MidtransController {
             let { status } = req.params
             let { reservationDate, paymentStatus, downPayment, quantity, notes, productId, fullPayment, orderId } = req.body
             let chosenProduct = await Product.findByPk(productId)
+            let dataUser = await User.findByPk(userId)
             // fullPayment 
             if (!chosenProduct) {
                 throw { name: 'Data not found' }
@@ -27,6 +30,8 @@ class MidtransController {
                     rescheduleDate: null,
                     rescheduleStatus: null
                 })
+
+                
             } else {
                 dataOrder = await Order.findByPk(orderId)
             }
@@ -56,8 +61,10 @@ class MidtransController {
             let amount = 0
             if (status === 'full') {
                 amount = dataOrder.fullPayment
+                sendEmailOrderDp(dataUser.email, chosenProduct.name, paymentStatus, dataOrder.fullPayment)
             } else if (status === 'dp') {
                 amount = dataOrder.downPayment
+                sendEmailOrderFull(dataUser.email, chosenProduct.name, paymentStatus, dataOrder.downPayment)
             } else {
                 amount = dataOrder.fullPayment - dataOrder.downPayment
             }

@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer')
 
-function sendEmail(email) {
+function sendEmailRegister(email, transaction_details) {
     const transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
@@ -14,8 +14,14 @@ function sendEmail(email) {
     let details = {
         from: process.env.NODEMAILER_EMAIL,
         to: email,
-        subject: `Congrats ${email}!`,
-        text: "Your account already created, Please login to your with your details, and Enjoy!"
+        subject: `Thanks for register! ${email}!`,
+        text: `Welcome and please anjoy our service! Thanks for trusting us for your special day.`,
+        html: '<h1>Welcome and please enjoy our services!</h1><br/> <img src="cid:thank-you"/>',
+        attachments: [{
+            filename: 'thank-you.jpg',
+            path: __dirname+'/thank-you.jpg',
+            cid: 'thank-you'
+        }]
     }
 
     transporter.sendMail(details, (err) => {
@@ -27,4 +33,4 @@ function sendEmail(email) {
     })
 }
 
-module.exports = sendEmail
+module.exports = sendEmailRegister
