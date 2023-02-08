@@ -26,6 +26,10 @@ const vendorTypeDefs = `#GraphQL
         vendorImgUrl: String
     }
 
+    input UpdateVendorProductForm {
+        status: String
+    }
+
     input UpdateVendorForm {
         name: String,
         phoneNumber: String
@@ -56,6 +60,7 @@ const vendorTypeDefs = `#GraphQL
         createVendor(form: VendorForm): Vendor
         deleteVendor(id: ID): Message
         loginVendor(form: LoginVendorForm): LoginResponse
+        updateVendorProduct(form: UpdateVendorProductForm, productId: ID, access_token: String): Message
         updateVendor(form: UpdateVendorForm, access_token: String): Message
     }
 `
@@ -88,7 +93,7 @@ const vendorResolvers = {
                 const { id } = args
                 const { data } = await axios({
                     method: 'get',
-                    url: BASE_URL + '/vendors/' + id  
+                    url: BASE_URL + '/vendors/' + id
                 })
 
                 return data
@@ -133,7 +138,7 @@ const vendorResolvers = {
         updateVendor: async (_, args) => {
             try {
                 // const { id } = args
-                const {access_token} = args
+                const { access_token } = args
                 const { data } = await axios({
                     method: 'put',
                     url: `${BASE_URL}/vendors`,
@@ -144,6 +149,26 @@ const vendorResolvers = {
                 })
 
                 await redis.del('get:vendors');
+                return data;
+            } catch (error) {
+                throw error.response.data;
+            }
+        },
+
+        updateVendorProduct: async (_, args) => {
+            try {
+                // const { id } = args
+                const { access_token, productId } = args
+                const { data } = await axios({
+                    method: 'patch',
+                    url: `${BASE_URL}/vendors/${productId}`,
+                    headers: {
+                        access_token: access_token
+                    },
+                    data: args.form,
+                })
+
+                // await redis.del('get:products');
                 return data;
             } catch (error) {
                 throw error.response.data;

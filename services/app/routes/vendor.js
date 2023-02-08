@@ -10,6 +10,7 @@ router.post('/register', VendorController.registerVendor)
 router.post('/login', VendorController.loginVendor)
 router.get('/:id', VendorController.getVendorById)
 router.delete('/:id', VendorController.deleteVendor)
+router.patch('/:productId', authenticationVendor, VendorController.updateStatusProduct)
 router.patch('/orders/:orderId', VendorController.updateStatusOrder)
 
 

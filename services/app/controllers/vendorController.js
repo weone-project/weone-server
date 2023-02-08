@@ -1,6 +1,6 @@
 const { comparePassword } = require('../helpers/bcrypt');
 const { createToken } = require('../helpers/jwt');
-const { Vendor, Order } = require('../models')
+const { Vendor, Order, Product } = require('../models')
 
 class VendorController {
     static async registerVendor(req, res, next) {
@@ -59,7 +59,7 @@ class VendorController {
             if (!findVendor) throw { name: 'Data not found' }
 
             const { name, phoneNumber, city, province, address, vendorImgUrl } = req.body
-            if(!name) throw {name: 'Name is required'}
+            if (!name) throw { name: 'Name is required' }
 
             const updatedVendor = await Vendor.update({
                 name,
@@ -87,7 +87,7 @@ class VendorController {
             const dataVendor = await Vendor.findAll()
 
             res.status(200).json(dataVendor)
- 
+
         } catch (error) {
             // console.log(error, '<---- error getAllVendor - 00');
             next(error)
@@ -123,6 +123,28 @@ class VendorController {
         }
     }
 
+    static async updateStatusProduct(req, res, next) {
+        try {
+            // console.log('MASUK PATCH===');
+            const { productId } = req.params
+            const { status } = req.body
+
+            let dataProduct = await Product.findByPk(productId)
+            if (!dataProduct) {
+                throw { name: 'Data not found' }
+            }
+            await Product.update({ status }, {
+                where: { id: productId }
+            })
+
+            res.status(201).json({ message: `Status for ${dataProduct.name} changed from ${dataProduct.status} to ${status}` })
+
+        } catch (error) {
+            console.log(error, '<---- ERROR DI PATCH');
+            next(error)
+        }
+    }
+
     static async updateStatusOrder(req, res, next) {
         try {
             console.log('MASUK PATCH===');
@@ -136,7 +158,7 @@ class VendorController {
                 throw { name: 'Data not found' }
             }
             await Order.update({ rescheduleStatus }, {
-                where: { id: orderId  }
+                where: { id: orderId }
             })
 
             res.status(201).json({ message: `Status for ${dataOrder.rescheduleStatus} changed from ${dataOrder.rescheduleStatus} to ${rescheduleStatus}` })
