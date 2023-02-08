@@ -20,10 +20,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull : {
-          msg: "Nama Band Mohon diisi"
+          msg: "Band Name is required"
         },
         notEmpty : {
-          msg: "Nama band Mohon diisi"
+          msg: "Band Name is required"
         }
       }
     },
@@ -32,10 +32,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull : {
-          msg: "Judul Lagu Mohon diisi"
+          msg: "Song Title is required"
         },
         notEmpty : {
-          msg: "Judul Lagu Mohon diisi"
+          msg: "Song Title is required"
         }
       }
     },
@@ -44,10 +44,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull : {
-          msg: "Source Url Lagu Mohon diisi"
+          msg: "Song Url is required"
         },
         notEmpty : {
-          msg: "Source Url Lagu Mohon diisi"
+          msg: "Song Url is required"
         }
       }
     },

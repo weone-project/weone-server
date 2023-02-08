@@ -23,10 +23,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull: {
-          msg: "Quote Mohon diisi"
+          msg: "Quote is required"
         },
         notEmpty: {
-          msg: "Quote Mohon diisi"
+          msg: "Quote is required"
         }
       }
     },
@@ -35,10 +35,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull: {
-          msg: "Sumber Quote Mohon diisi"
+          msg: "Quote source is required"
         },
         notEmpty: {
-          msg: "Sumber Quote Mohon diisi"
+          msg: "Quote source is required"
         }
       }
     },
@@ -47,10 +47,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull: {
-          msg: "Nama Lengkap Mohon diisi"
+          msg: "Full Name is required"
         },
         notEmpty: {
-          msg: "Nama Lengkap Mohon diisi"
+          msg: "Full Name is required"
         }
       }
     },
@@ -59,10 +59,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull: {
-          msg: "Foto Mohon diupload"
+          msg: "Bride Image is required"
         },
         notEmpty: {
-          msg: "Foto Mohon diupload"
+          msg: "Bride Image is required"
         }
       }
     },
@@ -71,10 +71,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull: {
-          msg: "Nama Panggilan Mohon diisi"
+          msg: "Bride Nickname is required"
         },
         notEmpty: {
-          msg: "Nama Panggilan Mohon diisi"
+          msg: "Bride Nickname is required"
         }
       }
     },
@@ -83,10 +83,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull: {
-          msg: "Nama Ibu Mohon diisi"
+          msg: "Bride's mom is required"
         },
         notEmpty: {
-          msg: "Nama Ibu Mohon diisi"
+          msg: "Bride's mom is required"
         }
       }
     },
@@ -95,10 +95,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull: {
-          msg: "Nama Ayah Mohon diisi"
+          msg: "Bride's father is required"
         },
         notEmpty: {
-          msg: "Nama Ayah Mohon diisi"
+          msg: "Bride's father is required"
         }
       }
     },
@@ -107,10 +107,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull: {
-          msg: "Nama Lengkap Mohon diisi"
+          msg: "Groom name is required"
         },
         notEmpty: {
-          msg: "Nama Lengkap Mohon diisi"
+          msg: "Groom name is required"
         }
       }
     },
@@ -119,10 +119,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull: {
-          msg: "Foto Mohon diupload"
+          msg: "Groom image is required"
         },
         notEmpty: {
-          msg: "Foto Mohon diupload"
+          msg: "Groom image is required"
         }
       }
     },
@@ -131,10 +131,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull: {
-          msg: "Nama Panggilan Mohon diisi"
+          msg: "Groom nickname is required"
         },
         notEmpty: {
-          msg: "Nama Panggilan Mohon diisi"
+          msg: "Groom nickname is required"
         }
       }
     },
@@ -143,10 +143,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull: {
-          msg: "Nama Ibu Mohon diisi"
+          msg: "Groom's mom is required"
         },
         notEmpty: {
-          msg: "Nama Ibu Mohon diisi"
+          msg: "Groom's mom is required"
         }
       }
     },
@@ -155,10 +155,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull: {
-          msg: "Nama Ayah Mohon diisi"
+          msg: "Groom's father is required"
         },
         notEmpty: {
-          msg: "Nama Ayah Mohon diisi"
+          msg: "Groom's father is required"
         }
       }
     },
@@ -167,10 +167,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull: {
-          msg: "Nama Acara Akad/Pemberkatan Mohon diisi"
+          msg: "Matrimony name is required"
         },
         notEmpty: {
-          msg: "Nama Acara Akad/Pemberkatan Mohon diisi"
+          msg: "Matrimony name is required"
         }
       }
     },
@@ -179,10 +179,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull: {
-          msg: "Tanggal Acara Mohon diisi"
+          msg: "Matrimony date is required"
         },
         notEmpty: {
-          msg: "Tanggal Acara Mohon diisi"
+          msg: "Matrimony date is required"
         }
       }
     },
@@ -191,10 +191,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull: {
-          msg: "jam Mulai Mohon diisi"
+          msg: "Matrimony time start is required"
         },
         notEmpty: {
-          msg: "Jam Mulai Mohon diisi"
+          msg: "Matrimony time start is required"
         }
       }
     },
@@ -203,10 +203,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull: {
-          msg: "Jam Selesai Mohon diisi"
+          msg: "Matrimony time end is required"
         },
         notEmpty: {
-          msg: "Jam Selesai Mohon diisi"
+          msg: "Matrimony time end is required"
         }
       }
     },
@@ -215,10 +215,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull: {
-          msg: "Nama Acara Resepsi Mohon diisi"
+          msg: "Ceremonial name is required"
         },
         notEmpty: {
-          msg: "Nama Acara Resepsi Mohon diisi"
+          msg: "Ceremonial name is required"
         }
       }
     },
@@ -227,10 +227,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull: {
-          msg: "Tanggal Acara Mohon diisi"
+          msg: "Ceremonial date is required"
         },
         notEmpty: {
-          msg: "Tanggal Acara Mohon diisi"
+          msg: "Ceremonial date is required"
         }
       }
     },
@@ -239,10 +239,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull: {
-          msg: "jam Mulai Mohon diisi"
+          msg: "Ceremonial time start is required"
         },
         notEmpty: {
-          msg: "Jam Mulai Mohon diisi"
+          msg: "Ceremonial time start is required"
         }
       }
     },
@@ -251,10 +251,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull: {
-          msg: "Jam Selesai Mohon diisi"
+          msg: "Ceremonial time end is required"
         },
         notEmpty: {
-          msg: "Jam Selesai Mohon diisi"
+          msg: "Ceremonial time end is required"
         }
       }
     },
@@ -264,10 +264,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull: {
-          msg: "Alamat Akad Mohon diisi"
+          msg: "Map location is required"
         },
         notEmpty: {
-          msg: "Alamat Akad Mohon diisi"
+          msg: "Map location is required"
         }
       }
     },
@@ -276,10 +276,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull: {
-          msg: "Alamat Resepsi Mohon diisi"
+          msg: "Matrimony address is required"
         },
         notEmpty: {
-          msg: "Alamat Resepsi Mohon diisi"
+          msg: "Matrimony address is required"
         }
       }
     },
@@ -288,10 +288,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull: {
-          msg: "Foto Mohon diupload"
+          msg: "Photo is required"
         },
         notEmpty: {
-          msg: "Foto Mohon diupload"
+          msg: "Photo is required"
         }
       }
     },
@@ -300,10 +300,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull: {
-          msg: "Story Mohon diisi"
+          msg: "Story is required"
         },
         notEmpty: {
-          msg: "Story Mohon diisi"
+          msg: "Story is required"
         }
       }
     },
@@ -312,10 +312,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull: {
-          msg: "Foto Mohon diupload"
+          msg: "Story image is required"
         },
         notEmpty: {
-          msg: "Foto Mohon diupload"
+          msg: "Story image is required"
         }
       }
     },
@@ -324,10 +324,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull: {
-          msg: "Nama Bank Mohon diisi"
+          msg: "Bank wallet is required"
         },
         notEmpty: {
-          msg: "Nama Bank Mohon diisi"
+          msg: "Bank wallet is required"
         }
       }
     },
@@ -336,10 +336,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull: {
-          msg: "Nomor Rekening Mohon diisi"
+          msg: "Wallet number is required"
         },
         notEmpty: {
-          msg: "Nomor Rekening Mohon diisi"
+          msg: "Wallet number is required"
         }
       }
     },
@@ -348,10 +348,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull: {
-          msg: "Nama Pemilik Rekening Mohon diisi"
+          msg: "Wallet owner is required"
         },
         notEmpty: {
-          msg: "Nama Pemilik Rekening Mohon diisi"
+          msg: "Wallet owner is required"
         }
       }
     },
@@ -360,10 +360,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull: {
-          msg: "Mohon Pilih Lagu Terlebih Dahulu"
+          msg: "Music is required"
         },
         notEmpty: {
-          msg: "Mohon Pilih Lagu Terlebih Dahulu"
+          msg: "Music is required"
         }
       }
     },

@@ -20,10 +20,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull: {
-          msg: "Nama Mohon diisi"
+          msg: "Name is required"
         },
         notEmpty: {
-          msg: "Nama Mohon diisi"
+          msg: "Name is required"
         }
       }
     },
@@ -32,10 +32,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull: {
-          msg: "Kehadiran mohon dipilih"
+          msg: "Presence is required"
         },
         notEmpty: {
-          msg: "Kehadiran Mohon dipilih"
+          msg: "Presence is required"
         }
       }
     },
@@ -44,10 +44,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull: {
-          msg: "Ucapan Mohon diisi"
+          msg: "Greetings is required"
         },
         notEmpty: {
-          msg: "Ucapan Mohon diisi"
+          msg: "Greetings is required"
         }
       }
     },
