@@ -249,14 +249,14 @@ class OrderController {
         try {
             let { orderId } = req.params
             let userId = req.user.id
-            let { paymentStatus, rescheduleStatus } = req.body
+            let { rescheduleDate, rescheduleStatus } = req.body
             let findOrder = await Order.findByPk(orderId)
             if (!findOrder) {
                 throw { name: 'Data not found' }
             }
-
+            
             let order = await Order.update({
-                paymentStatus: paymentStatus,
+                rescheduleDate: rescheduleDate,
                 rescheduleStatus: rescheduleStatus
             }, {
                 where: {
@@ -273,13 +273,12 @@ class OrderController {
         try {
             let { orderId } = req.params
             let vendorId = req.vendor.id
-            let { paymentStatus, rescheduleStatus } = req.body
+            let {  rescheduleStatus } = req.body
             let findOrder = await Order.findByPk(orderId)
             if (!findOrder) {
                 throw { name: 'Data not found' }
             }
             let order = await Order.update({
-                paymentStatus: paymentStatus,
                 rescheduleStatus: rescheduleStatus
             }, {
                 where: {
@@ -297,13 +296,12 @@ class OrderController {
         try {
             let { orderId } = req.params
             let userId = req.user.id
-            let { paymentStatus, rescheduleDate, rescheduleStatus } = req.body
+            let { rescheduleDate, rescheduleStatus } = req.body
             let findOrder = await Order.findByPk(orderId)
             if (!findOrder) {
                 throw { name: 'Data not found' }
             }
             let order = await Order.update({
-                paymentStatus: paymentStatus,
                 rescheduleDate: rescheduleDate,
                 rescheduleStatus: rescheduleStatus
             }, {
