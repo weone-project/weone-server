@@ -45,7 +45,7 @@ const midtransResolvers = {
                 return data
             } catch (error) {
                 // console.log(error, '<--- error midtrans schema');
-                throw error
+                throw error.response.data
             }
         }
 
