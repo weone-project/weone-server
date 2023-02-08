@@ -214,5 +214,41 @@
     "status": "Active",
     "VendorId": 4,
     "CategoryId": 5
+  },
+  {
+    "name": "Pink Blossom",
+    "description": "-",
+    "imgUrl": ["https://hariistimewa.com//_exclusive//themes//standar//thumbnail.jpg"],
+    "price": 150000,
+    "estimatedDay": 7,
+    "rating": 5,
+    "dpPrice": 0,
+    "status": "Active",
+    "VendorId": 6,
+    "CategoryId": 7
+  },
+  {
+    "name": "Blue Sky",
+    "description": "-",
+    "imgUrl": ["https://hariistimewa.com//_exclusive//themes//abstractwatercolor//thumbnail.jpg"],
+    "price": 150000,
+    "estimatedDay": 7,
+    "rating": 5,
+    "dpPrice": 0,
+    "status": "Active",
+    "VendorId": 6,
+    "CategoryId": 7
+  },
+  {
+    "name": "Green Floral",
+    "description": "-",
+    "imgUrl": ["https://hariistimewa.com//_exclusive//themes//elegantgold//thumbnail.jpg"],
+    "price": 150000,
+    "estimatedDay": 7,
+    "rating": 5,
+    "dpPrice": 0,
+    "status": "Active",
+    "VendorId": 6,
+    "CategoryId": 7
   }
 ]
