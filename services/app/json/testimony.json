@@ -1,17 +1,5 @@
 [
     {
-        "testimony": "Recommend banget nih",
-        "UserId":1,
-        "ProductId":1,
-        "rating":5
-    },
-    {
-        "testimony": "Recommend banget nih",
-        "UserId":1,
-        "ProductId":2,
-        "rating":4
-    },
-    {
         "testimony": "Musik dangdutnya mantap",
         "UserId":1,
         "ProductId":7,
