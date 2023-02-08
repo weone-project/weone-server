@@ -42,12 +42,12 @@ beforeAll(async () => {
         })
         await queryInterface.bulkInsert('Products', productJSON)
 
-        let orderJSON = require('../json/order.json')
-        orderJSON.forEach(el => {
-            el.createdAt = new Date()
-            el.updatedAt = new Date()
-        })
-        await queryInterface.bulkInsert('Orders', orderJSON)
+        // let orderJSON = require('../json/order.json')
+        // orderJSON.forEach(el => {
+        //     el.createdAt = new Date()
+        //     el.updatedAt = new Date()
+        // })
+        // await queryInterface.bulkInsert('Orders', orderJSON)
 
     } catch (error) {
         console.log(error, '<---- error beforeAll midtranssss');
@@ -139,12 +139,12 @@ describe('/categories -  CRUD', () => {
                 .send({
                     UserId: 1,
                     productId:1,
-                    reservationDate: "2023-02-03",
+                    reservationDate: "2023-02-05",
                     paymentStatus: "Belum lunas",
                     downPayment: 0,
                     quantity: 6,
                     notes: "bayar woy",
-                    orderId:2,
+                    // orderId:1,
                     fullPayment:100000
                 })
 

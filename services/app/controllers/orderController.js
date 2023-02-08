@@ -1,4 +1,4 @@
-const { Order, Vendor, User, Product } = require('../models/index')
+const { Order, Vendor, User, Product,Category } = require('../models/index')
 class OrderController {
     static async getOrdersFilter(req, res, next) {
         try {
@@ -11,14 +11,19 @@ class OrderController {
                 },
                 include: [
                     {
-                        model: Vendor
+                        model: Vendor,
+                        attributes:{exclude:['password']}
                     },
                     {
                         model: User,
                         attributes: { exclude: ['password'] }
                     },
                     {
-                        model: Product
+                        model: Product,
+                        include:{
+                            model:Category,
+                            attributes:['name']
+                        }
                     }
                 ]
             }
@@ -38,14 +43,19 @@ class OrderController {
                     },
                     include: [
                         {
-                            model: Vendor
+                            model: Vendor,
+                            attributes:{exclude:['password']}
                         },
                         {
                             model: User,
                             attributes: { exclude: ['password'] }
                         },
                         {
-                            model: Product
+                            model: Product,
+                            include:{
+                                model:Category,
+                                attributes:['name']
+                            }
                         }
                     ]
                 })
@@ -64,14 +74,19 @@ class OrderController {
                     },
                     include: [
                         {
-                            model: Vendor
+                            model: Vendor,
+                            attributes:{exclude:['password']}
                         },
                         {
                             model: User,
                             attributes: { exclude: ['password'] }
                         },
                         {
-                            model: Product
+                            model: Product,
+                            include:{
+                                model:Category,
+                                attributes:['name']
+                            }
                         }
                     ]
                 }
@@ -93,14 +108,19 @@ class OrderController {
                     },
                     include: [
                         {
-                            model: Vendor
+                            model: Vendor,
+                            attributes:{exclude:['password']}
                         },
                         {
                             model: User,
                             attributes: { exclude: ['password'] }
                         },
                         {
-                            model: Product
+                            model: Product,
+                            include:{
+                                model:Category,
+                                attributes:['name']
+                            }
                         }
                     ]
                 })
@@ -116,14 +136,19 @@ class OrderController {
             let order = await Order.findOne({
                 include: [
                     {
-                        model: Vendor
+                        model: Vendor,
+                        attributes:{exclude:['password']}
                     },
                     {
                         model: User,
                         attributes: { exclude: ['password'] }
                     },
                     {
-                        model: Product
+                        model: Product,
+                        include:{
+                            model:Category,
+                            attributes:['name']
+                        }
                     }
                 ],
                 where: {
@@ -146,14 +171,19 @@ class OrderController {
             let order = await Order.findOne({
                 include: [
                     {
-                        model: Vendor
+                        model: Vendor,
+                        attributes:{exclude:['password']}
                     },
                     {
                         model: User,
                         attributes: { exclude: ['password'] }
                     },
                     {
-                        model: Product
+                        model: Product,
+                        include:{
+                            model:Category,
+                            attributes:['name']
+                        }
                     }
                 ],
                 where: {
