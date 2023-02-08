@@ -3,7 +3,26 @@ const { Invitations, Musics, Order, User, Greets, GuestBook } = require('../mode
 class InvitationController {
   static async getAllInvitation(req, res, next) {
     try {
-      let dataInvitations = await Invitations.findAll()
+      let dataInvitations = await Invitations.findAll({
+        include:
+          [
+            {
+              model: Musics
+            },
+            {
+              model: Greets
+            },
+            {
+              model: Order,
+              include: {
+                model: User,
+                attributes: {
+                  exclude: ['password']
+                }
+              }
+            }
+          ]
+      })
       res.status(200).json(dataInvitations)
     } catch (error) {
       // console.log(error);
