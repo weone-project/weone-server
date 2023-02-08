@@ -34,5 +34,41 @@
         "UserId": 1,
         "ProductId": 6,
         "rating": 5
+    },
+    {
+        "testimony": "Product ini keren banget. worthed to buy!",
+        "UserId": 1,
+        "ProductId": 13,
+        "rating": 5
+    },
+    {
+        "testimony": "Paket komplit dengan harga terjangkau banget. harganya sangat ekonomis. kami suka harga miring.",
+        "UserId": 1,
+        "ProductId": 14,
+        "rating": 5
+    },
+    {
+        "testimony": "Paket all in dan layanan sangat memuaskan. good job.",
+        "UserId": 1,
+        "ProductId": 15,
+        "rating": 5
+    },
+    {
+        "testimony": "Walaupun cuma handle hari H aja, tapi mereka sangat profesional. mantapp guys.",
+        "UserId": 1,
+        "ProductId": 16,
+        "rating": 5
+    },
+    {
+        "testimony": "Hasilnya cakep banget. aku jadi pangling pas hari H. kerja kalian sangat memuaskan.",
+        "UserId": 1,
+        "ProductId": 17,
+        "rating": 5
+    },
+    {
+        "testimony": "Pelayanannya lengkap banget. mulai dari masih polos, sampe jadi cetar membahanan. puas banget sama hasil makeupnya.",
+        "UserId": 1,
+        "ProductId": 18,
+        "rating": 5
     }
 ]
