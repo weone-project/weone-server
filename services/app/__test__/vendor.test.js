@@ -467,6 +467,15 @@ describe('/vendors - CRUD', () => {
             expect(res.status).toBe(201)
             expect(res.body).toHaveProperty('message')
         })
+
+        it('should return 200 - PATCH vendor product id', async () => {
+            const res = await request(app)
+                .patch('/vendors/1')
+                .set("access_token", access_token)
+
+            expect(res.status).toBe(200)
+            expect(res.body).toHaveProperty('message')
+        })
     })
 
     describe('FAILED CASE:', () => {
@@ -507,9 +516,18 @@ describe('/vendors - CRUD', () => {
             expect(res.body).toHaveProperty('message')
         })
 
-        it('should return 201 - PATCH vendor order id', async () => {
+        it('should return 404 - PATCH vendor order id', async () => {
             const res = await request(app)
                 .patch('/vendors/orders/999')
+                .set("access_token", access_token)
+
+            expect(res.status).toBe(404)
+            expect(res.body).toHaveProperty('message')
+        })
+
+        it('should return 404 - PATCH vendor product id', async () => {
+            const res = await request(app)
+                .patch('/vendors/999')
                 .set("access_token", access_token)
 
             expect(res.status).toBe(404)
