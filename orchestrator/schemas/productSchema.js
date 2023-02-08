@@ -64,7 +64,7 @@ const productTypeDefs = `#GraphQL
 
     type Mutation {
         createProduct(form: ProductForm,  access_token: String): Message
-        updateProduct(form: ProductForm, id:ID): Message
+        updateProduct(form: ProductForm, id:ID, access_token: String): Message
         deleteProduct(id: ID): Message
     }
 `
@@ -156,11 +156,16 @@ const productResolvers = {
 
         updateProduct: async (_, args) => {
             try {
+                const { access_token } = args
                 const { id } = args
                 const { data } = await axios({
                     method: 'put',
                     url: `${BASE_URL}/products/${id}`,
+                    headers: {
+                        access_token: access_token
+                    },
                     data: args.form,
+
                 })
 
                 await redis.del('get:products');
