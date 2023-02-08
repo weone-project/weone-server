@@ -14,6 +14,12 @@ type Product {
     dpPrice: Int
     VendorId: Int
     CategoryId: Int
+    Category:Category
+}
+
+type Category {
+    id: ID
+    name: String
 }
 
 type User{
@@ -52,6 +58,7 @@ type UserOrder{
     User:User
     createdAt:String
     updatedAt:String
+
 }
 
 type VendorOrder{
@@ -70,6 +77,8 @@ type VendorOrder{
     User:User
     rescheduleStatus:String
     rescheduleDate:String
+    createdAt:String
+    updatedAt:String
 }
 
 input OrderForm{
