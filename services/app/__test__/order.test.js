@@ -169,6 +169,7 @@ describe('orders -  CRUD', () => {
                 .patch('/orders/1/userSchedule')
                 .set("access_token", validTokenUser)
                 .send({
+                    paymentStatus:'Done',
                     rescheduleDate:'2023-05-05',
                     rescheduleStatus : 'reschedule requested'
                 })
