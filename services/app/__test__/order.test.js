@@ -169,7 +169,7 @@ describe('orders -  CRUD', () => {
                 .patch('/orders/1/userSchedule')
                 .set("access_token", validTokenUser)
                 .send({
-                    paymentStatus: 'Belum lunas',
+                    rescheduleDate:'2023-05-05',
                     rescheduleStatus : 'reschedule requested'
                 })
             expect(res.status).toBe(200)
@@ -181,7 +181,6 @@ describe('orders -  CRUD', () => {
                 .patch('/orders/1/vendorSchedule')
                 .set("access_token", validTokenVendor)
                 .send({
-                    paymentStatus: 'Belum lunas',
                     rescheduleStatus : 'reschedule accepted'
                 })
             expect(res.status).toBe(200)
@@ -193,7 +192,6 @@ describe('orders -  CRUD', () => {
                 .patch('/orders/1/userAllowed')
                 .set("access_token", validTokenUser)
                 .send({
-                    paymentStatus: 'Belum lunas',
                     rescheduleStatus : 'reschedule accepted',
                     rescheduleDate:'2023-05-05'
                 })

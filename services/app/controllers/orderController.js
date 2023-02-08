@@ -264,7 +264,7 @@ class OrderController {
                     UserId: userId
                 }
             })
-            res.status(200).json({ message: `Order status has been updated to ${paymentStatus}` })
+            res.status(200).json({ message: `reschedule has been requested` })
         } catch (error) {
             next(error)
         }
@@ -286,7 +286,7 @@ class OrderController {
                     VendorId: vendorId
                 }
             })
-            res.status(200).json({ message: `Reschedule Status is ${paymentStatus}` })
+            res.status(200).json({ message: `Reschedule is ${rescheduleStatus}` })
         } catch (error) {
             next(error)
         }
@@ -310,7 +310,7 @@ class OrderController {
                     UserId: userId
                 }
             })
-            res.status(200).json({ message: `Reschedule Status is ${paymentStatus}` })
+            res.status(200).json({ message: `Reschedule Date is changed` })
         } catch (error) {
             next(error)
         }
