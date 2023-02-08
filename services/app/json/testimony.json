@@ -10,5 +10,42 @@
         "UserId":1,
         "ProductId":2,
         "rating":4
+    },
+    {
+        "testimony": "Musik dangdutnya mantap",
+        "UserId":1,
+        "ProductId":7,
+        "rating":4
+    },
+    {
+        "testimony": "Dj memainkan lagu-lagu yang sangat asyik",
+        "UserId":1,
+        "ProductId":8,
+        "rating":4
+    },
+    {
+        "testimony": "Permainan musiknya sungguh membuatku terkesan",
+        "UserId":1,
+        "ProductId":9,
+        "rating":4
+    },
+    {
+        "testimony": "Foto yang dihasilkan bagus sekali",
+        "UserId":1,
+        "ProductId":10,
+        "rating":4
+    },
+    {
+        "testimony": "Waah memang ga salah pilih jasa foto di sini",
+        "UserId":1,
+        "ProductId":11,
+        "rating":4
+    },
+    {
+        "testimony": "Mantap sekali hasil fotonya",
+        "UserId":1,
+        "ProductId":12,
+        "rating":4
     }
+
 ]
