@@ -88,7 +88,6 @@ class MidtransController {
             } else {
                 dataorderdetail = dataOrder.id + ' - ' + status
             } 
-console.log(dataorderdetail)
             let parameter = {
                 transaction_details: {
                     order_id: dataorderdetail,
