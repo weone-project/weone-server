@@ -89,13 +89,16 @@ input OrderForm{
     notes:String 
 }
 
-input editOrder{
-    paymentStatus:String
+input editOrderUser{
+    rescheduleDate: String
+    rescheduleStatus:String
+}
+
+input editOrderVendor{
     rescheduleStatus:String
 }
 
 input reschedule{
-    paymentStatus:String
     rescheduleStatus:String
     rescheduleDate:String
 }
@@ -118,8 +121,8 @@ type Query {
 type Mutation{
     createOrder(form: OrderForm,productId:ID,access_token:String): Message
     deleteOrder(orderId:ID):Message
-    updateOrderUser(orderId:ID,form:editOrder,access_token:String):Message
-    updateOrderVendor(orderId:ID,form:editOrder,access_token:String):Message
+    updateOrderUser(orderId:ID,form:editOrderUser,access_token:String):Message
+    updateOrderVendor(orderId:ID,form:editOrderVendor,access_token:String):Message
     updateReschedule(orderId:ID,form:reschedule,access_token:String):Message
 }
 `
