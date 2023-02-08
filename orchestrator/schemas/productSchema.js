@@ -7,7 +7,7 @@ const productTypeDefs = `#GraphQL
         id: ID
         name: String
         description: String
-        imgUrl: String
+        imgUrl: [String]
         price: Int
         estimatedDay: Int
         rating: Float
@@ -19,6 +19,10 @@ const productTypeDefs = `#GraphQL
         updatedAt: String
         Category: Category
         Vendor: Vendor
+    }
+
+    type Content {
+        imgUrl: String
     }
 
     type Category {
@@ -41,7 +45,7 @@ const productTypeDefs = `#GraphQL
     input ProductForm {
         name: String
         description: String
-        imgUrl: String
+        imgUrl: [String]
         price: Int
         estimatedDay: Int
         dpPrice: Int

@@ -7,7 +7,7 @@ const testimonyTypeDefs = `#GraphQL
         id: ID
         name: String
         description: String
-        imgUrl: String
+        imgUrl: [String]
         price: Int
         estimatedDay: Int
         rating: Float
