@@ -90,6 +90,7 @@ input OrderForm{
 }
 
 input editOrderUser{
+    paymentStatus:String
     rescheduleDate: String
     rescheduleStatus:String
 }
