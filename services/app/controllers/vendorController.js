@@ -137,7 +137,7 @@ class VendorController {
                 where: { id: productId }
             })
 
-            res.status(201).json({ message: `Status for ${dataProduct.name} changed from ${dataProduct.status} to ${status}` })
+            res.status(200).json({ message: `Status for ${dataProduct.name} changed from ${dataProduct.status} to ${status}` })
 
         } catch (error) {
             console.log(error, '<---- ERROR DI PATCH');

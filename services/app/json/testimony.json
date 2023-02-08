@@ -1,38 +1,38 @@
 [
     {
-        "testimony": "Recommend banget nih",
+        "testimony": "Aku suka bangett!!!",
         "UserId": 1,
         "ProductId": 1,
         "rating": 5
     },
     {
-        "testimony": "Recommend banget nih",
-        "UserId": 1,
-        "ProductId": 1,
-        "rating": 5
-    },
-    {
-        "testimony": "Recommend banget nih",
-        "UserId": 1,
-        "ProductId": 1,
-        "rating": 5
-    },
-    {
-        "testimony": "Recommend banget nih",
-        "UserId": 1,
-        "ProductId": 1,
-        "rating": 5
-    },
-    {
-        "testimony": "Recommend banget nih",
-        "UserId": 1,
-        "ProductId": 1,
-        "rating": 5
-    },
-    {
-        "testimony": "Recommend banget nih",
+        "testimony": "Recommend banget ini mahhh",
         "UserId": 1,
         "ProductId": 2,
+        "rating": 5
+    },
+    {
+        "testimony": "Murah bangettt, worth it deh pokonya order disini",
+        "UserId": 1,
+        "ProductId": 3,
+        "rating": 5
+    },
+    {
+        "testimony": "Cakep iniii, aku recommend buat yang mau kawiin",
+        "UserId": 1,
+        "ProductId": 4,
+        "rating": 5
+    },
+    {
+        "testimony": "Recommended parahh gg bet!",
+        "UserId": 1,
+        "ProductId": 1,
+        "rating": 5
+    },
+    {
+        "testimony": "Aku bakal kasih tau mama aku kalo mau kawin, pesen disini aja!!",
+        "UserId": 1,
+        "ProductId": 6,
         "rating": 5
     }
 ]
