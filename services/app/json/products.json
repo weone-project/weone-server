@@ -108,6 +108,18 @@
     "CategoryId": 3
   },
   {
+    "name": "Youngs Entertaiment Paket Emerlad",
+    "description": "order for 3 hours",
+    "imgUrl": ["https://alexandra.bridestory.com/image/upload/dpr_1.0,f_webp,fl_progressive,q_60,c_fill,g_faces,w_560,h_280/assets/upload-SE4HLWK9H.webp","https://alexandra.bridestory.com/image/upload/dpr_1.0,f_webp,fl_progressive,q_60,c_fill,g_faces,w_560,h_280/assets/2019_1020_20254300-SyDYOganH.webp","https://alexandra.bridestory.com/image/upload/dpr_1.0,f_webp,fl_progressive,q_60,c_fill,g_faces,w_560,h_280/assets/2019_1020_19180400-Bk6Kul63r.webp"],
+    "price": 7125000,
+    "estimatedDay": 2,
+    "rating": 4,
+    "dpPrice": 1000000,
+    "status": "Active",
+    "VendorId": 3,
+    "CategoryId": 3
+  },
+  {
     "name": "RBI Wedding Entertainment Package",
     "description": "We provide a wide range of music entertainment as well as MC and sound system packages for your memorable moments.",
     "imgUrl": ["https://alexandra.bridestory.com/image/upload/dpr_1.0,f_webp,fl_progressive,q_60,c_fill,g_faces,w_560,h_280/assets/upload-xas0BR_qW.webp","https://alexandra.bridestory.com/image/upload/dpr_1.0,f_webp,fl_progressive,q_60,c_fill,g_faces,w_560,h_280/assets/upload-raqzGdjvA.webp","https://alexandra.bridestory.com/image/upload/dpr_1.0,f_webp,fl_progressive,q_60,c_fill,g_faces,w_560,h_280/assets/upload-dhuCxx0M5.webp"],
@@ -130,6 +142,18 @@
     "status": "Active",
     "VendorId": 3,
     "CategoryId": 3
+  },
+  {
+    "name": "Foto Wedding by Capture Your Moments — Fotografi Pernikahan",
+    "description": "Order for 8 hours",
+    "imgUrl": ["https://alexandra.bridestory.com/image/upload/dpr_1.0,f_webp,fl_progressive,q_60,c_fill,g_faces,w_560,h_280/assets/_mg_7225-HJ4V7xf1L.webp","https://alexandra.bridestory.com/image/upload/dpr_1.0,f_webp,fl_progressive,q_60,c_fill,g_faces,w_560,h_280/assets/_mg_7023-BJLE7lfkU.webp","https://alexandra.bridestory.com/image/upload/dpr_1.0,f_webp,fl_progressive,q_60,c_fill,g_faces,w_560,h_280/assets/_mg_7225-HJ4V7xf1L.webp"],
+    "price": 5000000,
+    "estimatedDay": 3,
+    "rating": 5,
+    "dpPrice": 500000,
+    "status": "Active",
+    "VendorId": 3,
+    "CategoryId": 4
   },
   {
     "name": "Goodfriends",
@@ -286,5 +310,17 @@
     "status": "Active",
     "VendorId": 6,
     "CategoryId": 7
+  },
+  {
+    "name": "Organizer D-Day Function in Bandung Area",
+    "description": "D-Day Function is the most basic function of our services. We'll become your partner to make sure your wedding success beautifully. We'll do the rundown making, vendor technical meeting, family technical meeting, time management, provide D-Day properties, and we'll help even your little needs on your D-Day.",
+    "imgUrl": ["https://alexandra.bridestory.com/image/upload/dpr_1.0,f_webp,fl_progressive,q_60,c_fill,g_faces,w_560,h_280/assets/upload-SyHjTai5P.webp", "https://alexandra.bridestory.com/image/upload/dpr_1.0,f_webp,fl_progressive,q_60,c_fill,g_faces,w_560,h_280/assets/upload-SJuaa6scv.webp", "https://alexandra.bridestory.com/image/upload/dpr_1.0,f_webp,fl_progressive,q_60,c_fill,g_faces,w_560,h_280/assets/upload-ry-2apoqw.webp"],
+    "price": 16950000,
+    "estimatedDay": 7,
+    "rating": 4.5,
+    "dpPrice": 8000000,
+    "status": "Active",
+    "VendorId": 5,
+    "CategoryId": 6
   }
 ]
