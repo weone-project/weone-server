@@ -36,6 +36,18 @@
     "CategoryId": 1
   },
   {
+    "name": "2023 Flash Deal Ballroom Wedding Package",
+    "description": "Order for 12 hours use",
+    "imgUrl": ["https://london.bridestory.com/image/upload/dpr_1.0,f_auto,fl_progressive,q_80,h_0,w_700,c_fill,g_faces/v1/assets/upload-nAkp_Qjet.jpg", "https://london.bridestory.com/image/upload/dpr_1.0,f_auto,fl_progressive,q_80,h_0,w_700,c_fill,g_faces/v1/assets/upload-eYnJSpgg-.jpg", "https://london.bridestory.com/image/upload/dpr_1.0,f_auto,fl_progressive,q_80,h_0,w_700,c_fill,g_faces/v1/assets/upload-iG9vzWIWQ.jpg"],
+    "price": 350000000,
+    "estimatedDay": 3,
+    "rating": 0,
+    "dpPrice": 150000000,
+    "status": "Active",
+    "VendorId": 1,
+    "CategoryId": 1
+  },
+  {
     "name": "Pronda Catering 300 pax",
     "description": "Order for 300 pax",
     "imgUrl": ["https://www.sunjaya.com.my/wp-content/uploads/2019/11/Wedding-Catering-Fusion.jpg", "https://www.thomasthecaterer.co.uk/wp-content/uploads/2020/05/Wedding-food-catering-scaled.jpeg", "https://weddingmarket.com/storage/images/artikelidea/1c4bb57ce19f6d57d5fb438aabf3a052ef05260b.webp"],
@@ -72,9 +84,33 @@
     "CategoryId": 2
   },
   {
+    "name": "Eat'D Management Catering 250 pax",
+    "description": "Order for 250 pax",
+    "imgUrl": ["https://london.bridestory.com/image/upload/dpr_1.0,f_auto,fl_progressive,q_80,h_0,w_700,c_fill,g_faces/v1/assets/upload-U1qOh6CnB.jpg", "https://london.bridestory.com/image/upload/dpr_1.0,f_auto,fl_progressive,q_80,h_0,w_700,c_fill,g_faces/v1/assets/upload-bnHG0Vpvz.jpg", "https://london.bridestory.com/image/upload/dpr_1.0,f_auto,fl_progressive,q_80,h_0,w_700,c_fill,g_faces/v1/assets/upload-GUz3_Gifj.jpg"],
+    "price": 15000000,
+    "estimatedDay": 7,
+    "rating": 0,
+    "dpPrice": 5000000,
+    "status": "Active",
+    "VendorId": 2,
+    "CategoryId": 2
+  },
+  {
     "name": "Music Entertainment Wedding Band, OT, Pop, Oldies, Dangdut, Campursari",
     "description": "Angjo Production Music Entertainment we serve: Organ Tunggal (OT), Lagu Pop, Top 40s, Tembang Kenangan, Dangdut, Campursari, Acoustic Band, Rock Band, additional player Saxophone, Biola. Kami juga menyediakan Orchestra kecil dengan 10 pemain (untuk Orchestra harga bisa dinegosiasikan), semua harga sudah termasuk sound system.",
     "imgUrl": ["https://london.bridestory.com/image/upload/dpr_1.0,f_auto,fl_progressive,q_80,h_0,w_700,c_fill,g_faces/v1/assets/wedding-desi-3-S1h70Igl8.jpg","https://london.bridestory.com/image/upload/dpr_1.0,f_auto,fl_progressive,q_80,h_0,w_700,c_fill,g_faces/v1/assets/wedding-desi-1-BJlCTUgl8.jpg","https://london.bridestory.com/image/upload/dpr_1.0,f_auto,fl_progressive,q_80,h_0,w_700,c_fill,g_faces/v1/assets/wedding-desi-2-SJAjAIgeL.jpg"],
+    "price": 6000000,
+    "estimatedDay": 2,
+    "rating": 0,
+    "dpPrice": 1000000,
+    "status": "Active",
+    "VendorId": 3,
+    "CategoryId": 3
+  },
+  {
+    "name": "RBI Wedding Entertainment Package",
+    "description": "We provide a wide range of music entertainment as well as MC and sound system packages for your memorable moments.",
+    "imgUrl": ["https://alexandra.bridestory.com/image/upload/dpr_1.0,f_webp,fl_progressive,q_60,c_fill,g_faces,w_560,h_280/assets/upload-xas0BR_qW.webp","https://alexandra.bridestory.com/image/upload/dpr_1.0,f_webp,fl_progressive,q_60,c_fill,g_faces,w_560,h_280/assets/upload-raqzGdjvA.webp","https://alexandra.bridestory.com/image/upload/dpr_1.0,f_webp,fl_progressive,q_60,c_fill,g_faces,w_560,h_280/assets/upload-dhuCxx0M5.webp"],
     "price": 6000000,
     "estimatedDay": 2,
     "rating": 0,
