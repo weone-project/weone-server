@@ -17,7 +17,6 @@ module.exports = {
     const categories = require('../json/categories.json').map(el => {
       el.createdAt = new Date()
       el.updatedAt = new Date()
-      el.password = hashPassword(el.password)
       return el
     })
     await queryInterface.bulkInsert('Categories', categories, {})

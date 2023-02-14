@@ -35,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     imgUrl: {
-      type: DataTypes.TEXT,
+      type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: false,
       validate: {
         notNull: { msg: 'Img Url is required' },
@@ -52,13 +52,19 @@ module.exports = (sequelize, DataTypes) => {
     },
     estimatedDay: {
       type: DataTypes.INTEGER,
+      defaultValue: 1,
       max: 7,
     },
     rating: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.DECIMAL,
     },
     dpPrice: {
       type: DataTypes.INTEGER,
+      defaultValue: 0
+    },
+    status: {
+      type: DataTypes.STRING,
+      defaultValue: 'Active'
     },
     VendorId: {
       type: DataTypes.INTEGER,

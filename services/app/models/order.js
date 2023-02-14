@@ -13,6 +13,8 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Order.belongsTo(models.User)
       Order.belongsTo(models.Product)
+      Order.belongsTo(models.Vendor)
+      Order.hasMany(models.Invitations)
     }
   }
   Order.init({
@@ -32,6 +34,14 @@ module.exports = (sequelize, DataTypes) => {
         notNull: { msg: 'Product Id is required' }
       }
     },
+    VendorId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notEmpty: { msg: 'Vendor Id is required' },
+        notNull: { msg: 'Vendor Id is required' }
+      }
+    },
     reservationDate: {
       type: DataTypes.DATE,
       allowNull: false,
@@ -39,6 +49,12 @@ module.exports = (sequelize, DataTypes) => {
         notEmpty: { msg: 'Reservation Date is required' },
         notNull: { msg: 'Reservation Date is required' }
       }
+    },
+    rescheduleDate: {
+      type: DataTypes.DATE,
+    },
+    rescheduleStatus: {
+      type: DataTypes.STRING,
     },
     paymentStatus: {
       type: DataTypes.STRING,

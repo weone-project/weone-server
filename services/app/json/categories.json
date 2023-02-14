@@ -1,6 +1,6 @@
 [
     {
-        "name": "Gedung"
+        "name": "Venue"
     },
     {
         "name": "Catering"
@@ -15,9 +15,10 @@
         "name": "Make up artist"
     },
     {
-        "name": "Paket EO"
+        "name": "EO Package"
     },
     {
         "name": "Invitation"
     }
+
 ]

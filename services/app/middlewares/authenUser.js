@@ -1,7 +1,7 @@
-const { verifyToken } = require("../helpers/jwt");
+const { decodeToken } = require("../helpers/jwt");
 const { User } = require("../models/index");
 
-async function authentication(req, res, next) {
+async function authenticationUser(req, res, next) {
   try {
     const { access_token } = req.headers;
 
@@ -9,7 +9,7 @@ async function authentication(req, res, next) {
       throw { name: "Invalid token" };
     }
 
-    const verify = verifyToken(access_token);
+    const verify = decodeToken(access_token);
     const findUser = await User.findByPk(verify.id);
 
     if (!findUser) {
@@ -20,7 +20,6 @@ async function authentication(req, res, next) {
       id: findUser.id,
       username: findUser.username,
       email: findUser.email,
-      status: findUser.status
     };
 
     next();
@@ -29,4 +28,4 @@ async function authentication(req, res, next) {
   }
 }
 
-module.exports =  authentication
+module.exports = authenticationUser

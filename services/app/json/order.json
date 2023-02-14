@@ -1,0 +1,15 @@
+[
+    {
+        "UserId":1,
+        "ProductId":1,
+        "VendorId":1,
+        "reservationDate":"2023-02-03",
+        "rescheduleDate":"2023-05-03",
+        "rescheduleStatus": null,
+        "paymentStatus":"Belum lunas",
+        "fullPayment":1200000,
+        "downPayment":12987,
+        "quantity":5,
+        "notes":"bayar woy"
+    }
+]

@@ -1,5 +1,7 @@
 'use strict';
 
+const { hashPassword } = require('../helpers/bcrypt');
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
@@ -12,6 +14,13 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
+    const vendors = require('../json/vendors.json').map(el => {
+      el.createdAt = new Date()
+      el.updatedAt = new Date()
+      el.password = hashPassword(el.password)
+      return el
+    })
+    await queryInterface.bulkInsert('Vendors', vendors, {})
   },
 
   async down (queryInterface, Sequelize) {
@@ -21,5 +30,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
+    await queryInterface.bulkDelete('Vendors', null, {});
   }
 };

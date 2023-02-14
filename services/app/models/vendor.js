@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Vendor.hasMany(models.Product)
+      Vendor.hasMany(models.Order)
     }
   }
   Vendor.init({
@@ -31,7 +32,8 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notEmpty: { msg: 'Email is required' },
-        notNull: { msg: 'Email is required' }
+        notNull: { msg: 'Email is required' },
+        isEmail: { msg: 'Format email is invalid!'},
       }
     },
     password: {
@@ -48,6 +50,22 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notEmpty: { msg: 'Phone Number is required' },
         notNull: { msg: 'Phone Number is required' }
+      }
+    },
+    city: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: { msg: 'City is required' },
+        notNull: { msg: 'City is required' }
+      }
+    },
+    province: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: { msg: 'Province is required' },
+        notNull: { msg: 'Province is required' }
       }
     },
     address: {

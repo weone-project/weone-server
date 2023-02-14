@@ -19,7 +19,7 @@ module.exports = {
       },
       imgUrl: {
         allowNull: false,
-        type: Sequelize.TEXT
+        type: Sequelize.ARRAY(Sequelize.STRING)
       },
       price: {
         allowNull: false,
@@ -29,10 +29,13 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       rating: { //? ga wajib
-        type: Sequelize.INTEGER
+        type: Sequelize.DECIMAL
       },
       dpPrice: { // ga wajib
         type: Sequelize.INTEGER
+      },
+      status: { // ga wajib
+        type: Sequelize.STRING
       },
       VendorId: {
         allowNull: false,

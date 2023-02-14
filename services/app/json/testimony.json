@@ -1,0 +1,111 @@
+[
+    {
+        "testimony": "Aku suka bangett!!!",
+        "UserId": 1,
+        "ProductId": 1,
+        "rating": 5
+    },
+    {
+        "testimony": "Recommend banget ini mahhh",
+        "UserId": 1,
+        "ProductId": 2,
+        "rating": 5
+    },
+    {
+        "testimony": "Murah bangettt, worth it deh pokonya order disini",
+        "UserId": 1,
+        "ProductId": 3,
+        "rating": 5
+    },
+    {
+        "testimony": "Cakep iniii, aku recommend buat yang mau kawiin",
+        "UserId": 1,
+        "ProductId": 4,
+        "rating": 5
+    },
+    {
+        "testimony": "Recommended parahh gg bet!",
+        "UserId": 1,
+        "ProductId": 5,
+        "rating": 5
+    },
+    {
+        "testimony": "Aku bakal kasih tau mama aku kalo mau kawin, pesen disini aja!!",
+        "UserId": 1,
+        "ProductId": 6,
+        "rating": 5
+    },
+    {
+        "testimony": "Product ini keren banget. worthed to buy!",
+        "UserId": 1,
+        "ProductId": 13,
+        "rating": 5
+    },
+    {
+        "testimony": "Paket komplit dengan harga terjangkau banget. harganya sangat ekonomis. kami suka harga miring.",
+        "UserId": 1,
+        "ProductId": 14,
+        "rating": 5
+    },
+    {
+        "testimony": "Paket all in dan layanan sangat memuaskan. good job.",
+        "UserId": 1,
+        "ProductId": 15,
+        "rating": 5
+    },
+    {
+        "testimony": "Walaupun cuma handle hari H aja, tapi mereka sangat profesional. mantapp guys.",
+        "UserId": 1,
+        "ProductId": 16,
+        "rating": 5
+    },
+    {
+        "testimony": "Hasilnya cakep banget. aku jadi pangling pas hari H. kerja kalian sangat memuaskan.",
+        "UserId": 1,
+        "ProductId": 17,
+        "rating": 5
+    },
+    {
+        "testimony": "Pelayanannya lengkap banget. mulai dari masih polos, sampe jadi cetar membahanan. puas banget sama hasil makeupnya.",
+        "UserId": 1,
+        "ProductId": 18,
+        "rating": 5
+    },
+    {
+        "testimony": "Musik dangdutnya mantap",
+        "UserId":1,
+        "ProductId":7,
+        "rating":4
+    },
+    {
+        "testimony": "Dj memainkan lagu-lagu yang sangat asyik",
+        "UserId":1,
+        "ProductId":8,
+        "rating":4
+    },
+    {
+        "testimony": "Permainan musiknya sungguh membuatku terkesan !",
+        "UserId":1,
+        "ProductId":9,
+        "rating":4
+    },
+    {
+        "testimony": "Foto yang dihasilkan bagus sekali",
+        "UserId":1,
+        "ProductId":10,
+        "rating":4
+    },
+    {
+        "testimony": "Waah memang ga salah pilih jasa foto di sini",
+        "UserId":1,
+        "ProductId":11,
+        "rating":4
+    },
+    {
+        "testimony": "Mantap sekali hasil fotonya",
+        "UserId":1,
+        "ProductId":12,
+        "rating":4
+    }
+
+]

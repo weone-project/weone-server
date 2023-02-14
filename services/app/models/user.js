@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       User.hasMany(models.Order)
       User.hasMany(models.Testimony)
+      // User.hasMany(models.Invitation)
     }
   }
   User.init({
@@ -32,7 +33,8 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notEmpty: { msg: 'Email is required' },
-        notNull: { msg: 'Email is required' }
+        notNull: { msg: 'Email is required' },
+        isEmail: { msg: 'Format email is invalid!'},
       }
     },
     password: {

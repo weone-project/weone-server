@@ -17,13 +17,24 @@ module.exports = {
       email: {
         allowNull: false,
         unique: true,
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        validate: {
+          isEmail: { msg: 'Format email is invalid!' },
+        }
       },
       password: {
         allowNull: false,
         type: Sequelize.STRING
       },
       phoneNumber: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      city: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      province: {
         allowNull: false,
         type: Sequelize.STRING
       },
